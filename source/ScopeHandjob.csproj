@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Scope Handjob: build with build.ps1 -GameDir "<your SPT folder>". References come from your own SPT install. -->
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>ScopeHandjob</AssemblyName>
+    <RootNamespace>ScopeHandjob</RootNamespace>
+    <Version>1.0.1</Version>
+    <Product>Scope Handjob</Product>
+    <Description>Your character's hand works the scope (knob, lever, button, flip magnifier) before the zoom or mode changes.</Description>
+    <DefineConstants>$(DefineConstants);PUBLIC_RELEASE</DefineConstants>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AutomaticallyUseReferenceAssemblyPackages>false</AutomaticallyUseReferenceAssemblyPackages>
+    <NuGetAudit>false</NuGetAudit>
+    <ManagedDir>$(GameDir)\EscapeFromTarkov_Data\Managed</ManagedDir>
+    <BepInExDir>$(GameDir)\BepInEx</BepInExDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="src\*.cs" />
+    <EmbeddedResource Include="poses.json" LogicalName="ScopeHandjob.poses.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="netstandard" HintPath="$(ManagedDir)\netstandard.dll" Private="false" />
+    <Reference Include="BepInEx" HintPath="$(BepInExDir)\core\BepInEx.dll" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(BepInExDir)\core\0Harmony.dll" Private="false" />
+    <Reference Include="UnityEngine" HintPath="$(ManagedDir)\UnityEngine.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(ManagedDir)\UnityEngine.CoreModule.dll" Private="false" />
+    <Reference Include="Assembly-CSharp" HintPath="$(ManagedDir)\Assembly-CSharp.dll" Private="false" />
+    <Reference Include="Newtonsoft.Json" HintPath="$(ManagedDir)\Newtonsoft.Json.dll" Private="false" />
+    <Reference Include="Comfort" HintPath="$(ManagedDir)\Comfort.dll" Private="false" />
+  </ItemGroup>
+</Project>
