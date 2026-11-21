@@ -4,6 +4,24 @@
 
 A BepInEx client mod for **SPT 4.1.6**.
 
+## Showcase
+
+**Zoom key on a variable scope (EOTech Vudu):** one quick twist from 1x to 6x. The picture zooms in smoothly instead of jumping like vanilla.
+
+![Vudu zoom key](vudu-zoom-key.gif)
+
+**Mouse wheel (EOTech Vudu):** zoom in and out step by step. The left hand is on the knob for every turn.
+
+![Vudu mouse wheel](vudu-mouse-wheel.gif)
+
+**Thermal scope buttons (FLIR RS-32):** the hand presses the button on top of the scope to change zoom.
+
+![FLIR RS-32 buttons](flir-rs32-buttons.gif)
+
+**Flip magnifier (EOTech HHS-1):** the hand flips the 3x magnifier up and down, both while aiming and from the hip.
+
+![HHS-1 magnifier flip](hhs1-flip.gif)
+
 ## What it does
 
 - **Mouse wheel zoom** on variable scopes: the hand grips the zoom knob and turns it with the magnification. If the knob has to turn further than a wrist can, the hand lets go, goes back and grips again.
