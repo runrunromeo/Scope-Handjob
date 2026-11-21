@@ -72,3 +72,7 @@ Please open an issue and include:
 - which scope and which gun,
 - what you did (mouse wheel or mode key, aiming or not),
 - your `BepInEx/LogOutput.log`.
+
+## Disclaimer
+
+This mod's code and the in-game posing tools were built with the help of AI. The hand animations themselves were made by hand: every pose was set and tuned in game by a person, using those AI-built tools.
