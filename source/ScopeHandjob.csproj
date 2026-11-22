@@ -4,7 +4,7 @@
     <TargetFramework>net472</TargetFramework>
     <AssemblyName>ScopeHandjob</AssemblyName>
     <RootNamespace>ScopeHandjob</RootNamespace>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Product>Scope Handjob</Product>
     <Description>Your character's hand works the scope (knob, lever, button, flip magnifier) before the zoom or mode changes.</Description>
     <DefineConstants>$(DefineConstants);PUBLIC_RELEASE</DefineConstants>

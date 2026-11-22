@@ -101,6 +101,8 @@ namespace ScopeHandjob
                 replayZoom = 0f;
                 replayHandler = null;
             }
+            // Option: the wheel only zooms while aiming (another mod may use the wheel from the hip).
+            if (Settings.WheelOnlyAiming.Value && !Mathf.Approximately(raw, 0f) && !AimingNow()) return 0f;
             if (!Mathf.Approximately(raw, 0f))
             {
                 // Aiming through another sight (e.g. a backup red dot): zoom input is not for this scope.
@@ -174,6 +176,13 @@ namespace ScopeHandjob
             Player p = HandsOwner(fc);
             if (p == null || !p.IsYourPlayer) return true;
             DropStale();
+
+            // Option: the key only works while aiming. The mod's own replays (a press made while aiming) still go through.
+            if (Settings.ModeKeyOnlyAiming.Value && ownCalls == 0 && !fc.IsAiming)
+            {
+                Log("mode key while not aiming: ignored (Zoom / Mode Key Only While Aiming)");
+                return false;
+            }
 
             // At most 4 presses a second: a faster press is dropped, so the hand can do every press that counts.
             if (PressTooSoon())
@@ -305,6 +314,12 @@ namespace ScopeHandjob
             if (zoom != null || !ScopeTargets.ChangesVisibleMode(vc, state)) return false;
             ScopeTarget t = ScopeTargets.ForMode(vc);
             return t != null && PoseStore.Find(t, Settings.HandToUse, out _) != null;
+        }
+
+        /// <summary>Your player is aiming down sights (no player / gun: counts as aiming, so nothing is blocked).</summary>
+        private static bool AimingNow()
+        {
+            return !TryGetMainController(out _, out Player.FirearmController fc) || fc.IsAiming;
         }
 
         /// <summary>Aiming, but through a different sight than this knob's scope (e.g. a backup red dot).</summary>

@@ -38,6 +38,7 @@ namespace ScopeHandjob
         internal static ConfigEntry<bool> Enabled;
         internal static ConfigEntry<bool> IgnoreEmptyModeKey;
         internal static ConfigEntry<bool> WaitForHand;
+        internal static ConfigEntry<bool> WheelOnlyAiming, ModeKeyOnlyAiming;
 
         internal static ConfigEntry<float> ReachTime;
         internal static ConfigEntry<float> ReturnTime;
@@ -108,6 +109,13 @@ namespace ScopeHandjob
             IgnoreEmptyModeKey = config.Bind(general, "Ignore Mode Key When Nothing Changes", true,
                 new ConfigDescription("On = the mode key does nothing at all (no button press animation, no gun wobble) on sights that have only one mode, " +
                                       "so there is nothing to switch. Off = vanilla: the press animation still plays.", null, Order(5)));
+            WheelOnlyAiming = config.Bind(general, "Mouse Wheel Zoom Only While Aiming", false,
+                new ConfigDescription("On = the mouse wheel changes magnification only while you aim down sights. Not aiming, the wheel does nothing to the " +
+                                      "scope and the hand stays on the handguard (useful when another mod, e.g. Stance Overhaul's Alt + mouse wheel, " +
+                                      "uses the wheel too). Off = as before.", null, Order(4)));
+            ModeKeyOnlyAiming = config.Bind(general, "Zoom / Mode Key Only While Aiming", false,
+                new ConfigDescription("On = the zoom / mode key works only while you aim down sights. Not aiming, a press does nothing " +
+                                      "(no hand, no press animation). Off = as before.", null, Order(3)));
 
             const string timing = "2. Timing";
             ReachTime = config.Bind(timing, "Reach Time", DefReach,
