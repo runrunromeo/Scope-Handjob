@@ -22,6 +22,11 @@ A BepInEx client mod for **SPT 4.1.6**.
 
 ![HHS-1 magnifier flip](hhs1-flip.gif)
 
+**Flip-up cover (Aimpoint CS):** finger flips the cover up and down, both while aiming and from the hip.
+
+![Aimpoint CS cover flip](aimpoint-cs-flipcover.gif)
+
+
 ## What it does
 
 - **Mouse wheel zoom** on variable scopes: the hand grips the zoom knob and turns it with the magnification. If the knob has to turn further than a wrist can, the hand lets go, goes back and grips again.
