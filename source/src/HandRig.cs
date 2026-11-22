@@ -368,6 +368,61 @@ namespace ScopeHandjob
             j.localRotation = Quaternion.AngleAxis(angle, axisParent) * j.localRotation;
         }
 
+        private static readonly Quaternion[] curlFrom = new Quaternion[8];
+        private const float BeckonBaseRate = 2f; // Base Up / Down drops twice as fast as Tip Bend
+
+        /// <summary>
+        /// "Come here" flick of the index finger, towards / away from the palm only (the user's recipe): from its current
+        /// shape "Index: Base Up / Down" goes down by 2 * a (the knuckle turns about the palm's knuckle line towards the palm)
+        /// while "Index: Tip Bend" goes down by a (the other joints straighten about their own hinges). a (min..max degrees)
+        /// is picked so the tip gets as close to target as it can. Returns a.
+        /// </summary>
+        internal float IndexBeckon(Vector3 target, float min, float max)
+        {
+            if (!FingersFound) return 0f;
+            Finger f = Index;
+            int n = Mathf.Min(f.Joints.Length, curlFrom.Length);
+            for (int k = 0; k < n; k++) curlFrom[k] = f.Joints[k].localRotation;
+
+            // Knuckle: the palm's knuckle line, signed so + moves the finger towards the palm side.
+            Transform j0 = f.Joints[0];
+            Vector3 lateral = Root.TransformDirection(LateralLocal).normalized;
+            Vector3 palmSide = Root.TransformDirection(NormalLocal).normalized;
+            Vector3 along = (n > 1 ? f.Joints[1].position : f.Tip) - j0.position;
+            float sign = Vector3.Dot(Vector3.Cross(lateral, along), palmSide) >= 0f ? 1f : -1f;
+            Vector3 knuckleAxis = j0.parent.InverseTransformDirection(lateral * sign).normalized;
+
+            float Miss(float angle)
+            {
+                j0.localRotation = Quaternion.AngleAxis(BeckonBaseRate * angle, knuckleAxis) * curlFrom[0]; // Base Up / Down - 2a
+                for (int k = 1; k < n; k++)
+                    if (f.AxisParent[k] != Vector3.zero)
+                        f.Joints[k].localRotation = Quaternion.AngleAxis(-angle, f.AxisParent[k]) * curlFrom[k]; // Tip Bend - a
+                return (f.Tip - target).sqrMagnitude;
+            }
+
+            // Coarse sweep, then narrow down around the best step (golden section).
+            const float step = 10f;
+            float best = 0f, bestMiss = Miss(0f);
+            for (float a = min; a <= max + 0.01f; a += step)
+            {
+                float m = Miss(a);
+                if (m < bestMiss) { bestMiss = m; best = a; }
+            }
+            float lo = Mathf.Max(min, best - step), hi = Mathf.Min(max, best + step);
+            const float golden = 0.618034f;
+            float x1 = hi - golden * (hi - lo), x2 = lo + golden * (hi - lo);
+            float m1 = Miss(x1), m2 = Miss(x2);
+            for (int i = 0; i < 12; i++)
+            {
+                if (m1 < m2) { hi = x2; x2 = x1; m2 = m1; x1 = hi - golden * (hi - lo); m1 = Miss(x1); }
+                else { lo = x1; x1 = x2; m1 = m2; x2 = lo + golden * (hi - lo); m2 = Miss(x2); }
+            }
+            float angle = (lo + hi) * 0.5f;
+            if (Miss(angle) > bestMiss) Miss(angle = best);
+            return angle;
+        }
+
         internal static void SaveFinger(Finger f, Quaternion[] into)
         {
             for (int k = 0; k < f.Joints.Length; k++) into[k] = f.Joints[k].localRotation;

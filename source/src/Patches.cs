@@ -17,6 +17,10 @@ namespace ScopeHandjob
                 prefix: nameof(SetScopeModePrefix), postfix: nameof(SetScopeModePostfix));
             Patch(harmony, AccessTools.Method(typeof(SightModVisualControllers), "ForceChangeScopeState"),
                 prefix: nameof(ForceChangeScopeStatePrefix));
+            // Elbow smoothing: after every other AdjustElbows postfix (Stance Overhaul moves the elbow goal there too).
+            MethodBase adjustElbows = AccessTools.Method(typeof(Player), "AdjustElbows", new[] { typeof(float) });
+            if (adjustElbows == null) throw new MissingMethodException("game method not found for AdjustElbowsPostfix");
+            harmony.Patch(adjustElbows, postfix: new HarmonyMethod(typeof(Patches), nameof(AdjustElbowsPostfix)) { priority = Priority.Last });
             Patch(harmony, AccessTools.Method(typeof(Player), "IkProcess", new[] { typeof(float) }),
                 prefix: nameof(IkProcessPrefix));
         }
@@ -55,6 +59,21 @@ namespace ScopeHandjob
         private static bool ForceChangeScopeStatePrefix(SightModVisualControllers __instance)
         {
             return !HandDriver.SkipZoomSnap(__instance);
+        }
+
+        private static bool elbowErrorLogged;
+
+        private static void AdjustElbowsPostfix(Player __instance)
+        {
+            try
+            {
+                HandDriver.AfterAdjustElbows(__instance);
+            }
+            catch (Exception error)
+            {
+                if (!elbowErrorLogged) Plugin.Log.LogError(Plugin.LogTag + " elbow smoothing failed, elbow left to the game: " + error.Message);
+                elbowErrorLogged = true;
+            }
         }
 
         private static void IkProcessPrefix(Player __instance, float distance2Camera)

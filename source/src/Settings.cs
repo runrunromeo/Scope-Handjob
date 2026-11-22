@@ -25,6 +25,14 @@ namespace ScopeHandjob
         LeftRight, // across the scope, through the point between thumb and index tips
     }
 
+    /// <summary>Flip parts: what rides the flip.</summary>
+    internal enum FlipMover
+    {
+        WholeHand,  // the hand rides along (HHS-1 magnifier)
+        ThumbOnly,  // the hand stays, the thumb lifts with the part (flicking a cover open)
+        IndexOnly,  // the hand stays, the index finger curls with the part (a "come here" flick closing a cover)
+    }
+
     internal static class Settings
     {
         internal static ConfigEntry<bool> Enabled;
@@ -35,6 +43,7 @@ namespace ScopeHandjob
         internal static ConfigEntry<float> ReturnTime;
         internal static ConfigEntry<float> HoldTime;
         internal static ConfigEntry<float> SwitchTime;
+        internal static ConfigEntry<float> CoverSpeed;
         internal static ConfigEntry<float> RegripTime, FastTwistTime;
 
         internal static ConfigEntry<bool> LowerShortStock;
@@ -60,7 +69,7 @@ namespace ScopeHandjob
 
         // Defaults: the values the hand animations were tuned with.
         private const float DefReach = 0.35f, DefReturn = 0.35f, DefHold = 0.5f, DefSwitch = 0.3f, DefRegrip = 0.35f, DefFastTwist = 0.35f;
-        private const float DefShake = 2.5f;
+        private const float DefShake = 1f, DefCoverSpeed = 2.5f;
         private const string SectionStance = "3. Stance Overhaul", SectionShake = "4. Gun Shake";
 
         /// <summary>The mod works now: Enabled, and (public release) Scope Handjob Dev is not installed and switched on too.</summary>
@@ -113,6 +122,11 @@ namespace ScopeHandjob
                 new ConfigDescription("Knob (saved poses): seconds the hand takes to let go at a twist limit, go back and grip again.", new AcceptableValueRange<float>(0.05f, 1.5f), Order(6)));
             FastTwistTime = config.Bind(timing, "Fast Twist Time", DefFastTwist,
                 new ConfigDescription("Knob (saved poses): seconds for the zoom-mode key's one quick twist from lowest to highest magnification (or back).", new AcceptableValueRange<float>(0.05f, 1.5f), Order(5)));
+            CoverSpeed = config.Bind(timing, "Lens Cover Speed", DefCoverSpeed,
+                new ConfigDescription("Flip-up lens covers only (e.g. Aimpoint CS): how fast the finger flicks the cover open / shut. " +
+                                      "1 = Switch Time, 2 = twice as fast, 0.5 = half as fast. The hand reaching there and going back " +
+                                      "(Reach / Return Time) and other scopes are not affected. Default " + DefCoverSpeed + ".",
+                    new AcceptableValueRange<float>(0.5f, 3f), Order(4)));
 
             const string stance = SectionStance;
             LowerShortStock = config.Bind(stance, "Short Stock: Lower To Change Zoom", true,

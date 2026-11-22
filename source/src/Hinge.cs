@@ -96,6 +96,19 @@ namespace ScopeHandjob
             return Quaternion.LookRotation(z, Vector3.Cross(z, x));
         }
 
+        /// <summary>
+        /// The same end position reached the other way round (121 deg one way = 239 deg the other). A part hinged at the
+        /// top rear of a sight (Aimpoint CS rear lens cover) would cut through the sight on the short way.
+        /// </summary>
+        internal Hinge OtherWay() => new Hinge
+        {
+            Space = Space,
+            AxisLocal = AxisLocal,
+            PivotLocal = PivotLocal,
+            Angle = Angle > 0f ? Angle - 360f : Angle + 360f,
+            Slide = Slide,
+        };
+
         internal static Hinge GuessFlip(Vector3 a, Vector3 b, Transform space, Vector3 weaponDirection)
         {
             // Unknown shape: assume a quarter turn about the gun's axis, whichever pivot keeps it nearer the gun.

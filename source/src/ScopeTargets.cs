@@ -18,6 +18,7 @@ namespace ScopeHandjob
     internal sealed class ScopeTarget
     {
         internal PartKind Kind;
+        internal bool IsCover; // flip part that is a lens cover (Aimpoint CS): its own speed (2. Timing / Lens Cover Speed)
         internal string Name;
         internal Transform Part;
         internal Vector3 LocalCenter;
@@ -35,6 +36,8 @@ namespace ScopeHandjob
         internal bool Reverse;             // the magnifier is aside now and swings back to Home
         internal Transform[] Pieces;       // everything of the magnifier visible now (housing, lenses): moves together
         internal Transform[] EndPieces;    // the same in the mode it switches to (HHS-1 aside -> in line: the in-line 3x pieces)
+        internal Transform BodyRoot;       // flip parts: the sight root and its body box in that space (which way round to flip)
+        internal Vector3 BodyMin, BodyMax;
 
         // Lever: the lever object of every mode (Specter DR: Switch_000_LOD0 / Switch_001_LOD0); one pose serves both ways.
         internal Transform[] Levers;
@@ -55,7 +58,9 @@ namespace ScopeHandjob
 
     internal static class ScopeTargets
     {
-        private static readonly string[] MagnifierNames = { "g33", "magnifier" };
+        // Parts that flip between the modes (a magnifier swung aside, a lens cover flipped open: WTT-Armory Aimpoint CS).
+        // A scan of every sight bundle (2026-11-22) found "cover" inside mode objects only on the Aimpoint CS.
+        private static readonly string[] MagnifierNames = { "g33", "magnifier", "cover" };
         private static readonly string[] LeverNames = { "switch", "lever" };
 
         private static readonly AccessTools.FieldRef<EFT.Firearms, SightModVisualControllers[]> VisualControllers =
@@ -83,6 +88,27 @@ namespace ScopeHandjob
         internal static SightModVisualControllers ForSight(EFT.Firearms firearms, string itemId) =>
             Find(firearms, vc => vc.SightMod != null && vc.SightMod.Item != null && vc.SightMod.Item.Id == itemId);
 
+        /// <summary>
+        /// How many modes the game cycles this scope through: the item's ModesCount, which is what
+        /// SightComponent.SetScopeMode wraps with (mode + 1 reaching it becomes 0). Some mod items list a different
+        /// number of Zooms (Eukyre's RMR HD: ModesCount 2, one zoom; Vortex M157: ModesCount 1, two zooms), so the
+        /// Zooms length is only the fallback when ModesCount is missing. 0 = unknown.
+        /// </summary>
+        private static int GameModeCount(SightComponent sight, int index)
+        {
+            ISightComponentTemplate template = SightTemplate(sight);
+            int[] counts = template?.ModesCount;
+            if (counts != null && index >= 0 && index < counts.Length && counts[index] > 0) return counts[index];
+            float[][] zooms = template?.Zooms;
+            return zooms != null && index >= 0 && index < zooms.Length && zooms[index] != null ? zooms[index].Length : 0;
+        }
+
+        /// <summary>The mode the game ends up on for a requested mode (SetScopeMode: at or past the count = 0).</summary>
+        private static int Wrapped(int mode, int count) => count > 0 && mode >= count ? 0 : mode;
+
+        /// <summary>The magnification of one mode (a list shorter than the modes repeats its last value).</summary>
+        private static float ZoomOfMode(float[] z, int mode) => z[Mathf.Clamp(mode, 0, z.Length - 1)];
+
         /// <summary>Does this mode change alter the magnification (not just the reticle)?</summary>
         internal static bool ChangesZoom(SightComponent sight, ScopeState state, ScopeZoomHandler zoom)
         {
@@ -92,30 +118,24 @@ namespace ScopeHandjob
             // asked to move on). Another sight's key (e.g. a canted red dot while aiming through it) leaves it alone.
             if (zoom != null) return selected == null || index < 0 || index >= selected.Length || selected[index] != state.ScopeMode;
             if (selected == null || index < 0 || index >= selected.Length) return false;
-            int from = selected[index], to = state.ScopeMode;
+            int count = GameModeCount(sight, index);
+            int from = Wrapped(selected[index], count), to = Wrapped(state.ScopeMode, count); // a one-mode sight stays as it is
             if (from == to) return false;
             float[][] zooms = SightTemplate(sight)?.Zooms;
-            if (zooms == null || index >= zooms.Length || zooms[index] == null) return true;
+            if (zooms == null || index >= zooms.Length || zooms[index] == null || zooms[index].Length == 0) return true;
             float[] z = zooms[index];
-            if (z.Length == 0) return true;
-            // The mode key just asks for "mode + 1": past the last mode it wraps (a one-mode red dot stays as it is).
-            from = ((from % z.Length) + z.Length) % z.Length;
-            to = ((to % z.Length) + z.Length) % z.Length;
-            return from != to && !Mathf.Approximately(z[from], z[to]);
+            return !Mathf.Approximately(ZoomOfMode(z, from), ZoomOfMode(z, to));
         }
 
-        /// <summary>Does this request change the scope's mode at all (palette / reticle too)? Wraps like the mode key.</summary>
+        /// <summary>Does this request change the scope's mode at all (palette / reticle too)? Wraps like the game.</summary>
         internal static bool ChangesMode(SightComponent sight, ScopeState state)
         {
             int index = state.ScopeIndexInsideSight;
             int[] selected = sight.ScopesSelectedModes;
             if (selected == null || index < 0 || index >= selected.Length) return false;
-            int from = selected[index], to = state.ScopeMode;
-            if (from == to) return false;
-            float[][] zooms = SightTemplate(sight)?.Zooms;
-            int count = zooms != null && index < zooms.Length && zooms[index] != null ? zooms[index].Length : 0;
-            if (count <= 1) return count == 0;
-            return ((from % count) + count) % count != ((to % count) + count) % count;
+            int count = GameModeCount(sight, index);
+            if (count == 0) return selected[index] != state.ScopeMode; // unknown: take the request as it is
+            return Wrapped(selected[index], count) != Wrapped(state.ScopeMode, count);
         }
 
         /// <summary>How many modes this scope of the sight has (a knob counts as switchable: 2).</summary>
@@ -123,9 +143,7 @@ namespace ScopeHandjob
         {
             if (vc == null || vc.SightMod == null) return 0;
             if (ZoomOf(vc) != null) return 2;
-            float[][] zooms = SightTemplate(vc.SightMod)?.Zooms;
-            if (zooms == null || index < 0 || index >= zooms.Length || zooms[index] == null) return 0;
-            return zooms[index].Length;
+            return GameModeCount(vc.SightMod, index);
         }
 
         /// <summary>Can this scope of the sight change magnification at all (knob, or modes with different zooms)?</summary>
@@ -134,10 +152,11 @@ namespace ScopeHandjob
             if (vc == null || vc.SightMod == null) return false;
             if (ZoomOf(vc) != null) return true;
             float[][] zooms = SightTemplate(vc.SightMod)?.Zooms;
-            if (zooms == null || index < 0 || index >= zooms.Length || zooms[index] == null) return false;
+            if (zooms == null || index < 0 || index >= zooms.Length || zooms[index] == null || zooms[index].Length == 0) return false;
             float[] z = zooms[index];
-            for (int i = 1; i < z.Length; i++)
-                if (!Mathf.Approximately(z[i], z[0])) return true;
+            int count = GameModeCount(vc.SightMod, index);
+            for (int i = 1; i < count; i++)
+                if (!Mathf.Approximately(ZoomOfMode(z, i), z[0])) return true;
             return false;
         }
         internal static ScopeZoomHandler ZoomOf(SightModVisualControllers vc)
@@ -251,9 +270,16 @@ namespace ScopeHandjob
                     bool reverse = home != null && magnifier != home;
                     Transform away = reverse ? magnifier : end;
                     if (home == null) home = magnifier;
+                    MeshFilter body = BodyMesh(root);
+                    Vector3 bodyMin = Vector3.zero, bodyMax = Vector3.zero;
+                    if (body != null) BodyBox(root, body, out bodyMin, out bodyMax);
                     return new ScopeTarget
                     {
+                        BodyRoot = body != null ? root : null,
+                        BodyMin = bodyMin,
+                        BodyMax = bodyMax,
                         Kind = PartKind.Magnifier,
+                        IsCover = magnifier.name.IndexOf("cover", StringComparison.OrdinalIgnoreCase) >= 0,
                         Name = magnifier.name + " -> " + end.name,
                         Part = magnifier,
                         LocalCenter = LocalMeshCenter(magnifier),
@@ -329,6 +355,24 @@ namespace ScopeHandjob
         /// </summary>
         private static ScopeTarget ForButton(Transform root)
         {
+            MeshFilter body = BodyMesh(root);
+            if (body == null) return null;
+
+            // Top centre in the scope's own space (scope prefabs: y up, the sight line along z).
+            BodyBox(root, body, out Vector3 min, out Vector3 max);
+            Vector3 top = new Vector3((min.x + max.x) * 0.5f, max.y, (min.z + max.z) * 0.5f);
+            return new ScopeTarget
+            {
+                Kind = PartKind.Button,
+                Name = body.name + " (top button)",
+                Part = body.transform,
+                LocalCenter = body.transform.InverseTransformPoint(root.TransformPoint(top)),
+            };
+        }
+
+        /// <summary>The sight's biggest body mesh outside the mode objects (not glass / lens / low LOD).</summary>
+        private static MeshFilter BodyMesh(Transform root)
+        {
             MeshFilter body = null;
             float biggest = -1f;
             foreach (MeshFilter f in root.GetComponentsInChildren<MeshFilter>(true))
@@ -343,11 +387,15 @@ namespace ScopeHandjob
                 float size = Vector3.Scale(f.sharedMesh.bounds.size, f.transform.lossyScale).sqrMagnitude;
                 if (size > biggest) { biggest = size; body = f; }
             }
-            if (body == null) return null;
+            return body;
+        }
 
-            // Top centre in the scope's own space (scope prefabs: y up, the sight line along z).
+        /// <summary>That body mesh's box in the sight root's space.</summary>
+        private static void BodyBox(Transform root, MeshFilter body, out Vector3 min, out Vector3 max)
+        {
             Bounds local = body.sharedMesh.bounds;
-            Vector3 min = Vector3.positiveInfinity, max = Vector3.negativeInfinity;
+            min = Vector3.positiveInfinity;
+            max = Vector3.negativeInfinity;
             for (int i = 0; i < 8; i++)
             {
                 Vector3 corner = local.center + Vector3.Scale(local.extents, new Vector3((i & 1) == 0 ? -1 : 1, (i & 2) == 0 ? -1 : 1, (i & 4) == 0 ? -1 : 1));
@@ -355,14 +403,24 @@ namespace ScopeHandjob
                 min = Vector3.Min(min, p);
                 max = Vector3.Max(max, p);
             }
-            Vector3 top = new Vector3((min.x + max.x) * 0.5f, max.y, (min.z + max.z) * 0.5f);
-            return new ScopeTarget
+        }
+
+        /// <summary>
+        /// Does the flip part's centre pass through the sight body on this swing? Counts swing samples whose centre lies
+        /// inside the body box (shrunk 2 mm, so a part resting against the body is not counted).
+        /// </summary>
+        internal static int SamplesInsideBody(ScopeTarget t, Hinge flip)
+        {
+            if (t.BodyRoot == null || flip == null || flip.Space == null || t.Home == null) return 0;
+            Vector3 start = t.HomeCenter;
+            Vector3 min = t.BodyMin + Vector3.one * 0.002f, max = t.BodyMax - Vector3.one * 0.002f;
+            int inside = 0;
+            for (int i = 1; i < 10; i++)
             {
-                Kind = PartKind.Button,
-                Name = body.name + " (top button)",
-                Part = body.transform,
-                LocalCenter = body.transform.InverseTransformPoint(root.TransformPoint(top)),
-            };
+                Vector3 p = t.BodyRoot.InverseTransformPoint(flip.Point(start, i / 10f));
+                if (p.x > min.x && p.x < max.x && p.y > min.y && p.y < max.y && p.z > min.z && p.z < max.z) inside++;
+            }
+            return inside;
         }
 
         /// <summary>The object whose children are the mode_* objects: the root itself, else the nearest one below it.</summary>

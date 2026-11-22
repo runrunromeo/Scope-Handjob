@@ -22,6 +22,9 @@ namespace ScopeHandjob
         internal bool Twists => Mathf.Abs(ButtonTwist) > 0.5f;
         internal Vector3 ApproachLocal;      // offset (Anchor space) of the in-between point the hand comes in from
         internal Hinge Flip;                 // flip magnifier swing (Part -> EndPart)
+        internal float FlipFollow = 1f;      // how much of the flip the hand rides along (1 = all, 0.2 = a thumb flick)
+        internal bool CloseFlip;             // closing pose: made on the OPEN part, the hand rides the first FlipFollow of the way back
+        internal FlipMover FlipMover;        // what rides the flip: whole hand, thumb only (flicks a cover open), index only (beckons it shut)
 
         internal Vector3 Centre => Anchor.TransformPoint(CentreLocal);
         internal Vector3 Axis => Anchor.TransformDirection(AxisLocal).normalized;

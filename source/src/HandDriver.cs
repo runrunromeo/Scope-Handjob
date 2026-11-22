@@ -69,6 +69,12 @@ namespace ScopeHandjob
         private static ScopeState[] pendingStates;
         private static bool modeDone;
 
+        // Thumb-only / index-only flip (a thumb flicking a cover open, an index finger beckoning it shut): which finger,
+        // and how far along the flip its tip is carried this frame (relative to the posed spot), applied after the hand is placed
+        private static FlipMover fingerTurning;
+        private static float fingerFlip;
+        private const float IndexCurlMin = -10f, IndexCurlMax = 45f; // HandRig.IndexBeckon a: Tip Bend - a, Base Up / Down - 2a
+
         // Flip magnifier visual swing
         private static bool swinging;
         private static Transform[] swingPieces;
@@ -384,7 +390,7 @@ namespace ScopeHandjob
                     if (holdTimer >= Settings.HoldTime.Value) phase = Phase.Return;
                     break;
                 case Phase.Act:
-                    actProgress = Mathf.MoveTowards(actProgress, 1f, dt / PressDuration());
+                    actProgress = Mathf.MoveTowards(actProgress, 1f, dt * Speed() / PressDuration());
                     if (target.Kind == PartKind.Magnifier)
                     {
                         if (actProgress >= 1f)
@@ -421,6 +427,28 @@ namespace ScopeHandjob
             BasePose(p, index, distance2Camera, out Vector3 basePos, out Quaternion baseRot);
             TargetPose(out Vector3 rootPos, out Quaternion rootRot, out Vector3 approach);
             rig.Root.SetPositionAndRotation(rootPos, rootRot); // fingers: EFT blends them in as the hand gets close
+            if (fingerTurning != FlipMover.WholeHand && rig.FingersFound)
+            {
+                rig.LoadFingers(plan.Fingers);
+                if (fingerTurning == FlipMover.ThumbOnly)
+                {
+                    // Thumb flick (a sideways thumbs-up): from the posed finger shape, the tip goes where the part carries it
+                    // and the whole thumb swings at its base to get there, the shortest way, so it lifts instead of spinning.
+                    Transform thumbBase = rig.Thumb.Joints[0];
+                    Vector3 tip = rig.Thumb.Tip;
+                    Vector3 carried = plan.Flip.Point(tip, fingerFlip);
+                    Vector3 from = tip - thumbBase.position, to = carried - thumbBase.position;
+                    if (from.sqrMagnitude > 1e-8f && to.sqrMagnitude > 1e-8f)
+                        thumbBase.rotation = Quaternion.FromToRotation(from, to) * thumbBase.rotation;
+                }
+                else
+                {
+                    // "Come here" flick: the index tip goes where the part carries it; Base Up / Down drops twice as fast
+                    // as Tip Bend, by as much as follows it most closely.
+                    Vector3 tip = rig.Index.Tip;
+                    rig.IndexBeckon(plan.Flip.Point(tip, fingerFlip), IndexCurlMin, IndexCurlMax);
+                }
+            }
             rig.IkBonePose(rootPos, rootRot, out Vector3 endPos, out Quaternion endRot);
 
             float e = Mathf.Clamp01(weight);
@@ -469,6 +497,7 @@ namespace ScopeHandjob
             pos = anchor.TransformPoint(plan.RootPos);
             rot = anchor.rotation * plan.RootRot;
             approach = anchor.TransformVector(plan.ApproachLocal);
+            fingerTurning = FlipMover.WholeHand;
             Quaternion turn = Quaternion.identity;
             Vector3 centre = plan.Centre;
 
@@ -527,8 +556,21 @@ namespace ScopeHandjob
                     {
                         // The pose is at the in-line spot (0); aside is 1. Coming back in line runs 1 -> 0.
                         float f = swinging ? MagnifierAt(actProgress) : modeDone && actProgress >= 1f ? MagnifierAt(1f) : MagnifierAt(0f);
-                        plan.Flip.Pose(ref pos, ref rot, f);
-                        approach = plan.Flip.Rotation(f) * approach;
+                        // The hand rides only part of the flip if the pose says so (a thumb flicking a lens cover open). A closing
+                        // pose is made on the open part (f = 1) and rides the first part of the way back.
+                        float hand = plan.CloseFlip ? 1f - (1f - f) * plan.FlipFollow : f * plan.FlipFollow;
+                        if (plan.FlipMover != FlipMover.WholeHand)
+                        {
+                            // Thumb / index flick: the hand stays where it was posed, only that finger moves with the part.
+                            float posed = plan.CloseFlip ? 1f : 0f;
+                            plan.Flip.Pose(ref pos, ref rot, posed);
+                            approach = plan.Flip.Rotation(posed) * approach;
+                            fingerFlip = hand - posed;
+                            fingerTurning = plan.FlipMover;
+                            return;
+                        }
+                        plan.Flip.Pose(ref pos, ref rot, hand);
+                        approach = plan.Flip.Rotation(hand) * approach;
                     }
                     return;
             }
@@ -697,6 +739,17 @@ namespace ScopeHandjob
             if (firearms == null || WeaponRoot(fc, firearms) == null) return false;
 
             SavedPose saved = PoseStore.Find(t, wanted, out _);
+            // A flip part that is open now (lens cover up): its closing pose, if it has one.
+            bool closeFlip = false;
+            if (t.Kind == PartKind.Magnifier && t.Reverse)
+            {
+                SavedPose closing = PoseStore.FindClose(t, wanted, out _);
+                if (closing != null)
+                {
+                    saved = closing;
+                    closeFlip = true;
+                }
+            }
             if (saved == null) return false; // no pose for this scope: the vanilla change, no hand
 
             rig.Sync(solver.bone3.transform, PoseStore.BaseFor(saved, rig));
@@ -716,7 +769,8 @@ namespace ScopeHandjob
             leverReverse = poseLever != null && poseLever != t.Part;
             // Rotary knob on a button scope: posed in the first mode, so in every other mode it sits turned and turns back.
             if (t.Kind == PartKind.Button) leverReverse = t.ModeIndex % 2 == 1;
-            StartMove(PoseBuilder.Build(rig, frame, saved.Values, saved.LeverPush, saved.Face, saved.ButtonTwist, saved.Axis));
+            StartMove(PoseBuilder.Build(rig, frame, saved.Values, saved.LeverPush, saved.Face, saved.ButtonTwist, saved.Axis, saved.Follow, saved.Mover));
+            plan.CloseFlip = closeFlip;
             SetupStrokes();
             return true;
         }

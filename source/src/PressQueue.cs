@@ -67,6 +67,10 @@ namespace ScopeHandjob
             return repeatPress ? Mathf.Min(time, MinPressInterval) : time;
         }
 
+        /// <summary>Speed-up of the flick itself (Act phase only, not the reach / return): lens covers have their own
+        /// (2. Timing / Lens Cover Speed), everything else 1.</summary>
+        private static float Speed() => target != null && target.IsCover ? Mathf.Max(0.1f, Settings.CoverSpeed.Value) : 1f;
+
         /// <summary>How far into a press the next kept one may begin: the finger back off the button / lever nearly over.</summary>
         private static float NextPressAt() => target != null && Turns() ? 0.9f : 0.75f;
 

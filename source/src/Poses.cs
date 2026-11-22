@@ -22,9 +22,14 @@ namespace ScopeHandjob
         public string ButtonFace; // button scopes: face of the body the buttons are on (null = Top)
         public float ButtonTwist; // button scopes: 0 = press; else a knob twist of this many degrees (SUSAT, MARS)
         public string TwistAxis;  // button scopes: the line the twist turns about (null = ScopeLine)
+        public float? FlipFollow; // flip parts: how much of the flip the hand rides along (null = all of it)
+        public bool FlipThumbOnly; // flip parts: only the thumb rides the flip, the hand stays put
+        public bool FlipIndexOnly; // flip parts: only the index finger curls with the flip, the hand stays put
 
         internal ButtonFace Face => System.Enum.TryParse(ButtonFace, out ButtonFace f) ? f : ScopeHandjob.ButtonFace.Top;
         internal TwistAxis Axis => System.Enum.TryParse(TwistAxis, out TwistAxis a) ? a : ScopeHandjob.TwistAxis.ScopeLine;
+        internal float Follow => FlipFollow ?? 1f;
+        internal FlipMover Mover => FlipIndexOnly ? FlipMover.IndexOnly : FlipThumbOnly ? FlipMover.ThumbOnly : FlipMover.WholeHand;
     }
 #pragma warning restore CS0649
 
@@ -64,6 +69,17 @@ namespace ScopeHandjob
         internal static int Count => Data.Poses.Count;
 
         internal static string KeyFor(ScopeTarget t, HandSide side) => t.Key + "|" + side;
+
+        /// <summary>
+        /// A flip part's separate closing pose (lens cover: a thumb flicks it open from below, a finger pushes it shut from
+        /// the outside). Filed next to the opening pose with "#close" on the part name. Null = the part has none and
+        /// closes with the opening pose, as before.
+        /// </summary>
+        internal static SavedPose FindClose(ScopeTarget t, HandSide side, out string key)
+        {
+            key = t.Key + "#close|" + side;
+            return Get(key);
+        }
 
         /// <summary>The saved pose for this part (also one saved under another mode's lever); key = where it is filed.</summary>
         internal static SavedPose Find(ScopeTarget t, HandSide side, out string key)
@@ -187,6 +203,7 @@ namespace ScopeHandjob
         internal Vector3 RightLocal; // to the right as you look down the gun (whichever hand)
         internal Hinge Flip;
         internal Hinge LeverSwing; // lever: pose position -> the other position, about the lever's own pivot
+        internal bool FlipOtherWay; // flip part: the short way cut through the sight, it goes the other way round
         internal string LeverSwingSource;
         internal Vector3[] BodyCornersLocal; // button scope: the body's box corners (Anchor space), to find each face
         internal Vector3 RingCentreLocal;    // button scope: centre on the sight line (Anchor space), for a ring twist
@@ -258,6 +275,19 @@ namespace ScopeHandjob
                 {
                     source = "GUESSED";
                     frame.Flip = Hinge.GuessFlip(t.HomeCenter, t.AwayCenter, anchor, muzzle);
+                }
+                // The fitted swing is the short way round. If that cuts through the sight body and the other way does not
+                // as much, the part really goes the other way (Aimpoint CS rear cover: 239 deg back over the top).
+                if (frame.Flip != null)
+                {
+                    Hinge other = frame.Flip.OtherWay();
+                    int shortIn = ScopeTargets.SamplesInsideBody(t, frame.Flip), longIn = ScopeTargets.SamplesInsideBody(t, other);
+                    if (shortIn > 0 && longIn < shortIn)
+                    {
+                        HandDriver.Log($"flip: the short way ({frame.Flip.Angle:0} deg) passes through the sight body ({shortIn}/9), the other way ({other.Angle:0} deg) {longIn}/9: going the other way");
+                        frame.Flip = other;
+                        frame.FlipOtherWay = true;
+                    }
                 }
                 HandDriver.Log($"magnifier swing from {source}: " +
                                $"{frame.Flip?.Angle ?? 0f:0} deg, {(t.Reverse ? "back in line" : "aside")}, moving {t.Pieces?.Length ?? 0} parts: " +
@@ -355,7 +385,7 @@ namespace ScopeHandjob
     internal static class PoseBuilder
     {
         internal static GripPlan Build(HandRig rig, PoseFrame frame, float[] v, bool leverPush = false, ButtonFace face = ButtonFace.Top,
-            float buttonTwist = 0f, TwistAxis twistAxis = TwistAxis.ScopeLine)
+            float buttonTwist = 0f, TwistAxis twistAxis = TwistAxis.ScopeLine, float flipFollow = 1f, FlipMover flipMover = FlipMover.WholeHand)
         {
             Transform a = frame.Anchor;
             Vector3 centre = a.TransformPoint(frame.CentreLocal);
@@ -463,6 +493,8 @@ namespace ScopeHandjob
                 LeverPush = leverPush,
                 ApproachLocal = a.InverseTransformVector(radial * 0.07f),
                 Flip = frame.Flip,
+                FlipFollow = Mathf.Clamp01(flipFollow),
+                FlipMover = flipMover,
             };
         }
     }

@@ -147,7 +147,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5c0a2cec0db834001b7ce47d|scope_all_eotech_g33_glass_LOD0|Left": {
       "Scope": "scope_all_eotech_hhs_1",
@@ -295,7 +298,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5b2388675acfc4771e1be0be|scope_30mm_burris_fullfield_tac30_1_4x24_switch_LOD0|Left": {
       "Scope": "scope_30mm_burris_fullfield_tac30_1_4x24",
@@ -440,7 +446,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "617151c1d92c473c770214ab|scope_30mm_s&b_pm_ii_1_8x24_switch_LOD0|Left": {
       "Scope": "scope_30mm_s&b_pm_ii_1_8x24",
@@ -585,7 +594,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "57aca93d2459771f2c7e26db|Switch_001_LOD0|Left": {
       "Scope": "scope_all_elcan_specter_dr_1-4_fde",
@@ -733,7 +745,10 @@
       "LeverPush": true,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5c0517910db83400232ffee5|switch_000_LOD0|Left": {
       "Scope": "scope_all_valday_ps320",
@@ -881,7 +896,10 @@
       "LeverPush": true,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "6567e7681265c8a131069b0f|scope_30mm_sig_tango6t_1_6x24_switch_LOD0|Left": {
       "Scope": "scope_30mm_sig_tango6t_1_6x24",
@@ -1029,7 +1047,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "618ba27d9008e4636a67f61d|scope_30mm_razor_hd_gen_2_1_6x24_switch_LOD0|Left": {
       "Scope": "scope_30mm_razor_hd_gen_2_1_6x24",
@@ -1174,7 +1195,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "56ea70acd2720b844b8b4594|scope_34mm_hensoldt_zf_4_16x56_ff_switch_LOD0|Left": {
       "Scope": "scope_34mm_hensoldt_zf_4_16x56_ff",
@@ -1322,7 +1346,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5aa66be6e5b5b0214e506e97|scope_34mm_nightforce_atacr_7_35x56_switch_LOD0|Left": {
       "Scope": "scope_34mm_nightforce_atacr_7_35x56",
@@ -1470,7 +1497,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "57c5ac0824597754771e88a9|scope_30mm_march_tactical_3-24x42_switch_LOD0|Left": {
       "Scope": "scope_30mm_march_tactical_3-24x42",
@@ -1618,7 +1648,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "63fc44e2429a8a166c7f61e6|scope_base_armasight_zeus_pro_640_2_16x50_30hz_LOD0|Left": {
       "Scope": "scope_base_armasight_zeus_pro_640_2_16x50_30hz",
@@ -1766,7 +1799,10 @@
       "LeverPush": false,
       "ButtonFace": "Top",
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5d1b5e94d7ad1a2b865a96b0|scope_all_flir_rs32_225_9x_35_60hz_LOD0|Left": {
       "Scope": "scope_all_flir_rs32_225_9x_35_60hz",
@@ -1914,7 +1950,10 @@
       "LeverPush": false,
       "ButtonFace": "Top",
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5dfe6104585a0c3e995c7b82|scope_all_ncstar_advance_dual_optic_3_9x_42_switch_LOD0|Left": {
       "Scope": "scope_all_ncstar_advance_dual_optic_3_9x_42",
@@ -2062,7 +2101,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "6a18508bae175e037a0be420|switch_000_LOD0|Left": {
       "Scope": "scope_all_monstrum_marksman_3x30",
@@ -2210,7 +2252,10 @@
       "LeverPush": true,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "6478641c19d732620e045e17|scope_all_sig_sauer_echo1_thermal_reflex_sight_1_2x_30hz_LOD0|Left": {
       "Scope": "scope_all_sig_sauer_echo1_thermal_reflex_sight_1_2x_30hz",
@@ -2358,7 +2403,10 @@
       "LeverPush": true,
       "ButtonFace": "Rear",
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5a37cb10c4a282329a73b4e7|scope_30mm_leupold_mark4_lr_6,5_20x50_switch_LOD0|Left": {
       "Scope": "scope_30mm_leupold_mark4_lr_6,5_20x50",
@@ -2506,7 +2554,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "68caad7f933990601c07f47c|switch_000_LOD0|Left": {
       "Scope": "scope_30mm_leupold_mark_4_mr_t_ts_30a2_25_8x36",
@@ -2654,7 +2705,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5c82343a2e221644f31c0611|switch_000|Left": {
       "Scope": "scope_dovetail_belomo_pso_1m2_4x24",
@@ -2802,7 +2856,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "576fd4ec2459777f0b518431|switch_000|Left": {
       "Scope": "scope_dovetail_belomo_pso_1m2_1_4x24",
@@ -2950,7 +3007,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "584984812459776a704a82a6|scope_all_vomz_pilad_p1x42_weaver_LOD0|Left": {
       "Scope": "scope_all_vomz_pilad_p1x42_weaver",
@@ -3098,7 +3158,10 @@
       "LeverPush": false,
       "ButtonFace": "Rear",
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "570fd721d2720bc5458b4596|switch_000_LOD0|Left": {
       "Scope": "scope_all_walther_mrs",
@@ -3246,7 +3309,10 @@
       "LeverPush": true,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5b30b0dc5acfc400153b7124|scope_all_holosun_hs401g5_LOD0|Left": {
       "Scope": "scope_all_holosun_hs401g5",
@@ -3394,7 +3460,10 @@
       "LeverPush": true,
       "ButtonFace": "Top",
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "591c4efa86f7741030027726|scope_all_aksion_ekp_8_18_LOD0|Left": {
       "Scope": "scope_all_aksion_ekp_8_18",
@@ -3542,7 +3611,10 @@
       "LeverPush": true,
       "ButtonFace": "Top",
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5947db3f86f77447880cf76f|scope_dovetail_aksion_ekp_8_02_LOD0|Left": {
       "Scope": "scope_dovetail_aksion_ekp_8_02",
@@ -3690,7 +3762,10 @@
       "LeverPush": true,
       "ButtonFace": "Right",
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "6544d4187c5457729210d277|scope_dovetail_aksion_ekp_1s_03_LOD0|Left": {
       "Scope": "scope_dovetail_aksion_ekp_1s_03",
@@ -3838,7 +3913,10 @@
       "LeverPush": false,
       "ButtonFace": "Top",
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5c82342f2e221644f31c060e|switch_000|Left": {
       "Scope": "scope_dovetail_belomo_pso_1_4x24",
@@ -3986,7 +4064,10 @@
       "LeverPush": true,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5a1eaa87fcdbcb001865f75e|scope_base_trijicon_reap-ir_LOD0|Left": {
       "Scope": "scope_base_trijicon_reap-ir",
@@ -4134,7 +4215,10 @@
       "LeverPush": true,
       "ButtonFace": "Right",
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5d0a3a58d7ad1a669c15ca14|scope_base_kmz_1p59_3_10x_switch_LOD0|Left": {
       "Scope": "scope_base_kmz_1p59_3_10x",
@@ -4282,7 +4366,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5d0a3e8cd7ad1a6f6a3d35bd|scope_base_kmz_1p69_3_10x_switch_LOD0|Left": {
       "Scope": "scope_base_kmz_1p69_3_10x",
@@ -4430,7 +4517,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "61714eec290d254f5e6b2ffc|scope_34mm_s&b_pm_ii_3_12x50_switch_LOD0|Left": {
       "Scope": "scope_34mm_s&b_pm_ii_3_12x50",
@@ -4578,7 +4668,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "62850c28da09541f43158cca|scope_34mm_s&b_pm_ii_5_25x56_switch_LOD0|Left": {
       "Scope": "scope_34mm_s&b_pm_ii_5_25x56",
@@ -4726,7 +4819,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "6a3ceaff7047a606b90f5321|scope_30mm_march_f_shorty_1_8x24_switch_LOD0|Left": {
       "Scope": "scope_30mm_march_f_shorty_1_8x24",
@@ -4874,7 +4970,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "676175789dcee773150c6925|switch_000_LOD0|Left": {
       "Scope": "scope_35mm_leupold_mark_5hd_5_25x56_fde",
@@ -5022,7 +5121,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "57ae0171245977343c27bfcf|scope_all_belomo_pk_06_LOD0|Left": {
       "Scope": "scope_all_belomo_pk_06",
@@ -5170,7 +5272,10 @@
       "LeverPush": false,
       "ButtonFace": "Left",
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "655f13e0a246670fb0373245|switch_000|Left": {
       "Scope": "scope_all_wilcox_boss_xe_hp",
@@ -5318,7 +5423,10 @@
       "LeverPush": true,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5d2dc3e548f035404a1a4798|switch_000_LOD0|Left": {
       "Scope": "scope_all_monstrum_compact_prism_scope_2x32",
@@ -5466,7 +5574,10 @@
       "LeverPush": true,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "6165ac8c290d254f5e6b2f6c|switch_000_LOD0|Left": {
       "Scope": "scope_all_leapers_utg_38_ita_1x30",
@@ -5614,7 +5725,10 @@
       "LeverPush": true,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "696395af1b7e04938307a122|switch_000_LOD0|Left": {
       "Scope": "Vortex_Viper_hs",
@@ -5762,7 +5876,10 @@
       "LeverPush": false,
       "ButtonFace": null,
       "ButtonTwist": 0.0,
-      "TwistAxis": null
+      "TwistAxis": null,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "5ae3d18efa17cbd51e898ced|MARS|Left": {
       "Scope": "MARS",
@@ -5910,7 +6027,10 @@
       "LeverPush": false,
       "ButtonFace": "Left",
       "ButtonTwist": 42.0,
-      "TwistAxis": "LeftRight"
+      "TwistAxis": "LeftRight",
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
     },
     "2322ee962f6c77a1284abc1e|SUSAT|Left": {
       "Scope": "SUSAT",
@@ -6058,7 +6178,312 @@
       "LeverPush": false,
       "ButtonFace": "Top",
       "ButtonTwist": 49.0,
-      "TwistAxis": "UpDown"
+      "TwistAxis": "UpDown",
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false
+    },
+    "03f6c86c56945862820e1006|Rear_Lens_Cover_1|Left": {
+      "Scope": "Aimpoint CS",
+      "Part": "Rear_Lens_Cover_1",
+      "Hand": "Left",
+      "Saved": "2026-11-22 17:03",
+      "Values": [
+        70.0,
+        131.0,
+        4.0,
+        -10.0,
+        -13.0,
+        1.0,
+        -7.0,
+        11.0,
+        -7.0,
+        0.0,
+        18.0,
+        -12.0,
+        -55.0,
+        -35.0,
+        35.0,
+        19.0,
+        -2.0,
+        -19.0,
+        10.0,
+        -7.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.591215551,
+          0.51604,
+          0.5083205,
+          0.354650766
+        ],
+        [
+          0.776868939,
+          0.272414118,
+          0.220194668,
+          0.523239434
+        ],
+        [
+          0.125687212,
+          -0.010161371,
+          0.08995398,
+          0.9879311
+        ],
+        [
+          -0.0402351,
+          -0.0200303253,
+          0.3752442,
+          0.925835669
+        ],
+        [
+          0.0132308491,
+          -0.1468109,
+          0.201948434,
+          0.968239844
+        ],
+        [
+          -0.003551256,
+          -0.0257333554,
+          0.634209037,
+          0.7727251
+        ],
+        [
+          0.00017251214,
+          -0.00055906,
+          0.418806851,
+          0.9080752
+        ],
+        [
+          -0.0242953822,
+          -0.119805261,
+          0.407694727,
+          0.9048986
+        ],
+        [
+          0.007272247,
+          -0.006157443,
+          0.6217905,
+          0.7831257
+        ],
+        [
+          4.995335E-05,
+          -0.0005782613,
+          0.444746256,
+          0.895656466
+        ],
+        [
+          -0.0223476589,
+          -0.123003744,
+          0.454015464,
+          0.8821795
+        ],
+        [
+          -0.0230563469,
+          0.0147321317,
+          0.5754158,
+          0.817403257
+        ],
+        [
+          -0.05928626,
+          -0.0110918488,
+          0.443421721,
+          0.894281447
+        ],
+        [
+          -0.0331545621,
+          -0.121300481,
+          0.455925077,
+          0.881089866
+        ],
+        [
+          -0.11945805,
+          -0.0464627072,
+          0.6083406,
+          0.7832577
+        ],
+        [
+          -0.000295918435,
+          -5.890429E-05,
+          0.397772342,
+          0.917484164
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "FlipFollow": 0.86,
+      "FlipThumbOnly": true,
+      "FlipIndexOnly": false
+    },
+    "03f6c86c56945862820e1006|Rear_Lens_Cover_1#close|Left": {
+      "Scope": "Aimpoint CS",
+      "Part": "Rear_Lens_Cover_Flipped",
+      "Hand": "Left",
+      "Saved": "2026-11-22 17:44",
+      "Values": [
+        56.0,
+        76.0,
+        -37.0,
+        -47.0,
+        180.0,
+        42.0,
+        87.0,
+        45.0,
+        -66.0,
+        0.0,
+        45.0,
+        19.0,
+        24.0,
+        -35.0,
+        35.0,
+        -19.0,
+        -17.0,
+        11.0,
+        -60.0,
+        5.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.458056539,
+          0.372427821,
+          0.6604425,
+          0.464001626
+        ],
+        [
+          0.776868939,
+          0.272414118,
+          0.220194668,
+          0.523239434
+        ],
+        [
+          0.125687212,
+          -0.010161371,
+          0.08995398,
+          0.9879311
+        ],
+        [
+          -0.0402351,
+          -0.0200303253,
+          0.3752442,
+          0.925835669
+        ],
+        [
+          0.0132308491,
+          -0.1468109,
+          0.201948434,
+          0.968239844
+        ],
+        [
+          -0.003551256,
+          -0.0257333554,
+          0.634209037,
+          0.7727251
+        ],
+        [
+          0.00017251214,
+          -0.00055906,
+          0.418806851,
+          0.9080752
+        ],
+        [
+          -0.0242953822,
+          -0.119805261,
+          0.407694727,
+          0.9048986
+        ],
+        [
+          0.007272247,
+          -0.006157443,
+          0.6217905,
+          0.7831257
+        ],
+        [
+          4.995335E-05,
+          -0.0005782613,
+          0.444746256,
+          0.895656466
+        ],
+        [
+          -0.0223476589,
+          -0.123003744,
+          0.454015464,
+          0.8821795
+        ],
+        [
+          -0.0230563469,
+          0.0147321317,
+          0.5754158,
+          0.817403257
+        ],
+        [
+          -0.05928626,
+          -0.0110918488,
+          0.443421721,
+          0.894281447
+        ],
+        [
+          -0.0331545621,
+          -0.121300481,
+          0.455925077,
+          0.881089866
+        ],
+        [
+          -0.11945805,
+          -0.0464627072,
+          0.6083406,
+          0.7832577
+        ],
+        [
+          -0.000295918435,
+          -5.890429E-05,
+          0.397772342,
+          0.917484164
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "FlipFollow": 0.7,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": true
     }
   }
 }
