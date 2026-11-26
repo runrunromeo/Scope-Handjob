@@ -39,6 +39,14 @@ namespace ScopeHandjob
         /// <summary>True while this mod replays a held mode change, so the patch lets it through.</summary>
         internal static bool Replaying;
 
+        // Stance Overhaul pistol Patrol stance holds the left hand off the gun with its own target (user 2026-11-25: the
+        // hand should reach from there). We borrow it for the move: the path starts and ends at that hand, then it gets
+        // the target back. Doors and other users of the left hand are still left alone.
+        private const string StancePatrolHand = "ProceduralLeftHandTarget";
+        private static GripPose borrowedHand;
+
+        private static bool Borrowable(GripPose g) => g != null && g.name == StancePatrolHand;
+
         private static Phase phase = Phase.Idle;
         private static Player player;
         private static Player.FirearmController controller;
@@ -47,6 +55,61 @@ namespace ScopeHandjob
         private static HandRig rig;
         private static GripPlan plan;
         private static bool leverReverse;      // lever is at the other position than the one its pose was made on
+        // Lever / dial with 3+ positions (Walther MRS, BOSS Xe): the position it is at (Levers index), where the hand's
+        // turn about the lever's pivot starts this press (degrees from the pose) and how far it pushes (signed: the way the
+        // lever really goes this press, at most Lever Twist and never past the lever's own step). The hand does NOT follow
+        // the lever all the way: it pushes from the posed spot and comes back to it, so it cannot drift into the scope.
+        private static int leverAt;
+        private static float leverStart, leverPeak;
+
+        private static bool SteppedLever => plan != null && plan.LeverPush && plan.LeverAngles != null && plan.LeverAngles.Length >= 3;
+
+        /// <summary>Lever with 3+ positions: this press goes from position `at` to the next one (wrapping to the first);
+        /// the hand starts at `from` degrees.</summary>
+        private static void AimLever(int at, float from)
+        {
+            int n = plan.LeverAngles.Length;
+            leverAt = ((at % n) + n) % n;
+            leverStart = from;
+            // The short way round: the lever just jumps between positions, so the nearer way is the one it seems to go
+            // (BOSS Xe dial: last press 109 / 0 / -140 / -104 -> back to 109 is -147, not +213 the other way).
+            float step = Mathf.DeltaAngle(plan.LeverAngles[leverAt], plan.LeverAngles[(leverAt + 1) % n]);
+            leverPeak = Mathf.Sign(step) * Mathf.Min(Mathf.Abs(plan.LeverAngle), Mathf.Abs(step));
+        }
+
+        /// <summary>Stepped lever: the hand's turn at press progress p, out to the peak at 0.5 (the mode changes there), then
+        /// back to the posed spot, so every press is a separate push like a button tap.</summary>
+        private static float SteppedLeverAngle(float p)
+        {
+            p = Mathf.Clamp01(p);
+            return p < 0.5f
+                ? Mathf.Lerp(leverStart, leverPeak, Ease(p / 0.5f))
+                : Mathf.Lerp(leverPeak, 0f, Ease((p - 0.5f) / 0.5f));
+        }
+
+        /// <summary>
+        /// Button twist that springs back (SUSAT, user 2026-11-25): each press the hand pushes out ButtonTwist degrees and
+        /// comes back to the posed spot, like a Walther MRS lever press. One way from the first mode, the other way from the
+        /// next (leverReverse). Uses the stepped lever's out-and-back curve (leverStart / leverPeak).
+        /// </summary>
+        private static bool SpringTwist => plan != null && plan.Twists && plan.TwistBack && target != null && target.Kind == PartKind.Button;
+
+        private static void AimTwist(float from)
+        {
+            leverStart = from;
+            leverPeak = leverReverse ? -plan.ButtonTwist : plan.ButtonTwist;
+        }
+
+        private static void SetupLeverSteps(ScopeTarget t)
+        {
+            if (SpringTwist)
+            {
+                AimTwist(0f);
+                return;
+            }
+            if (plan == null || plan.LeverAngles == null || plan.LeverAngles.Length < 3 || t.Kind != PartKind.Lever) return;
+            AimLever(Mathf.Clamp(t.ModeIndex, 0, plan.LeverAngles.Length - 1), 0f);
+        }
 
         // Stance Overhaul: the scroll that asked for a change, replayed once the gun is out of Short Stock
         private static ScopeZoomHandler replayHandler;
@@ -68,6 +131,7 @@ namespace ScopeHandjob
         // Mode change
         private static ScopeState[] pendingStates;
         private static bool modeDone;
+        private static bool lensDarkens;      // this lever press changes magnification: the scope picture darkens / blurs (LensDarken)
 
         // Thumb-only / index-only flip (a thumb flicking a cover open, an index finger beckoning it shut): which finger,
         // and how far along the flip its tip is carried this frame (relative to the posed spot), applied after the hand is placed
@@ -245,6 +309,7 @@ namespace ScopeHandjob
             {
                 // Pressed again while the hand works a lever / button / magnifier on this gun: the hand does it next.
                 if (controller == fc && target != null && target.Kind != PartKind.Knob && waitForHand) return QueuePress(fc, states);
+                Log($"mode key while the hand is busy with another move ({phase}): vanilla");
                 return true; // busy with another move: vanilla behaviour
             }
 
@@ -255,7 +320,11 @@ namespace ScopeHandjob
                 if (vc == null || vc.SightMod == null) continue;
                 ScopeZoomHandler zoom = ScopeTargets.ZoomOf(vc);
                 if (!HandForMode(vc, state)) continue;
-                if (!CanStart(p, fc)) return true;
+                if (!CanStart(p, fc))
+                {
+                    Log($"mode change on {vc.name}: no hand now, {CannotStartReason(p, fc)}; vanilla");
+                    return true;
+                }
                 ScopeTarget t = ScopeTargets.ForMode(vc);
                 if (t == null)
                 {
@@ -436,6 +505,8 @@ namespace ScopeHandjob
                     }
                     break;
             }
+            // Lever scopes: the lens group inside turns, the picture goes dark / blurred, most at half way (mode change).
+            LensDarken.Show(phase == Phase.Act && lensDarkens ? Mathf.Sin(Mathf.PI * Mathf.Clamp01(actProgress)) : 0f, target);
             WatchShake(p);
 
             int index = side == HandSide.Right ? 1 : 0;
@@ -484,6 +555,13 @@ namespace ScopeHandjob
         /// <summary>Where EFT itself would put this hand this frame (same blend as Player.IkProcess).</summary>
         private static void BasePose(Player p, int index, float distance2Camera, out Vector3 pos, out Quaternion rot)
         {
+            if (index == 0 && borrowedHand != null)
+            {
+                // Pistol Patrol stance: the hand starts from / goes back to where Stance Overhaul holds it.
+                pos = borrowedHand.transform.position;
+                rot = borrowedHand.transform.rotation;
+                return;
+            }
             Transform[] markers = Markers(p);
             Transform marker = markers != null && markers.Length > index ? markers[index] : null;
             if (marker == null)
@@ -540,7 +618,11 @@ namespace ScopeHandjob
                         Vector3 pivot = plan.Anchor.TransformPoint(plan.PushPivotLocal);
                         Vector3 pushAxis = plan.Anchor.TransformDirection(plan.PushAxisLocal).normalized;
                         float amount = plan.PushFromLever ? Mathf.Abs(plan.LeverAngle) : plan.LeverAngle;
-                        turn = Quaternion.AngleAxis(amount * throw01, pushAxis);
+                        // 3+ positions (Walther MRS, BOSS Xe): the hand pushes the lever's way each press (MRS: three one
+                        // way, the last back) from the posed spot and comes back, a short push, not the lever's full turn.
+                        turn = SteppedLever
+                            ? Quaternion.AngleAxis(SteppedLeverAngle(actProgress), pushAxis)
+                            : Quaternion.AngleAxis(amount * throw01, pushAxis);
                         pos = pivot + turn * (pos - pivot);
                         rot = turn * rot;
                         approach = turn * approach;
@@ -550,10 +632,13 @@ namespace ScopeHandjob
                     break;
                 case PartKind.Button when plan.Twists:
                     {
-                        // Knob twist (SUSAT, MARS): like the Vudu knob, about the chosen line (Button: Twist Axis).
-                        float turned = leverReverse ? 1f - Ease(actProgress) : Ease(actProgress);
+                        // Knob twist (MARS, Tasco): like the Vudu knob, about the chosen line (Button: Twist Axis); it stays
+                        // turned until the next mode turns it back. Spring-back twist (SUSAT): out and back each press.
+                        float angle = SpringTwist
+                            ? SteppedLeverAngle(actProgress)
+                            : plan.ButtonTwist * (leverReverse ? 1f - Ease(actProgress) : Ease(actProgress));
                         Vector3 pivot = anchor.TransformPoint(plan.TwistPivotLocal);
-                        turn = Quaternion.AngleAxis(plan.ButtonTwist * turned, anchor.TransformDirection(plan.TwistAxisLocal).normalized);
+                        turn = Quaternion.AngleAxis(angle, anchor.TransformDirection(plan.TwistAxisLocal).normalized);
                         pos = pivot + turn * (pos - pivot);
                         rot = turn * rot;
                         approach = turn * approach;
@@ -622,6 +707,7 @@ namespace ScopeHandjob
                 if (modeDone && waitForHand && StartQueuedPressInPlace()) return;
                 phase = Phase.Act;
                 actProgress = 0f;
+                AimLensDarken();
                 if (target.Kind == PartKind.Magnifier && plan.Flip != null && !modeDone)
                 {
                     // Magnifier aside (HHS-1 on 1x) coming back in line: switch to the in-line mode FIRST and swing its own
@@ -786,6 +872,8 @@ namespace ScopeHandjob
             if (t.Kind == PartKind.Button) leverReverse = t.ModeIndex % 2 == 1;
             StartMove(PoseBuilder.Build(rig, frame, saved.Values, saved.LeverPush, saved.Face, saved.ButtonTwist, saved.Axis, saved.Follow, saved.Mover));
             plan.CloseFlip = closeFlip;
+            plan.TwistBack = saved.TwistBack;
+            SetupLeverSteps(t);
             SetupStrokes();
             return true;
         }
@@ -833,14 +921,34 @@ namespace ScopeHandjob
             return go != null ? go.transform : null;
         }
 
+        /// <summary>Act starts: does this press throw a lever that changes magnification (Specter DR, ELCAN 1.5/6, PS-320)?</summary>
+        private static void AimLensDarken()
+        {
+            lensDarkens = target != null && target.Kind == PartKind.Lever && pendingStates != null && controller != null
+                          && ChangesAnyMagnification(controller, pendingStates);
+        }
+
         private static void Stop()
         {
+            LensDarken.Off();
+            lensDarkens = false;
             EndSwing();
             if (player != null && side == HandSide.Left && rig != null && rig.IkTarget != null && LeftTarget(player) == rig.IkTarget)
             {
-                LeftTarget(player) = null;
-                ThirdIkWeight(player).Value = 0f;
+                if (borrowedHand != null)
+                {
+                    // Back to Stance Overhaul: its target again at full weight (it fades the weight itself if the
+                    // patrol stance ended meanwhile).
+                    LeftTarget(player) = borrowedHand;
+                    ThirdIkWeight(player).Value = 1f;
+                }
+                else
+                {
+                    LeftTarget(player) = null;
+                    ThirdIkWeight(player).Value = 0f;
+                }
             }
+            borrowedHand = null;
             rig?.ReleaseFingers();
             ResetStrokes();
             ResetShake();
@@ -871,10 +979,24 @@ namespace ScopeHandjob
             if (p.HealthController == null || !p.HealthController.IsAlive) return false;
             if (Settings.HandToUse == HandSide.Left)
             {
+                // Door, Stance Overhaul pistol patrol, ...: leave the hand to them, but only while they really drive it.
+                // Stance Overhaul's LeftHandAnimator never clears its target after the pistol patrol stance, it only fades
+                // ThirdIkWeight to 0, so a target left there with no weight is nobody's (user 2026-11-25: FN-57, then no
+                // hand on any scope).
                 GripPose current = LeftTarget(p);
-                if (current != null && (rig == null || current != rig.IkTarget)) return false; // door, Realism, ...: leave the hand to them
+                if (current != null && (rig == null || current != rig.IkTarget) && ThirdIkWeight(p).Value > 0.01f && !Borrowable(current)) return false;
             }
             return true;
+        }
+
+        /// <summary>Why CanStart said no, for the log.</summary>
+        private static string CannotStartReason(Player p, Player.FirearmController fc)
+        {
+            if (p.IsSprintEnabled) return "sprinting";
+            if (fc.IsInReloadOperation()) return "reloading";
+            if (p.HealthController == null || !p.HealthController.IsAlive) return "not alive";
+            GripPose current = LeftTarget(p);
+            return "the left hand is in use by something else (" + (current != null ? current.name : "?") + ")";
         }
 
         private static bool ShouldStop(Player p, out bool lostHand)
@@ -883,8 +1005,17 @@ namespace ScopeHandjob
             if (!Settings.Active) return true; // switched off (or the other build took over): hand goes home
             if (side == HandSide.Left)
             {
+                // Taken by something that drives it (door...). Before our first frame a leftover target with no weight
+                // (Stance Overhaul after a pistol) is still there: not taken, ours replaces it.
                 GripPose current = LeftTarget(p);
-                if (current != null && current != rig.IkTarget) { lostHand = true; return true; }
+                if (Borrowable(current) && current != borrowedHand && ThirdIkWeight(p).Value > 0.01f)
+                {
+                    // Stance Overhaul's patrol hand (now, or put back by it mid-move): ours rides from / back to it.
+                    // With no weight it is only a leftover after the patrol stance ended: not borrowed, ours replaces it.
+                    borrowedHand = current;
+                    Log("left hand borrowed from Stance Overhaul's patrol stance: reaching from there");
+                }
+                else if (current != null && current != rig.IkTarget && current != borrowedHand && ThirdIkWeight(p).Value > 0.01f) { lostHand = true; return true; }
             }
             if (rig.FingersTakenByOther) { lostHand = true; return true; }
             if (target == null || !target.Alive || controller == null || plan == null || plan.Anchor == null) return true;

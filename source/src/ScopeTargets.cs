@@ -44,6 +44,7 @@ namespace ScopeHandjob
         internal string[] KeyAlternates;   // other keys a pose for this part may have been saved under
 
         // Button: which mode object is shown now (0 = first). A rotary knob is at its posed spot in even modes, turned in odd ones.
+        // Lever: which of Levers is shown now (the game's mode index).
         internal int ModeIndex;
         // Button: a point on the sight line (lens centre) in Part space. A ring twist (like the Vudu knob) turns about this line.
         internal Vector3 RingLocal;
@@ -60,8 +61,14 @@ namespace ScopeHandjob
     {
         // Parts that flip between the modes (a magnifier swung aside, a lens cover flipped open: WTT-Armory Aimpoint CS).
         // A scan of every sight bundle (2026-11-22) found "cover" inside mode objects only on the Aimpoint CS.
-        private static readonly string[] MagnifierNames = { "g33", "magnifier", "cover" };
-        private static readonly string[] LeverNames = { "switch", "lever" };
+        // Epic's All In One magnifier combos: the magnifier rides on a flip arm, "ftc_mount_arm" (Unity FTC, 70 deg) or
+        // "fts_mount_pivot_low" (G33 mount, 103 deg), both swinging aside about the sight line like the HHS-1.
+        private static readonly string[] FlipArmNames = { "mount_arm", "mount_pivot" };
+        private static readonly string[] MagnifierNames = { "g33", "magnifier", "cover", "mount_arm", "mount_pivot" };
+        // "Elcan Selection Arm 1.5x / 6x": Epic's ELCAN SpecterDR 1.5x/6x lever (90 deg about the upright axis).
+        private static readonly string[] LeverNames = { "switch", "lever", "selection arm" };
+        // Not moving parts even when they differ between modes.
+        private static readonly string[] StillNames = { "glass", "linza", "lens", "reticle", "camera" };
 
         private static readonly AccessTools.FieldRef<EFT.Firearms, SightModVisualControllers[]> VisualControllers =
             AccessTools.FieldRefAccess<EFT.Firearms, SightModVisualControllers[]>("_sightModVisualControllers");
@@ -108,6 +115,26 @@ namespace ScopeHandjob
 
         /// <summary>The magnification of one mode (a list shorter than the modes repeats its last value).</summary>
         private static float ZoomOfMode(float[] z, int mode) => z[Mathf.Clamp(mode, 0, z.Length - 1)];
+
+        /// <summary>
+        /// For SightComponent.GetCurrentOpticZoom: the zoom to report when the sight's Zooms list is SHORTER than its
+        /// modes (Eukyre's RMR HD: ModesCount 2, Zooms [[1]]). The game reads Zooms[scope][mode] there and throws
+        /// inside SetScopeMode, so the second reticle never shows and every other mode key press is silent. Returns
+        /// false (game code runs unchanged) whenever the list is long enough, e.g. once the item is fixed.
+        /// </summary>
+        internal static bool ShortZoomList(SightComponent sight, out float zoom)
+        {
+            zoom = 0f;
+            float[][] zooms = sight != null ? SightTemplate(sight)?.Zooms : null;
+            int scope = sight != null ? sight.SelectedScope : -1;
+            if (zooms == null || scope < 0 || scope >= zooms.Length) return false;
+            float[] z = zooms[scope];
+            if (z == null || z.Length == 0) return false; // the game returns 0 itself
+            int mode = sight.SelectedScopeMode;
+            if (mode >= 0 && mode < z.Length) return false;
+            zoom = ZoomOfMode(z, mode);
+            return true;
+        }
 
         /// <summary>Does this mode change alter the magnification (not just the reticle)?</summary>
         internal static bool ChangesZoom(SightComponent sight, ScopeState state, ScopeZoomHandler zoom)
@@ -233,7 +260,13 @@ namespace ScopeHandjob
             // The mode objects sit right under the prefab root in game models; some mod models (WTT-Armory SUSAT, MARS:
             // SUSAT/SUSAT/Mode_1) put them one level down, under the body.
             Transform modes = ModeHolder(root);
-            if (modes == null) return null;
+            if (modes == null)
+            {
+                // Mod red dots (Eukyre RMR HD / ROMEO9T / HE509T / EXPS3-1 / ProPoint, Epic Steiner R1X): the modes are
+                // only reticle objects ("linza", "linza_2"), not mode_* objects. Nothing moves: a button.
+                if (!ShowsModes(vc)) return null;
+                return ButtonWithRing(ForButton(root), cache, SelectedMode(vc));
+            }
             Transform current = null;
             int modeIndex = 0;
             for (int i = 0; i < modes.childCount; i++)
@@ -301,52 +334,182 @@ namespace ScopeHandjob
             Transform lever = FindNamed(current, LeverNames);
             if (lever != null)
             {
-                var levers = new System.Collections.Generic.List<Transform>();
-                for (int i = 0; i < modes.childCount; i++)
-                {
-                    Transform mode = modes.GetChild(i);
-                    if (!mode.name.StartsWith("mode_", StringComparison.OrdinalIgnoreCase)) continue;
-                    Transform l = FindNamed(mode, LeverNames);
-                    if (l != null) levers.Add(l);
-                }
+                Transform[] levers = LeversInModeOrder(cache, modes);
                 return new ScopeTarget
                 {
                     Kind = PartKind.Lever,
                     Name = lever.name,
                     Part = lever,
                     LocalCenter = LocalMeshCenter(lever),
-                    Levers = levers.ToArray(),
+                    Levers = levers,
+                    ModeIndex = Math.Max(0, Array.IndexOf(levers, lever)),
                 };
             }
-            ScopeTarget button = ForButton(root);
-            if (button != null)
+
+            // A part with no telling name that sits differently in each mode (Eukyre SIG BRAVO5: the illumination dial on
+            // the left, "scope_all_sig_bravo5_LOD0.001" / ".002", turns 29 deg about the left-right axis): a lever, so the
+            // hand turns it (pose editor: "Lever: Forward / Back Motion" follows the part's own turn).
+            Transform[] moving = MovingParts(root, modes, current, out Transform visible);
+            if (moving != null)
             {
-                button.ModeIndex = modeIndex;
-                Transform lens = null;
-                try
+                return new ScopeTarget
                 {
-                    lens = cache != null ? cache.GetLensCenter() : null;
-                }
-                catch (Exception)
+                    Kind = PartKind.Lever,
+                    Name = visible.name + " (moving part)",
+                    Part = visible,
+                    LocalCenter = LocalMeshCenter(visible),
+                    Levers = moving,
+                };
+            }
+            return ButtonWithRing(ForButton(root), cache, modeIndex);
+        }
+
+        /// <summary>
+        /// The lever object of every mode, in the game's mode order (ScopePrefabCache's mode list), so Levers[i] is the
+        /// lever shown in mode i. The WTT Walther MRS / BOSS Xe keep mode_003 before mode_002 in the hierarchy. If a
+        /// mode of that list has no lever, the hierarchy order (as before).
+        /// </summary>
+        private static Transform[] LeversInModeOrder(ScopePrefabCache cache, Transform modes)
+        {
+            var levers = new System.Collections.Generic.List<Transform>();
+            try
+            {
+                int count = cache != null ? cache.ModesCount : 0;
+                for (int i = 0; i < count; i++)
                 {
-                    // no lens: the body box centre below
-                }
-                if (lens != null)
-                {
-                    button.RingLocal = button.Part.InverseTransformPoint(lens.position);
-                    button.HasRing = true;
-                }
-                else
-                {
-                    MeshFilter body = button.Part.GetComponent<MeshFilter>();
-                    if (body != null && body.sharedMesh != null)
+                    GameObject mode = cache.GetScopeModeInfo(i)?.ModeGameObject;
+                    Transform l = mode != null ? FindNamed(mode.transform, LeverNames) : null;
+                    if (l == null)
                     {
-                        button.RingLocal = body.sharedMesh.bounds.center;
-                        button.HasRing = true;
+                        levers.Clear();
+                        break;
                     }
+                    levers.Add(l);
+                }
+            }
+            catch (Exception)
+            {
+                levers.Clear();
+            }
+            if (levers.Count >= 2) return levers.ToArray();
+            levers.Clear();
+            for (int i = 0; i < modes.childCount; i++)
+            {
+                Transform mode = modes.GetChild(i);
+                if (!mode.name.StartsWith("mode_", StringComparison.OrdinalIgnoreCase)) continue;
+                Transform l = FindNamed(mode, LeverNames);
+                if (l != null) levers.Add(l);
+            }
+            return levers.ToArray();
+        }
+
+        /// <summary>A button target, with the sight-line centre for a "Twist Instead" ring twist.</summary>
+        private static ScopeTarget ButtonWithRing(ScopeTarget button, ScopePrefabCache cache, int modeIndex)
+        {
+            if (button == null) return null;
+            button.ModeIndex = modeIndex;
+            Transform lens = null;
+            try
+            {
+                lens = cache != null ? cache.GetLensCenter() : null;
+            }
+            catch (Exception)
+            {
+                // no lens: the body box centre below
+            }
+            if (lens != null)
+            {
+                button.RingLocal = button.Part.InverseTransformPoint(lens.position);
+                button.HasRing = true;
+            }
+            else
+            {
+                MeshFilter body = button.Part.GetComponent<MeshFilter>();
+                if (body != null && body.sharedMesh != null)
+                {
+                    button.RingLocal = body.sharedMesh.bounds.center;
+                    button.HasRing = true;
                 }
             }
             return button;
+        }
+
+        /// <summary>The sight's selected mode (sights without mode_* objects: which reticle is on).</summary>
+        private static int SelectedMode(SightModVisualControllers vc)
+        {
+            try
+            {
+                EFT.InventoryLogic.SightComponent sight = vc.SightMod;
+                int[] modes = sight.ScopesSelectedModes;
+                int scope = sight.SelectedScope;
+                return modes != null && scope >= 0 && scope < modes.Length ? modes[scope] : 0;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Parts that move between the modes without a telling name: a mesh in the current mode (not glass / lens /
+        /// reticle / low LOD) whose twin in another mode (same name without a ".001" ending, same vertex count) sits
+        /// elsewhere. In mode order (like named levers, so a pose is always filed under the first mode's part);
+        /// visible = the current mode's one. Null = none.
+        /// </summary>
+        private static Transform[] MovingParts(Transform root, Transform modes, Transform current, out Transform visible)
+        {
+            visible = null;
+            foreach (MeshFilter mine in current.GetComponentsInChildren<MeshFilter>(true))
+            {
+                if (mine.sharedMesh == null || NameMatches(mine.name, StillNames) || IsLowLod(mine.name)) continue;
+                string baseName = WithoutNumber(mine.name);
+                var found = new System.Collections.Generic.List<Transform>();
+                bool moves = false;
+                for (int i = 0; i < modes.childCount; i++)
+                {
+                    Transform other = modes.GetChild(i);
+                    if (!other.name.StartsWith("mode_", StringComparison.OrdinalIgnoreCase)) continue;
+                    if (other == current)
+                    {
+                        found.Add(mine.transform);
+                        continue;
+                    }
+                    foreach (MeshFilter theirs in other.GetComponentsInChildren<MeshFilter>(true))
+                    {
+                        if (theirs.sharedMesh == null || WithoutNumber(theirs.name) != baseName) continue;
+                        if (theirs.sharedMesh.vertexCount != mine.sharedMesh.vertexCount) continue;
+                        Vector3 move = root.InverseTransformPoint(theirs.transform.position) - root.InverseTransformPoint(mine.transform.position);
+                        float turn = Quaternion.Angle(Quaternion.Inverse(root.rotation) * theirs.transform.rotation,
+                                                      Quaternion.Inverse(root.rotation) * mine.transform.rotation);
+                        if (move.magnitude < 0.001f && turn < 1f) continue; // same place: not moving
+                        found.Add(theirs.transform);
+                        moves = true;
+                        break;
+                    }
+                }
+                if (moves)
+                {
+                    visible = mine.transform;
+                    return found.ToArray();
+                }
+            }
+            return null;
+        }
+
+        /// <summary>"scope_all_sig_bravo5_LOD0.002" -> "scope_all_sig_bravo5_LOD0".</summary>
+        private static string WithoutNumber(string name)
+        {
+            string s = name;
+            while (true)
+            {
+                int dot = s.LastIndexOf('.');
+                if (dot <= 0 || dot == s.Length - 1) return s;
+                bool digits = true;
+                for (int i = dot + 1; i < s.Length; i++)
+                    if (!char.IsDigit(s[i])) { digits = false; break; }
+                if (!digits) return s;
+                s = s.Substring(0, dot);
+            }
         }
 
         /// <summary>
@@ -373,6 +536,14 @@ namespace ScopeHandjob
         /// <summary>The sight's biggest body mesh outside the mode objects (not glass / lens / low LOD).</summary>
         private static MeshFilter BodyMesh(Transform root)
         {
+            // Shown meshes first. Only when none is shown, a hidden one: aiming, the body renderer of some red dots is
+            // switched off (user's Eukyre ROMEO9T, 2026-11-24: hand from the hip, none while aiming because no body was
+            // found, so no pose either). Sights that were found before keep the same part, so their pose keys stay.
+            return BodyMesh(root, true) ?? BodyMesh(root, false);
+        }
+
+        private static MeshFilter BodyMesh(Transform root, bool shownOnly)
+        {
             MeshFilter body = null;
             float biggest = -1f;
             foreach (MeshFilter f in root.GetComponentsInChildren<MeshFilter>(true))
@@ -383,7 +554,7 @@ namespace ScopeHandjob
                     n.IndexOf("lens", StringComparison.OrdinalIgnoreCase) >= 0 || IsLowLod(n)) continue;
                 if (InModeChild(f.transform, root)) continue;
                 Renderer r = f.GetComponent<Renderer>();
-                if (r != null && !r.enabled) continue;
+                if (shownOnly && r != null && !r.enabled) continue;
                 float size = Vector3.Scale(f.sharedMesh.bounds.size, f.transform.lossyScale).sqrMagnitude;
                 if (size > biggest) { biggest = size; body = f; }
             }
@@ -472,7 +643,7 @@ namespace ScopeHandjob
                 Transform t = r.transform;
                 if (t == housing || t.IsChildOf(housing)) continue;
                 if (HasTwin(t, otherMode)) continue;
-                bool magnifierPart = NameMatches(t.name, MagnifierNames) && t.name.IndexOf("mount", StringComparison.OrdinalIgnoreCase) < 0;
+                bool magnifierPart = IsMagnifierPart(t.name);
                 if (!magnifierPart && !area.Contains(r.bounds.center)) continue;
                 // Parent already listed: it carries this one along.
                 bool carried = false;
@@ -495,12 +666,17 @@ namespace ScopeHandjob
             float biggest = -1f;
             foreach (MeshFilter f in mode.GetComponentsInChildren<MeshFilter>(true))
             {
-                if (f.sharedMesh == null || !NameMatches(f.name, MagnifierNames) || f.name.IndexOf("mount", StringComparison.OrdinalIgnoreCase) >= 0) continue;
+                if (f.sharedMesh == null || !IsMagnifierPart(f.name)) continue;
                 float size = Vector3.Scale(f.sharedMesh.bounds.size, f.transform.lossyScale).sqrMagnitude;
                 if (size > biggest) { biggest = size; housing = f.transform; }
             }
             return housing;
         }
+
+        /// <summary>A part of the flipping magnifier: magnifier-named, and not its fixed mount unless it is the flip arm.</summary>
+        private static bool IsMagnifierPart(string name) =>
+            NameMatches(name, MagnifierNames) &&
+            (name.IndexOf("mount", StringComparison.OrdinalIgnoreCase) < 0 || NameMatches(name, FlipArmNames));
 
         private static bool NameMatches(string name, string[] keys)
         {

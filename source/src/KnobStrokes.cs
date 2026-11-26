@@ -90,7 +90,7 @@ namespace ScopeHandjob
             if (target == null || target.Kind != PartKind.Knob || z == null || plan == null || !plan.FromPose) return;
             if (!waitForHand) return; // "Wait For Hand" off: the knob must not wait for anything
             if (plan.TwistMax - plan.TwistMin < 5f) return;
-            knobTotal = MeasureKnobTotal(z, plan.Axis);
+            knobTotal = MeasureKnobTotal(z, plan.Axis) * KnobScaleFor(z); // the ring turns scaled (Knob: Ring Turn Scale)
             if (Mathf.Abs(knobTotal) < 1f) return;
             strokes = true;
             frozenFov = ZoomFov(z);
@@ -100,16 +100,16 @@ namespace ScopeHandjob
         /// <summary>Signed degrees the knob turns about axis as t goes 0 -> 1 (the game's own slerp, sampled).</summary>
         private static float MeasureKnobTotal(ScopeZoomHandler z, Vector3 axis)
         {
-            if (KnobSlerp == null || z.StartPivot == null || z.EndPivot == null) return 0f;
+            if (GameSlerp == null || z.StartPivot == null || z.EndPivot == null) return 0f;
             try
             {
                 Quaternion s = z.StartPivot.rotation, e = z.EndPivot.rotation;
                 bool shortWay = !z.InverseRotation;
-                Quaternion previous = (Quaternion)KnobSlerp.Invoke(z, new object[] { s, e, 0f, shortWay });
+                Quaternion previous = GameSlerp(z, s, e, 0f, shortWay); // delegate: no reflection / boxing per sample
                 float total = 0f;
                 for (int i = 1; i <= 8; i++)
                 {
-                    Quaternion q = (Quaternion)KnobSlerp.Invoke(z, new object[] { s, e, i / 8f, shortWay });
+                    Quaternion q = GameSlerp(z, s, e, i / 8f, shortWay);
                     total += SignedAngle(q * Quaternion.Inverse(previous), axis);
                     previous = q;
                 }
@@ -119,6 +119,93 @@ namespace ScopeHandjob
             {
                 Log("knob angle not measurable: " + error.Message);
                 return 0f;
+            }
+        }
+
+        // ---------------------------------------------------------------- ring turn scale (per pose)
+
+        private static readonly Func<ScopeZoomHandler, Quaternion, Quaternion, float, bool, Quaternion> GameSlerp =
+            KnobSlerp != null ? AccessTools.MethodDelegate<Func<ScopeZoomHandler, Quaternion, Quaternion, float, bool, Quaternion>>(KnobSlerp) : null;
+
+        // knob instance -> (the gun it was looked up on, scale); cleared when a pose is saved or deleted
+        private static readonly System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<object, float>> knobScales =
+            new System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<object, float>>();
+
+        /// <summary>
+        /// How many times its normal turn this knob's zoom ring turns: the pose's "Knob: Ring Turn Scale" (Leupold Mark 5HD:
+        /// the ring turns much further than a hand can, so it is scaled down). Only knobs on your own gun; 1 = the game's turn.
+        /// </summary>
+        private static float KnobScaleFor(ScopeZoomHandler z)
+        {
+            if (!Settings.Active) return 1f; // switched off / standing aside: the game's own ring turn
+            if (!TryGetMainController(out _, out Player.FirearmController fc)) return 1f;
+            EFT.Firearms firearms = FirearmsOf(fc);
+            if (firearms == null) return 1f;
+            int id = z.GetInstanceID();
+            if (knobScales.TryGetValue(id, out var known) && ReferenceEquals(known.Key, firearms)) return known.Value;
+            SightModVisualControllers owner = ScopeTargets.OwnerOf(firearms, z);
+            if (owner == null) return 1f; // not on your gun (not kept: it may be mounted later)
+            ScopeTarget t = ScopeTargets.ForKnob(z, owner);
+            SavedPose pose = t != null ? PoseStore.Find(t, Settings.HandToUse, out _) : null;
+            float scale = pose != null ? pose.RingScale : 1f;
+            if (knobScales.Count > 64) knobScales.Clear();
+            knobScales[id] = new System.Collections.Generic.KeyValuePair<object, float>(firearms, scale);
+            return scale;
+        }
+
+        /// <summary>
+        /// ScopeZoomHandler.method_11 postfix: the game just put the ring at Slerp(StartPivot, EndPivot, t). With a ring
+        /// scale the ring turns scale times as far, measured from its lowest-magnification end (t = 1, MaxFov), so it sits
+        /// as before at the lowest magnification. The zoom itself is the game's, so the whole magnification range stays.
+        /// </summary>
+        internal static void AfterKnobRotate(ScopeZoomHandler z)
+        {
+            try
+            {
+                if (GameSlerp == null || z == null || z.ScopeSwitcher == null || z.StartPivot == null || z.EndPivot == null) return;
+                float scale = KnobScaleFor(z);
+                if (Mathf.Abs(scale - 1f) < 0.001f) return;
+                Quaternion s = z.StartPivot.rotation, e = z.EndPivot.rotation;
+                bool shortWay = !z.InverseRotation;
+                Quaternion lowest = GameSlerp(z, s, e, 1f, shortWay);
+                Quaternion now = GameSlerp(z, s, e, KnobT(z, ZoomFov(z)), shortWay);
+                (now * Quaternion.Inverse(lowest)).ToAngleAxis(out float angle, out Vector3 axis);
+                if (float.IsNaN(angle) || float.IsNaN(axis.x) || axis.sqrMagnitude < 1e-6f) return; // at the lowest end: nothing to scale
+                z.ScopeSwitcher.rotation = Quaternion.AngleAxis(angle * scale, axis) * lowest;
+            }
+            catch (Exception error)
+            {
+                Log("ring turn scale not applied: " + error.Message);
+            }
+        }
+
+        private static readonly System.Collections.Generic.HashSet<int> knobsPlaced = new System.Collections.Generic.HashSet<int>();
+
+        /// <summary>
+        /// GetZoomInput postfix (every frame while aiming through a knob scope): the ring was placed when the scope was
+        /// mounted, maybe before it was on your gun, so put it once where its scale says.
+        /// </summary>
+        internal static void PlaceKnobOnce(ScopeZoomHandler z)
+        {
+            if (z == null) return;
+            int id = z.GetInstanceID();
+            if (knobsPlaced.Contains(id)) return;
+            if (knobsPlaced.Count > 64) knobsPlaced.Clear();
+            knobsPlaced.Add(id);
+            if (Mathf.Abs(KnobScaleFor(z) - 1f) >= 0.001f) RefreshKnob(z);
+        }
+
+        /// <summary>Puts this knob's ring where its scale says, now (the editor slider moved, a pose was saved).</summary>
+        private static void RefreshKnob(ScopeZoomHandler z)
+        {
+            if (z == null) return;
+            try
+            {
+                RotateKnob?.Invoke(z);
+            }
+            catch (Exception)
+            {
+                // the next zoom step puts it right
             }
         }
 

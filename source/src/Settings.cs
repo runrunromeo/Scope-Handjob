@@ -39,6 +39,9 @@ namespace ScopeHandjob
         internal static ConfigEntry<bool> IgnoreEmptyModeKey;
         internal static ConfigEntry<bool> WaitForHand;
         internal static ConfigEntry<bool> WheelOnlyAiming, ModeKeyOnlyAiming;
+        internal static ConfigEntry<float> LeverDarken, LeverBlur;
+        internal static ConfigEntry<bool> ScreensAlwaysOn;
+        internal static ConfigEntry<int> ScreenFps;
 
         internal static ConfigEntry<float> ReachTime;
         internal static ConfigEntry<float> ReturnTime;
@@ -69,12 +72,39 @@ namespace ScopeHandjob
         internal static float PoseValueDefault(int i) => PoseDefaults[i];
 
         // Defaults: the values the hand animations were tuned with.
-        private const float DefReach = 0.35f, DefReturn = 0.35f, DefHold = 0.5f, DefSwitch = 0.3f, DefRegrip = 0.35f, DefFastTwist = 0.35f;
+        private const float DefReach = 0.35f, DefReturn = 0.35f, DefHold = 0.5f, DefSwitch = 0.165f, DefRegrip = 0.35f, DefFastTwist = 0.35f;
         private const float DefShake = 1f, DefCoverSpeed = 2.5f;
         private const string SectionStance = "3. Stance Overhaul", SectionShake = "4. Gun Shake";
 
-        /// <summary>The mod works now: Enabled, and (public release) Scope Handjob Dev is not installed and switched on too.</summary>
-        internal static bool Active => Enabled.Value && !OtherBuildActive();
+        /// <summary>The mod works now: Enabled, (public release) Scope Handjob Dev is not installed and switched on too, and
+        /// PiP Disabler is not installed and switched on.</summary>
+        internal static bool Active => Enabled.Value && !OtherBuildActive() && !PipDisablerActive();
+
+        // PiP Disabler (com.fiodor.pipdisabler) replaces the scope picture with a zoomed main camera, so the hand on the scope
+        // shows up in the view and covers the reticle. While it is installed and its "Mod Enabled" is on, this mod stands
+        // aside completely (vanilla zoom / mode changes), whatever our own Enabled says.
+        internal const string PipDisablerGuid = "com.fiodor.pipdisabler";
+        private static bool pipLoaded;
+        private static ConfigEntry<bool> pipEnabled;
+        private static bool PipDisablerActive() => pipLoaded && (pipEnabled == null || pipEnabled.Value);
+
+        /// <summary>Called from Plugin.Start, when every plugin has loaded.</summary>
+        internal static void FindPipDisabler()
+        {
+            try
+            {
+                if (!BepInEx.Bootstrap.Chainloader.PluginInfos.TryGetValue(PipDisablerGuid, out BepInEx.PluginInfo info) || info == null) return;
+                pipLoaded = true;
+                if (info.Instance != null && info.Instance.Config.TryGetEntry("General", "Mod Enabled", out ConfigEntry<bool> entry))
+                    pipEnabled = entry;
+                Plugin.Log.LogInfo(Plugin.LogTag + " PiP Disabler is installed: this mod stands aside while PiP Disabler's 'Mod Enabled' is on"
+                                   + (pipEnabled == null ? " (setting not found: always)" : $" (now {(pipEnabled.Value ? "on" : "off")})"));
+            }
+            catch (System.Exception error)
+            {
+                Plugin.Log.LogWarning(Plugin.LogTag + " could not look for PiP Disabler: " + error.Message);
+            }
+        }
 
         // Both builds installed: the dev build wins while its Enabled is on; switch it off and this one takes over.
         internal const string DevGuid = "scopehandjob.dev.spt416";
@@ -116,6 +146,23 @@ namespace ScopeHandjob
             ModeKeyOnlyAiming = config.Bind(general, "Zoom / Mode Key Only While Aiming", false,
                 new ConfigDescription("On = the zoom / mode key works only while you aim down sights. Not aiming, a press does nothing " +
                                       "(no hand, no press animation). Off = as before.", null, Order(3)));
+            LeverDarken = config.Bind(general, "Lever Scope Picture: Darken", 0.85f,
+                new ConfigDescription("Scopes whose lever changes magnification (Specter DR, ELCAN 1.5/6, PS-320): inside, a lens group turns " +
+                                      "when the lever is thrown, so the picture through the scope goes dark mid-throw. How dark at the darkest " +
+                                      "moment (half way, where the magnification changes). 0 = off, 1 = black. Only the picture through the scope.",
+                    new AcceptableValueRange<float>(0f, 1f), Order(2)));
+            LeverBlur = config.Bind(general, "Lever Scope Picture: Blur", 0.8f,
+                new ConfigDescription("Same scopes: how blurred the picture through the scope gets mid-throw. 0 = off, 1 = most.",
+                    new AcceptableValueRange<float>(0f, 1f), Order(1)));
+            ScreensAlwaysOn = config.Bind(general, "Thermal / Night Vision Screen When Not Aiming", true,
+                new ConfigDescription("On = scopes with an electronic screen (thermal: FLIR RS-32, Zeus-Pro, REAP-IR, ECHO1...; night vision " +
+                                      "scopes) keep showing their picture when you are not aiming, whether or not you can see the screen from " +
+                                      "where you hold the gun. One scope at a time (the first one on the gun). Costs frame rate like aiming " +
+                                      "through it. Off = vanilla: the screen is only on while you aim through it.", null, Order(0)));
+            ScreenFps = config.Bind(general, "Thermal / Night Vision Screen FPS When Not Aiming", 30,
+                new ConfigDescription("How many times a second that screen's picture is redrawn while you are NOT aiming (lower = more frame " +
+                                      "rate saved). Aiming through the scope is never limited. Higher than your frame rate = every frame.",
+                    new AcceptableValueRange<int>(10, 90), Order(-1)));
 
             const string timing = "2. Timing";
             ReachTime = config.Bind(timing, "Reach Time", DefReach,

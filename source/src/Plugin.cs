@@ -11,7 +11,7 @@ namespace ScopeHandjob
         // Public release "Scope Handjob": left hand only, no pose editor / tuning tools, the poses built in.
         public const string Guid = "scopehandjob.spt416";
         public const string Name = "Scope Handjob";
-        public const string Version = "1.0.3";
+        public const string Version = "1.1.0";
         internal const string LogTag = "[ScopeHandjob]";
 
         internal static ManualLogSource Log;
@@ -31,8 +31,17 @@ namespace ScopeHandjob
             }
         }
 
-        private void Start() => Settings.FindDevBuild(); // every plugin has loaded by now
+        private void Start() // every plugin has loaded by now
+        {
+            Patches.InstallOverrides(); // e.g. Fika's SetScopeMode override, which sends the change to the other players
+            Settings.FindPipDisabler();
+            Settings.FindDevBuild();
+        }
 
-        private void Update() => StanceSupport.Tick();
+        private void Update()
+        {
+            StanceSupport.Tick();
+            ScopeScreens.Tick();
+        }
     }
 }

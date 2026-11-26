@@ -72,7 +72,7 @@ namespace ScopeHandjob
         private static float Speed() => target != null && target.IsCover ? Mathf.Max(0.1f, Settings.CoverSpeed.Value) : 1f;
 
         /// <summary>How far into a press the next kept one may begin: the finger back off the button / lever nearly over.</summary>
-        private static float NextPressAt() => target != null && Turns() ? 0.9f : 0.75f;
+        private static float NextPressAt() => target != null && Turns() && !SteppedLever && !SpringTwist ? 0.9f : 0.75f;
 
         /// <summary>Lever, or a rotary knob on a button scope: each press turns to the other position and the next turns back.</summary>
         private static bool Turns() => target.Kind == PartKind.Lever || (target.Kind == PartKind.Button && plan != null && plan.Twists);
@@ -129,7 +129,22 @@ namespace ScopeHandjob
             pendingStates = next;
             modeDone = false;
             repeatPress = true;
-            if (Turns())
+            AimLensDarken();
+            if (SteppedLever)
+            {
+                // 3+ positions: push again towards the next one, from where the hand is now (on its way back).
+                AimLever(leverAt + 1, SteppedLeverAngle(actProgress));
+                actProgress = 0f;
+            }
+            else if (SpringTwist)
+            {
+                // Spring-back twist: the next mode pushes the other way, from where the hand is now.
+                float now = SteppedLeverAngle(actProgress);
+                leverReverse = !leverReverse;
+                AimTwist(now);
+                actProgress = 0f;
+            }
+            else if (Turns())
             {
                 // The lever / knob now sits at (or almost at) its other position: run back from where the hand is.
                 leverReverse = !leverReverse;

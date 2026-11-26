@@ -16,10 +16,12 @@ namespace ScopeHandjob
         internal float LeverAngle;           // lever: wrist turn that stays clear
         internal Vector3 PushAxisLocal, PushPivotLocal; // lever push: the lever's own pivot (Anchor space), + = towards its other position
         internal bool PushFromLever;         // the push pivot was measured from the two lever positions (else a guess)
+        internal float[] LeverAngles;        // lever with 3+ positions: each one's angle about the push pivot (PoseFrame.LeverAngles)
         internal Vector3 PressDirLocal;      // button: the way the finger presses (Anchor space, down onto the scope)
         internal float ButtonTwist;          // button: 0 = press; else the hand twists this many degrees (like the Vudu knob)
         internal Vector3 TwistAxisLocal, TwistPivotLocal; // button twist: the line it turns about (Anchor space)
         internal bool Twists => Mathf.Abs(ButtonTwist) > 0.5f;
+        internal bool TwistBack;             // button twist: each press pushes out and back like the Walther MRS lever (set after Build)
         internal Vector3 ApproachLocal;      // offset (Anchor space) of the in-between point the hand comes in from
         internal Hinge Flip;                 // flip magnifier swing (Part -> EndPart)
         internal float FlipFollow = 1f;      // how much of the flip the hand rides along (1 = all, 0.2 = a thumb flick)

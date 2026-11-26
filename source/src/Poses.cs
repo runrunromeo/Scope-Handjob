@@ -22,14 +22,17 @@ namespace ScopeHandjob
         public string ButtonFace; // button scopes: face of the body the buttons are on (null = Top)
         public float ButtonTwist; // button scopes: 0 = press; else a knob twist of this many degrees (SUSAT, MARS)
         public string TwistAxis;  // button scopes: the line the twist turns about (null = ScopeLine)
+        public bool TwistBack;    // button twist: out and back each press (Walther MRS lever style), else it stays turned until the next mode
         public float? FlipFollow; // flip parts: how much of the flip the hand rides along (null = all of it)
         public bool FlipThumbOnly; // flip parts: only the thumb rides the flip, the hand stays put
         public bool FlipIndexOnly; // flip parts: only the index finger curls with the flip, the hand stays put
+        public float? KnobScale;   // knob scopes: the zoom ring turns this many times its normal turn, zoom unchanged (null = 1)
 
         internal ButtonFace Face => System.Enum.TryParse(ButtonFace, out ButtonFace f) ? f : ScopeHandjob.ButtonFace.Top;
         internal TwistAxis Axis => System.Enum.TryParse(TwistAxis, out TwistAxis a) ? a : ScopeHandjob.TwistAxis.ScopeLine;
         internal float Follow => FlipFollow ?? 1f;
         internal FlipMover Mover => FlipIndexOnly ? FlipMover.IndexOnly : FlipThumbOnly ? FlipMover.ThumbOnly : FlipMover.WholeHand;
+        internal float RingScale => KnobScale.HasValue && KnobScale.Value >= 0.05f ? KnobScale.Value : 1f;
     }
 #pragma warning restore CS0649
 
@@ -103,7 +106,10 @@ namespace ScopeHandjob
         private static readonly string[] ColourSuffixes =
             { "_tan", "_fde", "_black", "_blk", "_od", "_olive", "_sand", "_grey", "_gray", "_white", "_green", "_ranger" };
 
-        /// <summary>Scope model name without its colour ("scope_all_eotech_hhs_1_tan" -> "scope_all_eotech_hhs_1").</summary>
+        /// <summary>
+        /// Scope model name without its colour ("scope_all_eotech_hhs_1_tan" -> "scope_all_eotech_hhs_1"; Epic's AIO names
+        /// it with a space: "Eleanor 1-10 FDE" / "Eleanor 1-10 BLK" -> "eleanor 1-10").
+        /// </summary>
         internal static string ModelName(string scope)
         {
             if (string.IsNullOrEmpty(scope)) return scope;
@@ -113,11 +119,13 @@ namespace ScopeHandjob
             {
                 stripped = false;
                 foreach (string suffix in ColourSuffixes)
-                    if (s.EndsWith(suffix, StringComparison.Ordinal) && s.Length > suffix.Length)
-                    {
-                        s = s.Substring(0, s.Length - suffix.Length);
-                        stripped = true;
-                    }
+                {
+                    string spaced = " " + suffix.Substring(1);
+                    string found = s.EndsWith(suffix, StringComparison.Ordinal) ? suffix : s.EndsWith(spaced, StringComparison.Ordinal) ? spaced : null;
+                    if (found == null || s.Length <= found.Length) continue;
+                    s = s.Substring(0, s.Length - found.Length).TrimEnd();
+                    stripped = true;
+                }
             }
             return s;
         }
@@ -203,11 +211,27 @@ namespace ScopeHandjob
         internal Vector3 RightLocal; // to the right as you look down the gun (whichever hand)
         internal Hinge Flip;
         internal Hinge LeverSwing; // lever: pose position -> the other position, about the lever's own pivot
+        // Lever with 3+ positions (Walther MRS: 4): where each lever (ScopeTarget.Levers order) sits, in degrees from the
+        // pose's lever about LeverSwing's axis (+ = LeverSwing's way). Null for two-position levers or when the steps are
+        // too big for a hand to ride (BOSS Xe dial: 100+ deg).
+        internal float[] LeverAngles;
         internal bool FlipOtherWay; // flip part: the short way cut through the sight, it goes the other way round
         internal string LeverSwingSource;
         internal Vector3[] BodyCornersLocal; // button scope: the body's box corners (Anchor space), to find each face
         internal Vector3 RingCentreLocal;    // button scope: centre on the sight line (Anchor space), for a ring twist
         internal bool HasRing;
+
+        /// <summary>A part's measured flip / lever motion, in its anchor's space (see Create).</summary>
+        private sealed class Motion
+        {
+            internal Transform Space;
+            internal Hinge Flip, LeverSwing;
+            internal bool FlipOtherWay;
+            internal string LeverSwingSource;
+            internal float[] LeverAngles;
+        }
+
+        private static readonly System.Collections.Generic.Dictionary<int, Motion> Motions = new System.Collections.Generic.Dictionary<int, Motion>();
 
         internal static PoseFrame Create(ScopeTarget t, Player.FirearmController fc, Transform view, HandSide side, Transform poseLever = null)
         {
@@ -258,6 +282,19 @@ namespace ScopeHandjob
                 SideLocal = anchor.InverseTransformDirection(sideDir).normalized,
                 RightLocal = anchor.InverseTransformDirection(-left).normalized,
             };
+            // The flip / lever motion is fitted from the part's meshes (every vertex) and only depends on the part, so it is
+            // worked out once per part and reused on every later press.
+            int motionKey = (magnifier || lever) ? measured.GetInstanceID() : 0;
+            if (motionKey != 0 && Motions.TryGetValue(motionKey, out Motion known) && known != null && known.Space == anchor)
+            {
+                frame.Flip = known.Flip;
+                frame.FlipOtherWay = known.FlipOtherWay;
+                frame.LeverSwing = known.LeverSwing;
+                frame.LeverSwingSource = known.LeverSwingSource;
+                frame.LeverAngles = known.LeverAngles;
+                magnifier = lever = false; // already known
+            }
+            else if (motionKey != 0 && Motions.Count > 128) Motions.Clear();
             if (magnifier)
             {
                 // The swing Home -> Away (in line -> aside); the way back runs it backwards.
@@ -294,6 +331,12 @@ namespace ScopeHandjob
                                string.Join(", ", Array.ConvertAll(t.Pieces ?? new Transform[0], p => p.name)));
             }
             if (lever) LeverSwingFrom(frame, t, poseLever, anchor);
+            if (magnifier || lever)
+                Motions[motionKey] = new Motion
+                {
+                    Space = anchor, Flip = frame.Flip, FlipOtherWay = frame.FlipOtherWay, LeverSwing = frame.LeverSwing,
+                    LeverSwingSource = frame.LeverSwingSource, LeverAngles = frame.LeverAngles,
+                };
             if (t.Kind == PartKind.Button)
             {
                 MeshFilter body = t.Part.GetComponent<MeshFilter>();
@@ -349,6 +392,59 @@ namespace ScopeHandjob
             }
             if (frame.LeverSwing == null) frame.LeverSwingSource = "GUESSED";
             HandDriver.Log($"lever swing from {frame.LeverSwingSource}: {frame.LeverSwing?.Angle ?? 0f:0} deg, {poseLever.name} -> {other.name}");
+            if (frame.LeverSwing != null && t.Levers.Length >= 3) frame.LeverAngles = LeverAnglesFrom(t.Levers, poseLever, frame.LeverSwing, anchor);
+        }
+
+        /// <summary>
+        /// A lever / dial with more than two positions (Walther MRS: 23, 3.6, -17, -39 deg about its pivot, so three
+        /// presses one way and the fourth all the way back; BOSS Xe dial): each position's angle from the pose's lever
+        /// about the same pivot. Only the direction of each press is used (the hand pushes a short way, HandDriver
+        /// .AimLever), so big steps are fine. Null when a position turns about another axis.
+        /// </summary>
+        private static float[] LeverAnglesFrom(Transform[] levers, Transform poseLever, Hinge swing, Transform anchor)
+        {
+            Vector3[] a;
+            bool exactA;
+            try
+            {
+                a = WeaponPoints.Vertices(poseLever, Matrix4x4.identity, out exactA);
+            }
+            catch (Exception)
+            {
+                a = null;
+                exactA = false;
+            }
+            var angles = new float[levers.Length];
+            for (int i = 0; i < levers.Length; i++)
+            {
+                Transform l = levers[i];
+                if (l == null) return null;
+                if (l == poseLever) continue;
+                Hinge h = null;
+                try
+                {
+                    if (exactA)
+                    {
+                        Vector3[] b = WeaponPoints.Vertices(l, Matrix4x4.identity, out bool exactB);
+                        if (exactB) h = Hinge.FromPoints(a, b, anchor);
+                    }
+                }
+                catch (Exception)
+                {
+                    // the transforms below
+                }
+                if (h == null)
+                {
+                    Quaternion r = l.rotation * Quaternion.Inverse(poseLever.rotation);
+                    h = Hinge.FromMotion(r, l.position - r * poseLever.position, anchor);
+                }
+                if (h == null) continue; // same place as the pose's lever: 0
+                float along = Vector3.Dot(h.AxisLocal, swing.AxisLocal);
+                if (Mathf.Abs(along) < 0.95f) return null; // not the same pivot
+                angles[i] = along > 0f ? h.Angle : -h.Angle;
+            }
+            HandDriver.Log("lever positions " + string.Join(" / ", Array.ConvertAll(angles, x => x.ToString("0"))) + " deg: the hand pushes each press's way");
+            return angles;
         }
 
         /// <summary>
@@ -477,6 +573,7 @@ namespace ScopeHandjob
                 PushAxisLocal = a.InverseTransformDirection(pushAxis).normalized,
                 PushPivotLocal = a.InverseTransformPoint(pushPivot),
                 PushFromLever = pushFromLever,
+                LeverAngles = pushFromLever ? frame.LeverAngles : null,
                 PressDirLocal = a.InverseTransformDirection(-outUp).normalized,
                 ButtonTwist = ring ? buttonTwist : 0f,
                 TwistAxisLocal = a.InverseTransformDirection(twistAxisDir).normalized,

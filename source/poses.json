@@ -5,7 +5,7 @@
       "Scope": "scope_30mm_eotech_vudu_1_6x24",
       "Part": "switch_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-18 01:19",
+      "Saved": "2026-11-25 01:50",
       "Values": [
         70.0,
         96.0,
@@ -16,17 +16,17 @@
         0.0,
         12.0,
         -7.0,
-        -3.0,
+        -22.0,
         28.0,
-        -23.0,
+        -26.0,
         -80.0,
         -66.0,
         0.0,
-        25.0,
+        32.0,
         0.0,
-        -7.0,
+        -24.0,
         0.0,
-        0.0
+        -11.0
       ],
       "Bones": [
         "NoMoreScopeRemote_Fingers_Left",
@@ -48,10 +48,10 @@
       ],
       "Base": [
         [
-          -0.7066685,
-          0.313895941,
-          0.613019168,
-          0.162161827
+          -0.5310842,
+          0.4845076,
+          0.584701836,
+          0.37593323
         ],
         [
           0.7768691,
@@ -148,9 +148,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "5c0a2cec0db834001b7ce47d|scope_all_eotech_g33_glass_LOD0|Left": {
       "Scope": "scope_all_eotech_hhs_1",
@@ -299,33 +301,38 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "5b2388675acfc4771e1be0be|scope_30mm_burris_fullfield_tac30_1_4x24_switch_LOD0|Left": {
       "Scope": "scope_30mm_burris_fullfield_tac30_1_4x24",
       "Part": "scope_30mm_burris_fullfield_tac30_1_4x24_switch_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-18 03:25",
+      "Saved": "2026-11-25 01:47",
       "Values": [
         70.0,
         66.0,
-        0.0,
+        -8.0,
         0.0,
         -35.0,
         -6.0,
-        -1.0,
-        13.0,
-        4.0,
+        -2.0,
+        30.0,
+        22.0,
         -14.0,
-        18.0,
-        -5.0,
+        12.0,
+        -11.0,
         -52.0,
         -63.0,
         0.0,
-        19.0,
-        -24.0
+        32.0,
+        -24.0,
+        4.0,
+        -55.0,
+        0.0
       ],
       "Bones": [
         "NoMoreScopeRemote_Fingers_Left",
@@ -347,10 +354,10 @@
       ],
       "Base": [
         [
-          -0.489617467,
-          0.3948042,
-          0.7624412,
-          0.151946589
+          -0.4943026,
+          0.5302002,
+          0.610361,
+          0.3193935
         ],
         [
           0.403433174,
@@ -447,184 +454,38 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
-    },
-    "617151c1d92c473c770214ab|scope_30mm_s&b_pm_ii_1_8x24_switch_LOD0|Left": {
-      "Scope": "scope_30mm_s&b_pm_ii_1_8x24",
-      "Part": "scope_30mm_s&b_pm_ii_1_8x24_switch_LOD0",
-      "Hand": "Left",
-      "Saved": "2026-11-18 03:52",
-      "Values": [
-        70.0,
-        66.0,
-        -29.0,
-        0.0,
-        -35.0,
-        -6.0,
-        29.0,
-        27.0,
-        8.0,
-        -14.0,
-        -13.0,
-        -5.0,
-        -46.0,
-        -65.0,
-        10.0,
-        14.0,
-        -15.0
-      ],
-      "Bones": [
-        "NoMoreScopeRemote_Fingers_Left",
-        "Base HumanLDigit11",
-        "Base HumanLDigit12",
-        "Base HumanLDigit13",
-        "Base HumanLDigit21",
-        "Base HumanLDigit22",
-        "Base HumanLDigit23",
-        "Base HumanLDigit31",
-        "Base HumanLDigit32",
-        "Base HumanLDigit33",
-        "Base HumanLDigit41",
-        "Base HumanLDigit42",
-        "Base HumanLDigit43",
-        "Base HumanLDigit51",
-        "Base HumanLDigit52",
-        "Base HumanLDigit53"
-      ],
-      "Base": [
-        [
-          -0.5437365,
-          0.179162592,
-          0.8199078,
-          0.00161080749
-        ],
-        [
-          0.5886446,
-          0.183327,
-          0.0552370548,
-          0.785390139
-        ],
-        [
-          -0.221601829,
-          -0.00534524163,
-          -0.08610749,
-          0.971313357
-        ],
-        [
-          -0.00817487,
-          -0.008520856,
-          -0.0876888,
-          0.996077955
-        ],
-        [
-          0.09759538,
-          -0.195829988,
-          0.132999271,
-          0.9666628
-        ],
-        [
-          -0.00106756645,
-          -0.00169976335,
-          0.544350266,
-          0.8388557
-        ],
-        [
-          -0.0674433559,
-          -0.0188014656,
-          0.3031547,
-          0.9503658
-        ],
-        [
-          -0.01506355,
-          -0.1978333,
-          0.343575865,
-          0.9179274
-        ],
-        [
-          -0.0004556929,
-          -3.64650041E-05,
-          0.571721,
-          0.820448
-        ],
-        [
-          -0.100952215,
-          0.0224352144,
-          0.184997037,
-          0.9772827
-        ],
-        [
-          -0.0942492858,
-          -0.207464933,
-          0.4938668,
-          0.839149
-        ],
-        [
-          -0.0333167836,
-          -0.0517241843,
-          0.4985676,
-          0.8646647
-        ],
-        [
-          -0.212878078,
-          0.0508435927,
-          0.115676135,
-          0.968874037
-        ],
-        [
-          -0.230923012,
-          -0.252687126,
-          0.553754866,
-          0.7590648
-        ],
-        [
-          0.04935464,
-          -0.0955292955,
-          0.5287278,
-          0.8419532
-        ],
-        [
-          -0.06422654,
-          0.115994357,
-          -0.0441547632,
-          0.990187168
-        ]
-      ],
-      "LeverPush": false,
-      "ButtonFace": null,
-      "ButtonTwist": 0.0,
-      "TwistAxis": null,
-      "FlipFollow": null,
-      "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "57aca93d2459771f2c7e26db|Switch_001_LOD0|Left": {
-      "Scope": "scope_all_elcan_specter_dr_1-4_fde",
+      "Scope": "scope_all_elcan_specter_dr_1-4",
       "Part": "Switch_001_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-18 17:26",
+      "Saved": "2026-11-24 17:45",
       "Values": [
         70.0,
         68.0,
         -63.0,
-        -13.0,
-        67.0,
-        -6.0,
         6.0,
-        27.0,
-        -2.0,
-        -18.0,
-        31.0,
-        -26.0,
-        -44.0,
+        63.0,
+        -6.0,
+        18.0,
+        11.0,
+        -22.0,
+        -22.0,
+        10.0,
+        10.0,
+        -65.0,
         -180.0,
         0.0,
-        18.0,
-        -44.0,
-        -2.0,
-        0.0,
-        0.0
+        -12.0,
+        -40.0,
+        2.0,
+        -55.0,
+        -22.0
       ],
       "Bones": [
         "NoMoreScopeRemote_Fingers_Left",
@@ -646,10 +507,10 @@
       ],
       "Base": [
         [
-          -0.5027209,
-          0.146296844,
-          0.8412348,
-          0.134881243
+          -0.45294255,
+          0.461247861,
+          0.6551908,
+          0.39092
         ],
         [
           0.46881485,
@@ -746,36 +607,38 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "5c0517910db83400232ffee5|switch_000_LOD0|Left": {
       "Scope": "scope_all_valday_ps320",
       "Part": "switch_000_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-18 17:39",
+      "Saved": "2026-11-25 03:08",
       "Values": [
         51.0,
         50.0,
-        -48.0,
+        -36.0,
+        6.0,
+        69.0,
         10.0,
-        5.0,
-        -15.0,
         -3.0,
         1.0,
         -8.0,
-        -3.0,
-        12.0,
+        3.0,
+        28.0,
         -13.0,
-        -46.0,
+        -40.0,
         -127.0,
-        76.0,
+        0.0,
         -16.0,
-        -61.0,
+        -69.0,
         -31.0,
         0.0,
-        0.0
+        15.0
       ],
       "Bones": [
         "NoMoreScopeRemote_Fingers_Left",
@@ -797,10 +660,10 @@
       ],
       "Base": [
         [
-          -0.467202961,
-          0.517433465,
-          0.643302441,
-          0.316458672
+          -0.5007741,
+          0.441390842,
+          0.6216984,
+          0.4097445
         ],
         [
           0.776869,
@@ -897,9 +760,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "6567e7681265c8a131069b0f|scope_30mm_sig_tango6t_1_6x24_switch_LOD0|Left": {
       "Scope": "scope_30mm_sig_tango6t_1_6x24",
@@ -1048,9 +913,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "618ba27d9008e4636a67f61d|scope_30mm_razor_hd_gen_2_1_6x24_switch_LOD0|Left": {
       "Scope": "scope_30mm_razor_hd_gen_2_1_6x24",
@@ -1196,9 +1063,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "56ea70acd2720b844b8b4594|scope_34mm_hensoldt_zf_4_16x56_ff_switch_LOD0|Left": {
       "Scope": "scope_34mm_hensoldt_zf_4_16x56_ff",
@@ -1347,9 +1216,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "5aa66be6e5b5b0214e506e97|scope_34mm_nightforce_atacr_7_35x56_switch_LOD0|Left": {
       "Scope": "scope_34mm_nightforce_atacr_7_35x56",
@@ -1498,9 +1369,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "57c5ac0824597754771e88a9|scope_30mm_march_tactical_3-24x42_switch_LOD0|Left": {
       "Scope": "scope_30mm_march_tactical_3-24x42",
@@ -1649,9 +1522,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "63fc44e2429a8a166c7f61e6|scope_base_armasight_zeus_pro_640_2_16x50_30hz_LOD0|Left": {
       "Scope": "scope_base_armasight_zeus_pro_640_2_16x50_30hz",
@@ -1800,15 +1675,17 @@
       "ButtonFace": "Top",
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "5d1b5e94d7ad1a2b865a96b0|scope_all_flir_rs32_225_9x_35_60hz_LOD0|Left": {
       "Scope": "scope_all_flir_rs32_225_9x_35_60hz",
       "Part": "scope_all_flir_rs32_225_9x_35_60hz_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-19 00:44",
+      "Saved": "2026-11-25 03:14",
       "Values": [
         62.0,
         103.0,
@@ -1816,19 +1693,19 @@
         -2.0,
         -18.0,
         -13.0,
-        16.0,
-        38.0,
-        -14.0,
+        4.0,
+        32.0,
+        -7.0,
         -38.0,
         27.0,
         -13.0,
-        -58.0,
+        -54.0,
         -36.0,
         0.0,
         29.0,
         -25.0,
-        27.0,
-        -63.0,
+        23.0,
+        -38.0,
         -26.0
       ],
       "Bones": [
@@ -1851,10 +1728,10 @@
       ],
       "Base": [
         [
-          -0.852343261,
-          0.360800177,
-          0.292328328,
-          0.240579262
+          -0.5914173,
+          0.52725935,
+          0.5017695,
+          0.347059757
         ],
         [
           0.580999,
@@ -1950,37 +1827,39 @@
       "LeverPush": false,
       "ButtonFace": "Top",
       "ButtonTwist": 0.0,
-      "TwistAxis": null,
+      "TwistAxis": "ScopeLine",
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "5dfe6104585a0c3e995c7b82|scope_all_ncstar_advance_dual_optic_3_9x_42_switch_LOD0|Left": {
       "Scope": "scope_all_ncstar_advance_dual_optic_3_9x_42",
       "Part": "scope_all_ncstar_advance_dual_optic_3_9x_42_switch_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-19 00:53",
+      "Saved": "2026-11-25 04:16",
       "Values": [
-        62.0,
-        102.0,
+        76.0,
+        83.0,
         18.0,
         -2.0,
         -18.0,
         -13.0,
-        0.0,
+        -1.0,
         38.0,
-        -15.0,
+        -12.0,
         -27.0,
-        41.0,
-        -14.0,
+        40.0,
+        -9.0,
         -58.0,
-        -49.0,
+        -69.0,
         12.0,
-        45.0,
+        -11.0,
         -25.0,
         27.0,
         -35.0,
-        -18.0
+        -17.0
       ],
       "Bones": [
         "NoMoreScopeRemote_Fingers_Left",
@@ -2002,10 +1881,10 @@
       ],
       "Base": [
         [
-          -0.5243488,
-          0.4486837,
-          0.679889739,
-          0.247974217
+          -0.613189936,
+          0.480377376,
+          0.484953761,
+          0.397561878
         ],
         [
           0.580999,
@@ -2102,36 +1981,38 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "6a18508bae175e037a0be420|switch_000_LOD0|Left": {
       "Scope": "scope_all_monstrum_marksman_3x30",
       "Part": "switch_001_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-19 01:01",
+      "Saved": "2026-11-25 04:34",
       "Values": [
         54.0,
-        102.0,
-        13.0,
-        -22.0,
-        50.0,
-        6.0,
-        0.0,
-        38.0,
-        -15.0,
-        -35.0,
-        41.0,
+        104.0,
+        60.0,
+        -47.0,
+        3.0,
+        54.0,
+        1.0,
+        43.0,
+        -14.0,
+        -51.0,
+        25.0,
         18.0,
-        -75.0,
-        -49.0,
-        0.0,
-        -4.0,
-        -25.0,
-        27.0,
+        -86.0,
         -35.0,
-        -22.0
+        0.0,
+        -2.0,
+        10.0,
+        17.0,
+        -44.0,
+        -21.0
       ],
       "Bones": [
         "NoMoreScopeRemote_Fingers_Left",
@@ -2153,10 +2034,10 @@
       ],
       "Base": [
         [
-          -0.59746635,
-          0.376254618,
-          0.625787556,
-          0.331446022
+          -0.6500867,
+          0.4324773,
+          0.4338209,
+          0.4496112
         ],
         [
           0.580999,
@@ -2253,15 +2134,17 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "6478641c19d732620e045e17|scope_all_sig_sauer_echo1_thermal_reflex_sight_1_2x_30hz_LOD0|Left": {
       "Scope": "scope_all_sig_sauer_echo1_thermal_reflex_sight_1_2x_30hz",
       "Part": "scope_all_sig_sauer_echo1_thermal_reflex_sight_1_2x_30hz_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-19 01:26",
+      "Saved": "2026-11-25 22:25",
       "Values": [
         52.0,
         97.0,
@@ -2281,7 +2164,7 @@
         -4.0,
         -28.0,
         18.0,
-        -35.0,
+        -62.0,
         -2.0
       ],
       "Bones": [
@@ -2304,10 +2187,10 @@
       ],
       "Base": [
         [
-          -0.7062183,
-          0.2575219,
-          0.5286805,
-          0.3942526
+          -0.597080469,
+          0.5660497,
+          0.483259827,
+          0.299236476
         ],
         [
           0.544250131,
@@ -2403,10 +2286,12 @@
       "LeverPush": true,
       "ButtonFace": "Rear",
       "ButtonTwist": 0.0,
-      "TwistAxis": null,
+      "TwistAxis": "ScopeLine",
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "5a37cb10c4a282329a73b4e7|scope_30mm_leupold_mark4_lr_6,5_20x50_switch_LOD0|Left": {
       "Scope": "scope_30mm_leupold_mark4_lr_6,5_20x50",
@@ -2555,187 +2440,38 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
-    },
-    "68caad7f933990601c07f47c|switch_000_LOD0|Left": {
-      "Scope": "scope_30mm_leupold_mark_4_mr_t_ts_30a2_25_8x36",
-      "Part": "switch_000_LOD0",
-      "Hand": "Left",
-      "Saved": "2026-11-19 01:53",
-      "Values": [
-        70.0,
-        77.0,
-        -13.0,
-        -13.0,
-        3.0,
-        -10.0,
-        7.0,
-        40.0,
-        12.0,
-        -30.0,
-        -18.0,
-        -4.0,
-        -27.0,
-        -42.0,
-        43.0,
-        7.0,
-        -40.0,
-        0.0,
-        -86.0,
-        -31.0
-      ],
-      "Bones": [
-        "NoMoreScopeRemote_Fingers_Left",
-        "Base HumanLDigit11",
-        "Base HumanLDigit12",
-        "Base HumanLDigit13",
-        "Base HumanLDigit21",
-        "Base HumanLDigit22",
-        "Base HumanLDigit23",
-        "Base HumanLDigit31",
-        "Base HumanLDigit32",
-        "Base HumanLDigit33",
-        "Base HumanLDigit41",
-        "Base HumanLDigit42",
-        "Base HumanLDigit43",
-        "Base HumanLDigit51",
-        "Base HumanLDigit52",
-        "Base HumanLDigit53"
-      ],
-      "Base": [
-        [
-          -0.45196265,
-          0.124333978,
-          0.8828056,
-          0.0304172
-        ],
-        [
-          0.582137346,
-          0.1563048,
-          -0.0100011388,
-          0.797862768
-        ],
-        [
-          -0.221620351,
-          -0.004378502,
-          -0.08186638,
-          0.9716806
-        ],
-        [
-          -0.008174596,
-          -0.008520711,
-          -0.0876887143,
-          0.996077955
-        ],
-        [
-          0.106478989,
-          -0.190719888,
-          0.142026812,
-          0.96546185
-        ],
-        [
-          -0.00116463762,
-          -0.00163734891,
-          0.530300736,
-          0.8478073
-        ],
-        [
-          -0.06807702,
-          -0.0164268874,
-          0.338310629,
-          0.9384251
-        ],
-        [
-          0.0301505178,
-          -0.1635987,
-          0.338404417,
-          0.926179767
-        ],
-        [
-          -0.05268569,
-          -0.007204948,
-          0.6576379,
-          0.751455069
-        ],
-        [
-          -0.00187880278,
-          -0.000299506239,
-          0.04048005,
-          0.9991786
-        ],
-        [
-          -0.100351706,
-          -0.19601056,
-          0.492905527,
-          0.8417562
-        ],
-        [
-          -0.0375856869,
-          -0.0487068743,
-          0.5702022,
-          0.8191975
-        ],
-        [
-          -0.218715712,
-          0.00802596,
-          -0.07694176,
-          0.972717345
-        ],
-        [
-          -0.240944192,
-          -0.249659613,
-          0.62642473,
-          0.698002934
-        ],
-        [
-          -2.477318E-06,
-          -7.886067E-05,
-          0.4371407,
-          0.899393141
-        ],
-        [
-          -0.0959123746,
-          0.0138773806,
-          -0.141557187,
-          0.985175
-        ]
-      ],
-      "LeverPush": false,
-      "ButtonFace": null,
-      "ButtonTwist": 0.0,
-      "TwistAxis": null,
-      "FlipFollow": null,
-      "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "5c82343a2e221644f31c0611|switch_000|Left": {
       "Scope": "scope_dovetail_belomo_pso_1m2_4x24",
       "Part": "switch_001",
       "Hand": "Left",
-      "Saved": "2026-11-19 02:12",
+      "Saved": "2026-11-25 13:39",
       "Values": [
         70.0,
         64.0,
-        -107.0,
+        -8.0,
         -60.0,
         -19.0,
         10.0,
         -3.0,
         39.0,
         12.0,
-        -19.0,
-        5.0,
+        -31.0,
+        3.0,
         27.0,
         66.0,
         0.0,
         0.0,
         -15.0,
-        -11.0,
+        -16.0,
         0.0,
         7.0,
-        -28.0
+        -36.0
       ],
       "Bones": [
         "NoMoreScopeRemote_Fingers_Left",
@@ -2757,10 +2493,10 @@
       ],
       "Base": [
         [
-          -0.5367394,
-          0.251520425,
-          0.757283747,
-          0.274170756
+          -0.528199732,
+          0.225966677,
+          0.765244246,
+          0.2904226
         ],
         [
           0.5648161,
@@ -2857,19 +2593,21 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "576fd4ec2459777f0b518431|switch_000|Left": {
       "Scope": "scope_dovetail_belomo_pso_1m2_1_4x24",
       "Part": "switch_001",
       "Hand": "Left",
-      "Saved": "2026-11-19 02:11",
+      "Saved": "2026-11-25 13:38",
       "Values": [
-        70.0,
+        81.0,
         64.0,
-        -107.0,
+        1.0,
         -60.0,
         -19.0,
         10.0,
@@ -2877,16 +2615,16 @@
         39.0,
         12.0,
         -28.0,
-        5.0,
+        -18.0,
         27.0,
         66.0,
         0.0,
         0.0,
         -15.0,
-        -11.0,
+        -18.0,
         0.0,
         7.0,
-        -28.0
+        -43.0
       ],
       "Bones": [
         "NoMoreScopeRemote_Fingers_Left",
@@ -2908,10 +2646,10 @@
       ],
       "Base": [
         [
-          0.5385448,
-          -0.288929,
-          -0.751924634,
-          -0.247181982
+          -0.5319269,
+          0.2739554,
+          0.7617298,
+          0.2485357
         ],
         [
           0.5648161,
@@ -3008,9 +2746,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "584984812459776a704a82a6|scope_all_vomz_pilad_p1x42_weaver_LOD0|Left": {
       "Scope": "scope_all_vomz_pilad_p1x42_weaver",
@@ -3159,15 +2899,17 @@
       "ButtonFace": "Rear",
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "570fd721d2720bc5458b4596|switch_000_LOD0|Left": {
       "Scope": "scope_all_walther_mrs",
       "Part": "switch_000_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-19 02:33",
+      "Saved": "2026-11-25 03:35",
       "Values": [
         113.0,
         45.0,
@@ -3176,7 +2918,7 @@
         99.0,
         -17.0,
         5.0,
-        23.0,
+        27.0,
         -4.0,
         -7.0,
         14.0,
@@ -3210,10 +2952,10 @@
       ],
       "Base": [
         [
-          -0.665083766,
-          0.232492864,
-          0.433234274,
-          0.562066555
+          -0.514140069,
+          0.495000839,
+          0.592927933,
+          0.372921735
         ],
         [
           0.7768692,
@@ -3310,9 +3052,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "5b30b0dc5acfc400153b7124|scope_all_holosun_hs401g5_LOD0|Left": {
       "Scope": "scope_all_holosun_hs401g5",
@@ -3461,33 +3205,35 @@
       "ButtonFace": "Top",
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "591c4efa86f7741030027726|scope_all_aksion_ekp_8_18_LOD0|Left": {
       "Scope": "scope_all_aksion_ekp_8_18",
       "Part": "scope_all_aksion_ekp_8_18_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-19 03:43",
+      "Saved": "2026-11-25 17:47",
       "Values": [
-        113.0,
-        76.0,
-        -48.0,
+        140.0,
+        75.0,
+        26.0,
         -54.0,
         -1.0,
         13.0,
-        -6.0,
-        -12.0,
+        -5.0,
+        18.0,
         -4.0,
         -7.0,
         34.0,
         50.0,
-        -45.0,
+        20.0,
         -35.0,
         35.0,
         0.0,
-        -48.0,
+        -36.0,
         -21.0,
         -21.0,
         -5.0
@@ -3512,10 +3258,10 @@
       ],
       "Base": [
         [
-          -0.326064378,
-          0.599803448,
-          0.708476245,
-          0.178827569
+          -0.5595092,
+          0.48563835,
+          0.551146567,
+          0.383852
         ],
         [
           0.7768692,
@@ -3609,39 +3355,41 @@
         ]
       ],
       "LeverPush": true,
-      "ButtonFace": "Top",
+      "ButtonFace": "Right",
       "ButtonTwist": 0.0,
-      "TwistAxis": null,
+      "TwistAxis": "ScopeLine",
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
-    "5947db3f86f77447880cf76f|scope_dovetail_aksion_ekp_8_02_LOD0|Left": {
-      "Scope": "scope_dovetail_aksion_ekp_8_02",
-      "Part": "scope_dovetail_aksion_ekp_8_02_LOD0",
+    "6544d4187c5457729210d277|scope_dovetail_aksion_ekp_1s_03_LOD0|Left": {
+      "Scope": "scope_dovetail_aksion_ekp_1s_03",
+      "Part": "scope_dovetail_aksion_ekp_1s_03_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-19 03:48",
+      "Saved": "2026-11-25 18:15",
       "Values": [
-        115.0,
-        94.0,
-        -66.0,
+        95.0,
+        105.0,
+        -34.0,
+        -13.0,
+        -8.0,
+        -15.0,
+        -46.0,
+        21.0,
+        -20.0,
         -24.0,
-        -10.0,
-        6.0,
-        -6.0,
-        36.0,
-        9.0,
+        30.0,
+        11.0,
+        -80.0,
+        -114.0,
+        180.0,
+        37.0,
+        -42.0,
         -9.0,
-        24.0,
-        50.0,
-        13.0,
-        -35.0,
-        35.0,
-        0.0,
-        -40.0,
-        12.0,
-        9.0,
-        -15.0
+        46.0,
+        -42.0
       ],
       "Bones": [
         "NoMoreScopeRemote_Fingers_Left",
@@ -3663,135 +3411,137 @@
       ],
       "Base": [
         [
-          -0.364493877,
-          0.2994061,
-          0.8508725,
-          0.231335938
+          -0.5549547,
+          0.3338729,
+          0.730834067,
+          0.215489358
         ],
         [
-          0.5648161,
-          0.15793936,
-          0.0609348267,
-          0.8076663
+          0.7768692,
+          0.2724143,
+          0.220195174,
+          0.523238838
         ],
         [
-          0.144955158,
-          -0.173455775,
-          0.1140744,
-          0.9674132
+          0.12568754,
+          -0.0101612071,
+          0.08995396,
+          0.987931
         ],
         [
-          -0.0259624571,
-          -0.0338143744,
-          -0.08399513,
-          0.9955538
+          -0.0402351655,
+          -0.0200303551,
+          0.375245,
+          0.9258354
         ],
         [
-          -0.0165371429,
-          -0.29496792,
-          0.0533821881,
-          0.9538715
+          0.0132306926,
+          -0.14681077,
+          0.201948822,
+          0.9682398
         ],
         [
-          0.003290065,
-          -0.007890192,
-          0.397688121,
-          0.9174809
+          -0.0035512615,
+          -0.0257334,
+          0.634209335,
+          0.772724867
         ],
         [
-          0.000209081918,
-          -0.0005370375,
-          0.468154937,
-          0.88364625
+          0.00017251214,
+          -0.00055906,
+          0.418806762,
+          0.9080752
         ],
         [
-          -0.11795757,
-          -0.2775116,
-          0.250778079,
-          0.9198825
+          -0.0242954083,
+          -0.119805135,
+          0.407695174,
+          0.9048984
         ],
         [
-          -0.009719036,
-          0.0105776,
-          0.567385852,
-          0.8233268
+          0.00727225933,
+          -0.00615745224,
+          0.6217905,
+          0.783125639
         ],
         [
-          0.00014119409,
-          -0.0002721338,
-          0.476192862,
-          0.8793408
+          4.99570742E-05,
+          -0.00057826034,
+          0.444746375,
+          0.895656347
         ],
         [
-          -0.208748132,
-          -0.247604415,
-          0.432568759,
-          0.841427743
+          -0.02234739,
+          -0.123003647,
+          0.4540157,
+          0.8821794
         ],
         [
-          -0.0217168685,
-          0.03033659,
-          0.5070792,
-          0.8610916
+          -0.023056386,
+          0.0147321578,
+          0.5754157,
+          0.8174034
         ],
         [
-          0.000219822861,
-          -0.000477326568,
-          0.380236149,
-          0.9248893
+          -0.0592863522,
+          -0.0110918665,
+          0.443422,
+          0.8942813
         ],
         [
-          -0.340067536,
-          -0.205343664,
-          0.553008556,
-          0.732372642
+          -0.0331541076,
+          -0.121300571,
+          0.455925,
+          0.8810899
         ],
         [
-          3.925897E-05,
-          -0.000176135451,
-          0.404743969,
-          0.9144301
+          -0.119458258,
+          -0.0464627855,
+          0.60834074,
+          0.7832576
         ],
         [
-          0.000323819928,
-          -0.000902980566,
-          0.288138628,
-          0.957588255
+          -0.000295919366,
+          -5.890429E-05,
+          0.397772819,
+          0.9174839
         ]
       ],
-      "LeverPush": true,
-      "ButtonFace": "Right",
-      "ButtonTwist": 0.0,
-      "TwistAxis": null,
+      "LeverPush": false,
+      "ButtonFace": "Top",
+      "ButtonTwist": 30.0,
+      "TwistAxis": "LeftRight",
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
-    "6544d4187c5457729210d277|scope_dovetail_aksion_ekp_1s_03_LOD0|Left": {
-      "Scope": "scope_dovetail_aksion_ekp_1s_03",
-      "Part": "scope_dovetail_aksion_ekp_1s_03_LOD0",
+    "5c82342f2e221644f31c060e|switch_000|Left": {
+      "Scope": "scope_dovetail_belomo_pso_1_4x24",
+      "Part": "switch_001",
       "Hand": "Left",
-      "Saved": "2026-11-19 04:02",
+      "Saved": "2026-11-24 18:32",
       "Values": [
-        78.0,
-        45.0,
-        -68.0,
+        44.0,
+        119.0,
+        10.0,
         -31.0,
         -4.0,
         -6.0,
+        16.0,
         2.0,
-        2.0,
-        -3.0,
+        -18.0,
         -34.0,
-        6.0,
-        -28.0,
-        -60.0,
+        -5.0,
+        28.0,
+        -39.0,
         -35.0,
         35.0,
-        32.0,
-        -71.0,
-        11.0,
-        15.0,
+        -14.0,
+        -13.0,
+        8.0,
+        3.0,
         -6.0
       ],
       "Bones": [
@@ -3814,161 +3564,10 @@
       ],
       "Base": [
         [
-          -0.482191235,
-          0.2765189,
-          0.789497137,
-          0.2602368
-        ],
-        [
-          0.5648161,
-          0.15793936,
-          0.0609348267,
-          0.8076663
-        ],
-        [
-          0.144955143,
-          -0.17345576,
-          0.11407429,
-          0.9674131
-        ],
-        [
-          -0.0259622931,
-          -0.0338145755,
-          -0.08399531,
-          0.9955538
-        ],
-        [
-          -0.0165373,
-          -0.294967979,
-          0.0533821881,
-          0.953871548
-        ],
-        [
-          0.00329006626,
-          -0.007890191,
-          0.3976882,
-          0.9174808
-        ],
-        [
-          0.000208829064,
-          -0.0005369597,
-          0.468155056,
-          0.8836462
-        ],
-        [
-          -0.117957562,
-          -0.2775116,
-          0.250778049,
-          0.9198824
-        ],
-        [
-          -0.009719037,
-          0.0105775967,
-          0.567386,
-          0.8233267
-        ],
-        [
-          0.0001412835,
-          -0.000272298523,
-          0.476192683,
-          0.879340947
-        ],
-        [
-          -0.208748087,
-          -0.247604415,
-          0.432568848,
-          0.8414277
-        ],
-        [
-          -0.0217169151,
-          0.0303366724,
-          0.5070792,
-          0.8610916
-        ],
-        [
-          0.000219894107,
-          -0.0004774998,
-          0.38023597,
-          0.9248894
-        ],
-        [
-          -0.340067446,
-          -0.20534341,
-          0.553008556,
-          0.732372761
-        ],
-        [
-          3.925897E-05,
-          -0.000176135451,
-          0.404743969,
-          0.9144301
-        ],
-        [
-          0.000323819928,
-          -0.000902980566,
-          0.288138628,
-          0.957588255
-        ]
-      ],
-      "LeverPush": false,
-      "ButtonFace": "Top",
-      "ButtonTwist": 0.0,
-      "TwistAxis": null,
-      "FlipFollow": null,
-      "FlipThumbOnly": false,
-      "FlipIndexOnly": false
-    },
-    "5c82342f2e221644f31c060e|switch_000|Left": {
-      "Scope": "scope_dovetail_belomo_pso_1_4x24",
-      "Part": "switch_001",
-      "Hand": "Left",
-      "Saved": "2026-11-19 04:06",
-      "Values": [
-        78.0,
-        60.0,
-        -75.0,
-        -31.0,
-        -4.0,
-        -6.0,
-        -6.0,
-        2.0,
-        -3.0,
-        -34.0,
-        6.0,
-        -28.0,
-        -28.0,
-        -35.0,
-        35.0,
-        32.0,
-        -34.0,
-        5.0,
-        14.0,
-        -5.0
-      ],
-      "Bones": [
-        "NoMoreScopeRemote_Fingers_Left",
-        "Base HumanLDigit11",
-        "Base HumanLDigit12",
-        "Base HumanLDigit13",
-        "Base HumanLDigit21",
-        "Base HumanLDigit22",
-        "Base HumanLDigit23",
-        "Base HumanLDigit31",
-        "Base HumanLDigit32",
-        "Base HumanLDigit33",
-        "Base HumanLDigit41",
-        "Base HumanLDigit42",
-        "Base HumanLDigit43",
-        "Base HumanLDigit51",
-        "Base HumanLDigit52",
-        "Base HumanLDigit53"
-      ],
-      "Base": [
-        [
-          -0.530459,
-          0.286562651,
-          0.7584034,
-          0.2476275
+          -0.5228369,
+          0.217318192,
+          0.7667753,
+          0.302440166
         ],
         [
           0.5648161,
@@ -4065,17 +3664,19 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "5a1eaa87fcdbcb001865f75e|scope_base_trijicon_reap-ir_LOD0|Left": {
       "Scope": "scope_base_trijicon_reap-ir",
       "Part": "scope_base_trijicon_reap-ir_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-19 04:17",
+      "Saved": "2026-11-25 04:39",
       "Values": [
-        149.0,
+        117.0,
         92.0,
         -9.0,
         -31.0,
@@ -4084,17 +3685,17 @@
         -68.0,
         -3.0,
         -17.0,
-        -29.0,
-        25.0,
+        -36.0,
+        10.0,
         -29.0,
         -36.0,
         -35.0,
         35.0,
         25.0,
         -45.0,
-        -8.0,
+        -17.0,
         12.0,
-        -13.0
+        -6.0
       ],
       "Bones": [
         "NoMoreScopeRemote_Fingers_Left",
@@ -4116,10 +3717,10 @@
       ],
       "Base": [
         [
-          -0.544361,
-          0.5037329,
-          0.567851841,
-          0.357027382
+          -0.5525835,
+          0.560485661,
+          0.5452825,
+          0.288399577
         ],
         [
           0.7768692,
@@ -4215,37 +3816,39 @@
       "LeverPush": true,
       "ButtonFace": "Right",
       "ButtonTwist": 0.0,
-      "TwistAxis": null,
+      "TwistAxis": "ScopeLine",
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "5d0a3a58d7ad1a669c15ca14|scope_base_kmz_1p59_3_10x_switch_LOD0|Left": {
       "Scope": "scope_base_kmz_1p59_3_10x",
       "Part": "scope_base_kmz_1p59_3_10x_switch_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-19 04:30",
+      "Saved": "2026-11-25 02:05",
       "Values": [
-        106.0,
-        92.0,
-        10.0,
-        -24.0,
-        -19.0,
+        54.0,
+        91.0,
+        8.0,
+        -15.0,
         -6.0,
-        -56.0,
-        21.0,
-        -21.0,
+        -13.0,
+        -39.0,
+        9.0,
+        -5.0,
         -29.0,
-        25.0,
-        -29.0,
-        -16.0,
-        -88.0,
+        31.0,
+        -32.0,
+        -31.0,
+        -58.0,
         0.0,
-        25.0,
-        -19.0,
-        -8.0,
-        43.0,
-        -13.0
+        32.0,
+        -45.0,
+        -14.0,
+        21.0,
+        -11.0
       ],
       "Bones": [
         "NoMoreScopeRemote_Fingers_Left",
@@ -4267,10 +3870,10 @@
       ],
       "Base": [
         [
-          -0.4933344,
-          0.442745328,
-          0.6342447,
-          0.397908747
+          -0.6013931,
+          0.512248039,
+          0.5070327,
+          0.344740629
         ],
         [
           0.7768692,
@@ -4367,36 +3970,38 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "5d0a3e8cd7ad1a6f6a3d35bd|scope_base_kmz_1p69_3_10x_switch_LOD0|Left": {
       "Scope": "scope_base_kmz_1p69_3_10x",
       "Part": "scope_base_kmz_1p69_3_10x_switch_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-19 18:06",
+      "Saved": "2026-11-25 17:37",
       "Values": [
-        106.0,
+        65.0,
         92.0,
-        7.0,
+        13.0,
         -24.0,
         -19.0,
         -6.0,
-        -58.0,
-        23.0,
         -31.0,
+        2.0,
+        8.0,
         -29.0,
-        25.0,
-        -19.0,
-        -16.0,
-        -70.0,
+        32.0,
+        16.0,
+        4.0,
+        -59.0,
         0.0,
-        25.0,
-        -19.0,
-        -5.0,
+        -12.0,
+        -39.0,
+        -28.0,
         39.0,
-        -13.0
+        -19.0
       ],
       "Bones": [
         "NoMoreScopeRemote_Fingers_Left",
@@ -4418,10 +4023,10 @@
       ],
       "Base": [
         [
-          -0.5155517,
-          0.348873824,
-          0.621615052,
-          0.4754874
+          -0.744412363,
+          0.222937241,
+          0.5517705,
+          0.302817822
         ],
         [
           0.7768694,
@@ -4518,9 +4123,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "61714eec290d254f5e6b2ffc|scope_34mm_s&b_pm_ii_3_12x50_switch_LOD0|Left": {
       "Scope": "scope_34mm_s&b_pm_ii_3_12x50",
@@ -4669,9 +4276,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "62850c28da09541f43158cca|scope_34mm_s&b_pm_ii_5_25x56_switch_LOD0|Left": {
       "Scope": "scope_34mm_s&b_pm_ii_5_25x56",
@@ -4820,9 +4429,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "6a3ceaff7047a606b90f5321|scope_30mm_march_f_shorty_1_8x24_switch_LOD0|Left": {
       "Scope": "scope_30mm_march_f_shorty_1_8x24",
@@ -4971,9 +4582,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "676175789dcee773150c6925|switch_000_LOD0|Left": {
       "Scope": "scope_35mm_leupold_mark_5hd_5_25x56_fde",
@@ -5122,15 +4735,17 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "57ae0171245977343c27bfcf|scope_all_belomo_pk_06_LOD0|Left": {
       "Scope": "scope_all_belomo_pk_06",
       "Part": "scope_all_belomo_pk_06_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-20 15:44",
+      "Saved": "2026-11-24 04:20",
       "Values": [
         6.0,
         106.0,
@@ -5142,7 +4757,7 @@
         20.0,
         -30.0,
         -29.0,
-        21.0,
+        -17.0,
         22.0,
         37.0,
         -70.0,
@@ -5151,7 +4766,7 @@
         21.0,
         -13.0,
         45.0,
-        -16.0
+        -55.0
       ],
       "Bones": [
         "NoMoreScopeRemote_Fingers_Left",
@@ -5173,10 +4788,10 @@
       ],
       "Base": [
         [
-          -0.6454047,
-          0.458781272,
-          0.425834775,
-          0.437763959
+          -0.5316822,
+          0.537774861,
+          0.5647522,
+          0.3304047
         ],
         [
           0.7768689,
@@ -5272,10 +4887,12 @@
       "LeverPush": false,
       "ButtonFace": "Left",
       "ButtonTwist": 0.0,
-      "TwistAxis": null,
+      "TwistAxis": "ScopeLine",
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "655f13e0a246670fb0373245|switch_000|Left": {
       "Scope": "scope_all_wilcox_boss_xe_hp",
@@ -5424,15 +5041,17 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "5d2dc3e548f035404a1a4798|switch_000_LOD0|Left": {
       "Scope": "scope_all_monstrum_compact_prism_scope_2x32",
       "Part": "switch_000_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-19 23:33",
+      "Saved": "2026-11-25 03:10",
       "Values": [
         69.0,
         105.0,
@@ -5445,11 +5064,11 @@
         -20.0,
         -30.0,
         30.0,
-        11.0,
+        4.0,
         -45.0,
         -114.0,
         180.0,
-        -14.0,
+        -5.0,
         -24.0,
         -9.0,
         46.0,
@@ -5475,10 +5094,10 @@
       ],
       "Base": [
         [
-          -0.6374168,
-          0.5701038,
-          0.4106199,
-          0.31634286
+          -0.501796663,
+          0.5478544,
+          0.5944835,
+          0.307644218
         ],
         [
           0.776869,
@@ -5575,9 +5194,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "6165ac8c290d254f5e6b2f6c|switch_000_LOD0|Left": {
       "Scope": "scope_all_leapers_utg_38_ita_1x30",
@@ -5726,15 +5347,17 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "696395af1b7e04938307a122|switch_000_LOD0|Left": {
       "Scope": "Vortex_Viper_hs",
       "Part": "switch_000_LOD0",
       "Hand": "Left",
-      "Saved": "2026-11-20 17:08",
+      "Saved": "2026-11-25 15:11",
       "Values": [
         70.0,
         45.0,
@@ -5742,20 +5365,20 @@
         -1.0,
         -1.0,
         -1.0,
-        2.0,
-        26.0,
-        -3.0,
-        -3.0,
+        -1.0,
         24.0,
-        -21.0,
+        -3.0,
+        -3.0,
+        36.0,
+        -23.0,
         -46.0,
-        -66.0,
+        -75.0,
         0.0,
         21.0,
-        -62.0,
-        1.0,
+        -77.0,
+        -4.0,
         -15.0,
-        -5.0
+        -13.0
       ],
       "Bones": [
         "NoMoreScopeRemote_Fingers_Left",
@@ -5777,10 +5400,10 @@
       ],
       "Base": [
         [
-          -0.6714836,
-          0.474910676,
-          0.3955733,
-          0.408768266
+          -0.4789019,
+          0.1306274,
+          0.867963433,
+          0.0151346447
         ],
         [
           0.7768689,
@@ -5877,9 +5500,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "5ae3d18efa17cbd51e898ced|MARS|Left": {
       "Scope": "MARS",
@@ -6028,160 +5653,11 @@
       "ButtonFace": "Left",
       "ButtonTwist": 42.0,
       "TwistAxis": "LeftRight",
+      "TwistBack": false,
       "FlipFollow": null,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": false
-    },
-    "2322ee962f6c77a1284abc1e|SUSAT|Left": {
-      "Scope": "SUSAT",
-      "Part": "SUSAT",
-      "Hand": "Left",
-      "Saved": "2026-11-20 18:55",
-      "Values": [
-        81.0,
-        120.0,
-        -83.0,
-        -92.0,
-        8.0,
-        -10.0,
-        9.0,
-        24.0,
-        -7.0,
-        0.0,
-        27.0,
-        -5.0,
-        71.0,
-        -180.0,
-        0.0,
-        26.0,
-        74.0,
-        0.0,
-        -22.0,
-        -6.0
-      ],
-      "Bones": [
-        "NoMoreScopeRemote_Fingers_Left",
-        "Base HumanLDigit11",
-        "Base HumanLDigit12",
-        "Base HumanLDigit13",
-        "Base HumanLDigit21",
-        "Base HumanLDigit22",
-        "Base HumanLDigit23",
-        "Base HumanLDigit31",
-        "Base HumanLDigit32",
-        "Base HumanLDigit33",
-        "Base HumanLDigit41",
-        "Base HumanLDigit42",
-        "Base HumanLDigit43",
-        "Base HumanLDigit51",
-        "Base HumanLDigit52",
-        "Base HumanLDigit53"
-      ],
-      "Base": [
-        [
-          -0.4714114,
-          0.4587281,
-          0.6418452,
-          0.394175619
-        ],
-        [
-          0.7768692,
-          0.2724143,
-          0.220195174,
-          0.523238838
-        ],
-        [
-          0.12568754,
-          -0.0101612071,
-          0.08995396,
-          0.987931
-        ],
-        [
-          -0.0402351655,
-          -0.0200303551,
-          0.375245,
-          0.9258354
-        ],
-        [
-          0.0132306926,
-          -0.14681077,
-          0.201948822,
-          0.9682398
-        ],
-        [
-          -0.0035512615,
-          -0.0257334,
-          0.634209335,
-          0.772724867
-        ],
-        [
-          0.00017251214,
-          -0.000559059961,
-          0.418806762,
-          0.9080752
-        ],
-        [
-          -0.0242954083,
-          -0.119805135,
-          0.407695174,
-          0.9048984
-        ],
-        [
-          0.00727225933,
-          -0.00615745224,
-          0.6217905,
-          0.783125639
-        ],
-        [
-          4.99570742E-05,
-          -0.00057826034,
-          0.444746375,
-          0.895656347
-        ],
-        [
-          -0.02234739,
-          -0.123003647,
-          0.4540157,
-          0.8821794
-        ],
-        [
-          -0.023056386,
-          0.0147321578,
-          0.5754157,
-          0.8174034
-        ],
-        [
-          -0.0592863522,
-          -0.0110918665,
-          0.443422,
-          0.8942813
-        ],
-        [
-          -0.0331541076,
-          -0.121300571,
-          0.455925,
-          0.8810899
-        ],
-        [
-          -0.119458258,
-          -0.0464627855,
-          0.60834074,
-          0.7832576
-        ],
-        [
-          -0.000295919366,
-          -5.890429E-05,
-          0.397772819,
-          0.9174839
-        ]
-      ],
-      "LeverPush": false,
-      "ButtonFace": "Top",
-      "ButtonTwist": 49.0,
-      "TwistAxis": "UpDown",
-      "FlipFollow": null,
-      "FlipThumbOnly": false,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "03f6c86c56945862820e1006|Rear_Lens_Cover_1|Left": {
       "Scope": "Aimpoint CS",
@@ -6330,9 +5806,11 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": 0.86,
       "FlipThumbOnly": true,
-      "FlipIndexOnly": false
+      "FlipIndexOnly": false,
+      "KnobScale": null
     },
     "03f6c86c56945862820e1006|Rear_Lens_Cover_1#close|Left": {
       "Scope": "Aimpoint CS",
@@ -6481,9 +5959,5519 @@
       "ButtonFace": null,
       "ButtonTwist": 0.0,
       "TwistAxis": null,
+      "TwistBack": false,
       "FlipFollow": 0.7,
       "FlipThumbOnly": false,
-      "FlipIndexOnly": true
+      "FlipIndexOnly": true,
+      "KnobScale": null
+    },
+    "7ca248803b89788492384ba2|fts_mount_pivot_low#close|Left": {
+      "Scope": "Exps3 Low Mag Pair",
+      "Part": "fts_mount_pivot_low.001",
+      "Hand": "Left",
+      "Saved": "2026-11-23 02:30",
+      "Values": [
+        126.0,
+        62.0,
+        -95.0,
+        -31.0,
+        -49.0,
+        26.0,
+        19.0,
+        19.0,
+        -3.0,
+        2.0,
+        5.0,
+        19.0,
+        31.0,
+        -36.0,
+        0.0,
+        4.0,
+        -16.0,
+        6.0,
+        7.0,
+        -32.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.497092754,
+          0.5220427,
+          0.609868467,
+          0.329288125
+        ],
+        [
+          0.7097513,
+          0.156956434,
+          -0.0114890039,
+          0.68664825
+        ],
+        [
+          0.0177921373,
+          -0.159275353,
+          0.0148090795,
+          0.9869628
+        ],
+        [
+          0.0471262634,
+          -0.0195380244,
+          0.04862967,
+          0.9975132
+        ],
+        [
+          -0.0263220221,
+          -0.276511252,
+          0.03810948,
+          0.959894
+        ],
+        [
+          -0.08075233,
+          -0.0460402928,
+          0.287469327,
+          0.953268468
+        ],
+        [
+          -0.0005582031,
+          0.000189205341,
+          0.388628185,
+          0.921394467
+        ],
+        [
+          -0.09779711,
+          -0.254648149,
+          0.195751682,
+          0.941950858
+        ],
+        [
+          -0.0619189739,
+          0.004463237,
+          0.6110795,
+          0.789131165
+        ],
+        [
+          -0.05528327,
+          -0.009135412,
+          0.1732476,
+          0.9832831
+        ],
+        [
+          -0.275809,
+          -0.295352429,
+          0.312230825,
+          0.8597722
+        ],
+        [
+          0.0227817129,
+          -0.0338044241,
+          0.5830056,
+          0.8114449
+        ],
+        [
+          -0.00111437589,
+          0.000387693755,
+          0.126304746,
+          0.9919908
+        ],
+        [
+          -0.260958523,
+          -0.124949954,
+          0.5225461,
+          0.8020185
+        ],
+        [
+          -0.07280205,
+          0.0415570661,
+          0.391503066,
+          0.9163505
+        ],
+        [
+          -0.00120793935,
+          0.0006933054,
+          0.0531306267,
+          0.9985866
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "7ca248803b89788492384ba2|fts_mount_pivot_low|Left": {
+      "Scope": "Exps3 Low Mag Pair",
+      "Part": "fts_mount_pivot_low",
+      "Hand": "Left",
+      "Saved": "2026-11-23 03:58",
+      "Values": [
+        113.0,
+        58.0,
+        -103.0,
+        -24.0,
+        -28.0,
+        3.0,
+        17.0,
+        24.0,
+        -13.0,
+        -6.0,
+        18.0,
+        20.0,
+        11.0,
+        -36.0,
+        0.0,
+        13.0,
+        -16.0,
+        10.0,
+        32.0,
+        -32.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.59288913,
+          0.504076838,
+          0.5087164,
+          0.3682346
+        ],
+        [
+          0.7097513,
+          0.156956434,
+          -0.0114890039,
+          0.68664825
+        ],
+        [
+          0.0177921373,
+          -0.159275353,
+          0.0148090795,
+          0.9869628
+        ],
+        [
+          0.0471262634,
+          -0.0195380244,
+          0.04862967,
+          0.9975132
+        ],
+        [
+          -0.0263220221,
+          -0.276511252,
+          0.03810948,
+          0.959894
+        ],
+        [
+          -0.08075233,
+          -0.0460402928,
+          0.287469327,
+          0.953268468
+        ],
+        [
+          -0.0005582031,
+          0.000189205341,
+          0.388628185,
+          0.921394467
+        ],
+        [
+          -0.09779711,
+          -0.254648149,
+          0.195751682,
+          0.941950858
+        ],
+        [
+          -0.0619189739,
+          0.004463237,
+          0.6110795,
+          0.789131165
+        ],
+        [
+          -0.05528327,
+          -0.009135412,
+          0.1732476,
+          0.9832831
+        ],
+        [
+          -0.275809,
+          -0.295352429,
+          0.312230825,
+          0.8597722
+        ],
+        [
+          0.0227817129,
+          -0.0338044241,
+          0.5830056,
+          0.8114449
+        ],
+        [
+          -0.00111437589,
+          0.000387693755,
+          0.126304746,
+          0.9919908
+        ],
+        [
+          -0.260958523,
+          -0.124949954,
+          0.5225461,
+          0.8020185
+        ],
+        [
+          -0.07280205,
+          0.0415570661,
+          0.391503066,
+          0.9163505
+        ],
+        [
+          -0.00120793935,
+          0.0006933054,
+          0.0531306267,
+          0.9985866
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "41e97223a2ad6374a096ae14|ftc_mount_arm|Left": {
+      "Scope": "EXPS3 High Magnified",
+      "Part": "ftc_mount_arm",
+      "Hand": "Left",
+      "Saved": "2026-11-23 04:06",
+      "Values": [
+        22.0,
+        60.0,
+        -57.0,
+        -17.0,
+        -22.0,
+        -1.0,
+        -4.0,
+        -10.0,
+        -12.0,
+        -15.0,
+        5.0,
+        7.0,
+        4.0,
+        -36.0,
+        0.0,
+        6.0,
+        -45.0,
+        5.0,
+        31.0,
+        -28.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.328937531,
+          0.6227796,
+          0.7033091,
+          0.09644713
+        ],
+        [
+          0.7097513,
+          0.156956434,
+          -0.0114890039,
+          0.68664825
+        ],
+        [
+          0.0177921373,
+          -0.159275353,
+          0.0148090795,
+          0.9869628
+        ],
+        [
+          0.0471262634,
+          -0.0195380244,
+          0.04862967,
+          0.9975132
+        ],
+        [
+          -0.0263220221,
+          -0.276511252,
+          0.03810948,
+          0.959894
+        ],
+        [
+          -0.08075233,
+          -0.0460402928,
+          0.287469327,
+          0.953268468
+        ],
+        [
+          -0.0005582031,
+          0.000189205341,
+          0.388628185,
+          0.921394467
+        ],
+        [
+          -0.09779711,
+          -0.254648149,
+          0.195751682,
+          0.941950858
+        ],
+        [
+          -0.0619189739,
+          0.004463237,
+          0.6110795,
+          0.789131165
+        ],
+        [
+          -0.05528327,
+          -0.009135412,
+          0.1732476,
+          0.9832831
+        ],
+        [
+          -0.275809,
+          -0.295352429,
+          0.312230825,
+          0.8597722
+        ],
+        [
+          0.0227817129,
+          -0.0338044241,
+          0.5830056,
+          0.8114449
+        ],
+        [
+          -0.00111437589,
+          0.000387693755,
+          0.126304746,
+          0.9919908
+        ],
+        [
+          -0.260958523,
+          -0.124949954,
+          0.5225461,
+          0.8020185
+        ],
+        [
+          -0.07280205,
+          0.0415570661,
+          0.391503066,
+          0.9163505
+        ],
+        [
+          -0.00120793935,
+          0.0006933054,
+          0.0531306267,
+          0.9985866
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "8d9e9ff3020f92eb5fc46680|ftc_mount_arm|Left": {
+      "Scope": "LCO High Mag Pair",
+      "Part": "ftc_mount_arm",
+      "Hand": "Left",
+      "Saved": "2026-11-23 04:10",
+      "Values": [
+        30.0,
+        48.0,
+        -80.0,
+        -17.0,
+        -22.0,
+        -1.0,
+        4.0,
+        -7.0,
+        -14.0,
+        -15.0,
+        12.0,
+        -1.0,
+        7.0,
+        -36.0,
+        0.0,
+        6.0,
+        -60.0,
+        10.0,
+        31.0,
+        -19.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.5331493,
+          0.493223429,
+          0.5802035,
+          0.368573427
+        ],
+        [
+          0.7097513,
+          0.156956434,
+          -0.0114890039,
+          0.68664825
+        ],
+        [
+          0.0177921373,
+          -0.159275353,
+          0.0148090795,
+          0.9869628
+        ],
+        [
+          0.0471262634,
+          -0.0195380244,
+          0.04862967,
+          0.9975132
+        ],
+        [
+          -0.0263220221,
+          -0.276511252,
+          0.03810948,
+          0.959894
+        ],
+        [
+          -0.08075233,
+          -0.0460402928,
+          0.287469327,
+          0.953268468
+        ],
+        [
+          -0.0005582031,
+          0.000189205341,
+          0.388628185,
+          0.921394467
+        ],
+        [
+          -0.09779711,
+          -0.254648149,
+          0.195751682,
+          0.941950858
+        ],
+        [
+          -0.0619189739,
+          0.004463237,
+          0.6110795,
+          0.789131165
+        ],
+        [
+          -0.05528327,
+          -0.009135412,
+          0.1732476,
+          0.9832831
+        ],
+        [
+          -0.275809,
+          -0.295352429,
+          0.312230825,
+          0.8597722
+        ],
+        [
+          0.0227817129,
+          -0.0338044241,
+          0.5830056,
+          0.8114449
+        ],
+        [
+          -0.00111437589,
+          0.000387693755,
+          0.126304746,
+          0.9919908
+        ],
+        [
+          -0.260958523,
+          -0.124949954,
+          0.5225461,
+          0.8020185
+        ],
+        [
+          -0.07280205,
+          0.0415570661,
+          0.391503066,
+          0.9163505
+        ],
+        [
+          -0.00120793935,
+          0.0006933054,
+          0.0531306267,
+          0.9985866
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "2e31bdb165e6f6f7ac19b0d8|fts_mount_pivot_low|Left": {
+      "Scope": "LCO Low Mag Pair",
+      "Part": "fts_mount_pivot_low",
+      "Hand": "Left",
+      "Saved": "2026-11-23 04:27",
+      "Values": [
+        138.0,
+        66.0,
+        -27.0,
+        -43.0,
+        -1.0,
+        1.0,
+        4.0,
+        -18.0,
+        -10.0,
+        -12.0,
+        6.0,
+        -1.0,
+        13.0,
+        -35.0,
+        0.0,
+        6.0,
+        -11.0,
+        10.0,
+        39.0,
+        -23.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.375368148,
+          0.5652013,
+          0.6895273,
+          0.25337404
+        ],
+        [
+          0.7097513,
+          0.156956434,
+          -0.0114890039,
+          0.68664825
+        ],
+        [
+          0.0177921373,
+          -0.159275353,
+          0.0148090795,
+          0.9869628
+        ],
+        [
+          0.0471262634,
+          -0.0195380244,
+          0.04862967,
+          0.9975132
+        ],
+        [
+          -0.0263220221,
+          -0.276511252,
+          0.03810948,
+          0.959894
+        ],
+        [
+          -0.08075233,
+          -0.0460402928,
+          0.287469327,
+          0.953268468
+        ],
+        [
+          -0.0005582031,
+          0.000189205341,
+          0.388628185,
+          0.921394467
+        ],
+        [
+          -0.09779711,
+          -0.254648149,
+          0.195751682,
+          0.941950858
+        ],
+        [
+          -0.0619189739,
+          0.004463237,
+          0.6110795,
+          0.789131165
+        ],
+        [
+          -0.05528327,
+          -0.009135412,
+          0.1732476,
+          0.9832831
+        ],
+        [
+          -0.275809,
+          -0.295352429,
+          0.312230825,
+          0.8597722
+        ],
+        [
+          0.0227817129,
+          -0.0338044241,
+          0.5830056,
+          0.8114449
+        ],
+        [
+          -0.00111437589,
+          0.000387693755,
+          0.126304746,
+          0.9919908
+        ],
+        [
+          -0.260958523,
+          -0.124949954,
+          0.5225461,
+          0.8020185
+        ],
+        [
+          -0.07280205,
+          0.0415570661,
+          0.391503066,
+          0.9163505
+        ],
+        [
+          -0.00120793935,
+          0.0006933054,
+          0.0531306267,
+          0.9985866
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "a5c171496c1870f205a3c972|ftc_mount_arm|Left": {
+      "Scope": "UH1 High Mag Pair",
+      "Part": "ftc_mount_arm",
+      "Hand": "Left",
+      "Saved": "2026-11-23 04:38",
+      "Values": [
+        26.0,
+        91.0,
+        -98.0,
+        -17.0,
+        -22.0,
+        -1.0,
+        7.0,
+        10.0,
+        -14.0,
+        -15.0,
+        -10.0,
+        2.0,
+        -28.0,
+        -36.0,
+        0.0,
+        21.0,
+        -42.0,
+        10.0,
+        31.0,
+        -25.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.251185328,
+          0.537747145,
+          0.7488651,
+          0.294847637
+        ],
+        [
+          0.7097513,
+          0.156956434,
+          -0.0114890039,
+          0.68664825
+        ],
+        [
+          0.0177921373,
+          -0.159275353,
+          0.0148090795,
+          0.9869628
+        ],
+        [
+          0.0471262634,
+          -0.0195380244,
+          0.04862967,
+          0.9975132
+        ],
+        [
+          -0.0263220221,
+          -0.276511252,
+          0.03810948,
+          0.959894
+        ],
+        [
+          -0.08075233,
+          -0.0460402928,
+          0.287469327,
+          0.953268468
+        ],
+        [
+          -0.0005582031,
+          0.000189205341,
+          0.388628185,
+          0.921394467
+        ],
+        [
+          -0.09779711,
+          -0.254648149,
+          0.195751682,
+          0.941950858
+        ],
+        [
+          -0.0619189739,
+          0.004463237,
+          0.6110795,
+          0.789131165
+        ],
+        [
+          -0.05528327,
+          -0.009135412,
+          0.1732476,
+          0.9832831
+        ],
+        [
+          -0.275809,
+          -0.295352429,
+          0.312230825,
+          0.8597722
+        ],
+        [
+          0.0227817129,
+          -0.0338044241,
+          0.5830056,
+          0.8114449
+        ],
+        [
+          -0.00111437589,
+          0.000387693755,
+          0.126304746,
+          0.9919908
+        ],
+        [
+          -0.260958523,
+          -0.124949954,
+          0.5225461,
+          0.8020185
+        ],
+        [
+          -0.07280205,
+          0.0415570661,
+          0.391503066,
+          0.9163505
+        ],
+        [
+          -0.00120793935,
+          0.0006933054,
+          0.0531306267,
+          0.9985866
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "a5c171496c1870f205a3c972|ftc_mount_arm#close|Left": {
+      "Scope": "UH1 High Mag Pair",
+      "Part": "ftc_mount_arm.001",
+      "Hand": "Left",
+      "Saved": "2026-11-23 04:40",
+      "Values": [
+        26.0,
+        91.0,
+        -98.0,
+        -17.0,
+        -22.0,
+        -1.0,
+        7.0,
+        5.0,
+        -14.0,
+        -18.0,
+        -6.0,
+        2.0,
+        -28.0,
+        -36.0,
+        0.0,
+        21.0,
+        -42.0,
+        10.0,
+        31.0,
+        -23.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.356997371,
+          0.6255311,
+          0.6874826,
+          0.09290615
+        ],
+        [
+          0.7097513,
+          0.156956434,
+          -0.0114890039,
+          0.68664825
+        ],
+        [
+          0.0177921373,
+          -0.159275353,
+          0.0148090795,
+          0.9869628
+        ],
+        [
+          0.0471262634,
+          -0.0195380244,
+          0.04862967,
+          0.9975132
+        ],
+        [
+          -0.0263220221,
+          -0.276511252,
+          0.03810948,
+          0.959894
+        ],
+        [
+          -0.08075233,
+          -0.0460402928,
+          0.287469327,
+          0.953268468
+        ],
+        [
+          -0.0005582031,
+          0.000189205341,
+          0.388628185,
+          0.921394467
+        ],
+        [
+          -0.09779711,
+          -0.254648149,
+          0.195751682,
+          0.941950858
+        ],
+        [
+          -0.0619189739,
+          0.004463237,
+          0.6110795,
+          0.789131165
+        ],
+        [
+          -0.05528327,
+          -0.009135412,
+          0.1732476,
+          0.9832831
+        ],
+        [
+          -0.275809,
+          -0.295352429,
+          0.312230825,
+          0.8597722
+        ],
+        [
+          0.0227817129,
+          -0.0338044241,
+          0.5830056,
+          0.8114449
+        ],
+        [
+          -0.00111437589,
+          0.000387693755,
+          0.126304746,
+          0.9919908
+        ],
+        [
+          -0.260958523,
+          -0.124949954,
+          0.5225461,
+          0.8020185
+        ],
+        [
+          -0.07280205,
+          0.0415570661,
+          0.391503066,
+          0.9163505
+        ],
+        [
+          -0.00120793935,
+          0.0006933054,
+          0.0531306267,
+          0.9985866
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "81fb194d053a4ccedce3782d|ftc_mount_arm|Left": {
+      "Scope": "Romeo8t High Mag Pair",
+      "Part": "ftc_mount_arm",
+      "Hand": "Left",
+      "Saved": "2026-11-23 04:44",
+      "Values": [
+        31.0,
+        88.0,
+        -86.0,
+        -31.0,
+        -24.0,
+        -1.0,
+        -3.0,
+        -5.0,
+        -15.0,
+        -4.0,
+        5.0,
+        -1.0,
+        -19.0,
+        -36.0,
+        0.0,
+        6.0,
+        -19.0,
+        10.0,
+        19.0,
+        -15.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.342505634,
+          0.390105277,
+          0.727746248,
+          0.448211342
+        ],
+        [
+          0.7097513,
+          0.156956434,
+          -0.0114890039,
+          0.68664825
+        ],
+        [
+          0.0177921373,
+          -0.159275353,
+          0.0148090795,
+          0.9869628
+        ],
+        [
+          0.0471262634,
+          -0.0195380244,
+          0.04862967,
+          0.9975132
+        ],
+        [
+          -0.0263220221,
+          -0.276511252,
+          0.03810948,
+          0.959894
+        ],
+        [
+          -0.08075233,
+          -0.0460402928,
+          0.287469327,
+          0.953268468
+        ],
+        [
+          -0.0005582031,
+          0.000189205341,
+          0.388628185,
+          0.921394467
+        ],
+        [
+          -0.09779711,
+          -0.254648149,
+          0.195751682,
+          0.941950858
+        ],
+        [
+          -0.0619189739,
+          0.004463237,
+          0.6110795,
+          0.789131165
+        ],
+        [
+          -0.05528327,
+          -0.009135412,
+          0.1732476,
+          0.9832831
+        ],
+        [
+          -0.275809,
+          -0.295352429,
+          0.312230825,
+          0.8597722
+        ],
+        [
+          0.0227817129,
+          -0.0338044241,
+          0.5830056,
+          0.8114449
+        ],
+        [
+          -0.00111437589,
+          0.000387693755,
+          0.126304746,
+          0.9919908
+        ],
+        [
+          -0.260958523,
+          -0.124949954,
+          0.5225461,
+          0.8020185
+        ],
+        [
+          -0.07280205,
+          0.0415570661,
+          0.391503066,
+          0.9163505
+        ],
+        [
+          -0.00120793935,
+          0.0006933054,
+          0.0531306267,
+          0.9985866
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "08940f5c853aa6acf4049bc2|ftc_mount_arm|Left": {
+      "Scope": "T1 Unity Riser Mag Pair ",
+      "Part": "ftc_mount_arm",
+      "Hand": "Left",
+      "Saved": "2026-11-23 04:48",
+      "Values": [
+        42.0,
+        48.0,
+        -95.0,
+        -17.0,
+        -22.0,
+        -1.0,
+        4.0,
+        -7.0,
+        -14.0,
+        -15.0,
+        9.0,
+        11.0,
+        10.0,
+        -36.0,
+        0.0,
+        5.0,
+        -42.0,
+        10.0,
+        31.0,
+        -39.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.424098074,
+          0.444849879,
+          0.6778951,
+          0.403370321
+        ],
+        [
+          0.7097513,
+          0.156956434,
+          -0.0114890039,
+          0.68664825
+        ],
+        [
+          0.0177921373,
+          -0.159275353,
+          0.0148090795,
+          0.9869628
+        ],
+        [
+          0.0471262634,
+          -0.0195380244,
+          0.04862967,
+          0.9975132
+        ],
+        [
+          -0.0263220221,
+          -0.276511252,
+          0.03810948,
+          0.959894
+        ],
+        [
+          -0.08075233,
+          -0.0460402928,
+          0.287469327,
+          0.953268468
+        ],
+        [
+          -0.0005582031,
+          0.000189205341,
+          0.388628185,
+          0.921394467
+        ],
+        [
+          -0.09779711,
+          -0.254648149,
+          0.195751682,
+          0.941950858
+        ],
+        [
+          -0.0619189739,
+          0.004463237,
+          0.6110795,
+          0.789131165
+        ],
+        [
+          -0.05528327,
+          -0.009135412,
+          0.1732476,
+          0.9832831
+        ],
+        [
+          -0.275809,
+          -0.295352429,
+          0.312230825,
+          0.8597722
+        ],
+        [
+          0.0227817129,
+          -0.0338044241,
+          0.5830056,
+          0.8114449
+        ],
+        [
+          -0.00111437589,
+          0.000387693755,
+          0.126304746,
+          0.9919908
+        ],
+        [
+          -0.260958523,
+          -0.124949954,
+          0.5225461,
+          0.8020185
+        ],
+        [
+          -0.07280205,
+          0.0415570661,
+          0.391503066,
+          0.9163505
+        ],
+        [
+          -0.00120793935,
+          0.0006933054,
+          0.0531306267,
+          0.9985866
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "22345a1c542354f86796efda|fts_mount_pivot_low|Left": {
+      "Scope": "UH1 Low Mag Pair",
+      "Part": "fts_mount_pivot_low",
+      "Hand": "Left",
+      "Saved": "2026-11-25 13:24",
+      "Values": [
+        135.0,
+        73.0,
+        -28.0,
+        -24.0,
+        -24.0,
+        17.0,
+        7.0,
+        -3.0,
+        -4.0,
+        -15.0,
+        2.0,
+        12.0,
+        13.0,
+        -36.0,
+        0.0,
+        13.0,
+        -1.0,
+        7.0,
+        31.0,
+        -40.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.5705254,
+          0.473368973,
+          0.5412832,
+          0.396780968
+        ],
+        [
+          0.7097513,
+          0.156956434,
+          -0.0114890039,
+          0.68664825
+        ],
+        [
+          0.0177921373,
+          -0.159275353,
+          0.0148090795,
+          0.9869628
+        ],
+        [
+          0.0471262634,
+          -0.0195380244,
+          0.04862967,
+          0.9975132
+        ],
+        [
+          -0.0263220221,
+          -0.276511252,
+          0.03810948,
+          0.959894
+        ],
+        [
+          -0.08075233,
+          -0.0460402928,
+          0.287469327,
+          0.953268468
+        ],
+        [
+          -0.0005582031,
+          0.000189205341,
+          0.388628185,
+          0.921394467
+        ],
+        [
+          -0.09779711,
+          -0.254648149,
+          0.195751682,
+          0.941950858
+        ],
+        [
+          -0.0619189739,
+          0.004463237,
+          0.6110795,
+          0.789131165
+        ],
+        [
+          -0.05528327,
+          -0.009135412,
+          0.1732476,
+          0.9832831
+        ],
+        [
+          -0.275809,
+          -0.295352429,
+          0.312230825,
+          0.8597722
+        ],
+        [
+          0.0227817129,
+          -0.0338044241,
+          0.5830056,
+          0.8114449
+        ],
+        [
+          -0.00111437589,
+          0.000387693755,
+          0.126304746,
+          0.9919908
+        ],
+        [
+          -0.260958523,
+          -0.124949954,
+          0.5225461,
+          0.8020185
+        ],
+        [
+          -0.07280205,
+          0.0415570661,
+          0.391503066,
+          0.9163505
+        ],
+        [
+          -0.00120793935,
+          0.0006933054,
+          0.0531306267,
+          0.9985866
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "0377e32842c4024a423c472e|fts_mount_pivot_low|Left": {
+      "Scope": "Romeo8t Low Mag Pair",
+      "Part": "fts_mount_pivot_low",
+      "Hand": "Left",
+      "Saved": "2026-11-23 17:14",
+      "Values": [
+        128.0,
+        48.0,
+        -31.0,
+        -17.0,
+        -22.0,
+        -1.0,
+        1.0,
+        -10.0,
+        -13.0,
+        -15.0,
+        5.0,
+        -1.0,
+        -22.0,
+        -36.0,
+        0.0,
+        6.0,
+        -16.0,
+        2.0,
+        31.0,
+        -28.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.4231118,
+          0.583241642,
+          0.6576407,
+          0.21980533
+        ],
+        [
+          0.7097513,
+          0.156956434,
+          -0.0114890039,
+          0.68664825
+        ],
+        [
+          0.0177921373,
+          -0.159275353,
+          0.0148090795,
+          0.9869628
+        ],
+        [
+          0.0471262634,
+          -0.0195380244,
+          0.04862967,
+          0.9975132
+        ],
+        [
+          -0.0263220221,
+          -0.276511252,
+          0.03810948,
+          0.959894
+        ],
+        [
+          -0.08075233,
+          -0.0460402928,
+          0.287469327,
+          0.953268468
+        ],
+        [
+          -0.0005582031,
+          0.000189205341,
+          0.388628185,
+          0.921394467
+        ],
+        [
+          -0.09779711,
+          -0.254648149,
+          0.195751682,
+          0.941950858
+        ],
+        [
+          -0.0619189739,
+          0.004463237,
+          0.6110795,
+          0.789131165
+        ],
+        [
+          -0.05528327,
+          -0.009135412,
+          0.1732476,
+          0.9832831
+        ],
+        [
+          -0.275809,
+          -0.295352429,
+          0.312230825,
+          0.8597722
+        ],
+        [
+          0.0227817129,
+          -0.0338044241,
+          0.5830056,
+          0.8114449
+        ],
+        [
+          -0.00111437589,
+          0.000387693755,
+          0.126304746,
+          0.9919908
+        ],
+        [
+          -0.260958523,
+          -0.124949954,
+          0.5225461,
+          0.8020185
+        ],
+        [
+          -0.07280205,
+          0.0415570661,
+          0.391503066,
+          0.9163505
+        ],
+        [
+          -0.00120793935,
+          0.0006933054,
+          0.0531306267,
+          0.9985866
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "797e1ab4422217d7cfe3d299|Elcan Selection Arm 1.5x|Left": {
+      "Scope": "Spectre 1_5-6",
+      "Part": "Elcan Selection Arm 1.5x",
+      "Hand": "Left",
+      "Saved": "2026-11-24 17:59",
+      "Values": [
+        69.0,
+        107.0,
+        -65.0,
+        8.0,
+        76.0,
+        -8.0,
+        13.0,
+        13.0,
+        -17.0,
+        -35.0,
+        18.0,
+        -17.0,
+        -68.0,
+        -180.0,
+        0.0,
+        21.0,
+        0.0,
+        10.0,
+        -56.0,
+        -19.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.7217043,
+          0.5367958,
+          0.184902385,
+          0.395985276
+        ],
+        [
+          0.46881485,
+          0.170440435,
+          0.0497640222,
+          0.8652666
+        ],
+        [
+          0.0130282259,
+          -0.19408372,
+          -0.041230008,
+          0.98003155
+        ],
+        [
+          -0.00153413042,
+          -0.00133410841,
+          -0.0005364716,
+          0.999997854
+        ],
+        [
+          -0.06738033,
+          -0.294739366,
+          0.0485882461,
+          0.95196
+        ],
+        [
+          0.000682123355,
+          -0.002957593,
+          0.320464969,
+          0.947255552
+        ],
+        [
+          0.00122251734,
+          -0.00332022645,
+          0.424368829,
+          0.9054826
+        ],
+        [
+          -0.100376382,
+          -0.233051628,
+          0.260241181,
+          0.931604
+        ],
+        [
+          -0.0250841547,
+          0.03618252,
+          0.542536438,
+          0.8388778
+        ],
+        [
+          5.92255965E-05,
+          0.0258520879,
+          0.320214182,
+          0.9469924
+        ],
+        [
+          -0.187334776,
+          -0.211290061,
+          0.409843564,
+          0.8673468
+        ],
+        [
+          -0.060159415,
+          0.0214675236,
+          0.541650653,
+          0.8381734
+        ],
+        [
+          -0.04902171,
+          0.00011090422,
+          0.127411067,
+          0.990637839
+        ],
+        [
+          -0.3617605,
+          -0.162373528,
+          0.5678763,
+          0.7213049
+        ],
+        [
+          -0.067128405,
+          -0.0211767368,
+          0.390834779,
+          0.9177655
+        ],
+        [
+          -0.0521173552,
+          -0.0404887162,
+          0.0346793272,
+          0.997217059
+        ]
+      ],
+      "LeverPush": true,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "686b15f7cf5ae78dbd7b950b|scope_all_sig_bravo5_LOD0.001|Left": {
+      "Scope": "sig_bravo5",
+      "Part": "scope_all_sig_bravo5_LOD0.001",
+      "Hand": "Left",
+      "Saved": "2026-11-25 04:20",
+      "Values": [
+        70.0,
+        79.0,
+        4.0,
+        -13.0,
+        6.0,
+        -13.0,
+        5.0,
+        22.0,
+        -13.0,
+        -41.0,
+        -1.0,
+        10.0,
+        -62.0,
+        -180.0,
+        0.0,
+        -12.0,
+        -44.0,
+        7.0,
+        -47.0,
+        -14.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.5441253,
+          0.42591098,
+          0.583865345,
+          0.4261792
+        ],
+        [
+          0.46881485,
+          0.170440435,
+          0.0497640222,
+          0.8652666
+        ],
+        [
+          0.0130282259,
+          -0.19408372,
+          -0.041230008,
+          0.98003155
+        ],
+        [
+          -0.00153413042,
+          -0.00133410841,
+          -0.0005364716,
+          0.999997854
+        ],
+        [
+          -0.06738033,
+          -0.294739366,
+          0.0485882461,
+          0.95196
+        ],
+        [
+          0.000682123355,
+          -0.002957593,
+          0.320464969,
+          0.947255552
+        ],
+        [
+          0.00122251734,
+          -0.00332022645,
+          0.424368829,
+          0.9054826
+        ],
+        [
+          -0.100376382,
+          -0.233051628,
+          0.260241181,
+          0.931604
+        ],
+        [
+          -0.0250841547,
+          0.03618252,
+          0.542536438,
+          0.8388778
+        ],
+        [
+          5.92255965E-05,
+          0.0258520879,
+          0.320214182,
+          0.9469924
+        ],
+        [
+          -0.187334776,
+          -0.211290061,
+          0.409843564,
+          0.8673468
+        ],
+        [
+          -0.060159415,
+          0.0214675236,
+          0.541650653,
+          0.8381734
+        ],
+        [
+          -0.04902171,
+          0.00011090422,
+          0.127411067,
+          0.990637839
+        ],
+        [
+          -0.3617605,
+          -0.162373528,
+          0.5678763,
+          0.7213049
+        ],
+        [
+          -0.067128405,
+          -0.0211767368,
+          0.390834779,
+          0.9177655
+        ],
+        [
+          -0.0521173552,
+          -0.0404887162,
+          0.0346793272,
+          0.997217059
+        ]
+      ],
+      "LeverPush": true,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "6966c6385619e69dde5149ad|switch_000_LOD0|Left": {
+      "Scope": "XM157",
+      "Part": "switch_000_LOD0",
+      "Hand": "Left",
+      "Saved": "2026-11-23 18:32",
+      "Values": [
+        19.0,
+        123.0,
+        -13.0,
+        0.0,
+        0.0,
+        0.0,
+        -6.0,
+        22.0,
+        6.0,
+        -6.0,
+        38.0,
+        -14.0,
+        -43.0,
+        -17.0,
+        57.0,
+        28.0,
+        -51.0,
+        -7.0,
+        -2.0,
+        -22.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.73758,
+          0.365856856,
+          0.270103931,
+          0.4991678
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "6968615ed7a97cb3f2000004|Mag_Lever|Left": {
+      "Scope": "Eleanor 1-10 BLK",
+      "Part": "Mag_Lever",
+      "Hand": "Left",
+      "Saved": "2026-11-25 17:04",
+      "Values": [
+        60.0,
+        96.0,
+        -15.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        -2.0,
+        13.0,
+        -4.0,
+        31.0,
+        13.0,
+        -79.0,
+        -86.0,
+        0.0,
+        -31.0,
+        -34.0,
+        -35.0,
+        -6.0,
+        1.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.59341985,
+          0.5205964,
+          0.5084016,
+          0.344035
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "69a7ca431422246fc7000003|Magnification Wheel|Left": {
+      "Scope": "MK5 3.6-18 FDE",
+      "Part": "Magnification Wheel",
+      "Hand": "Left",
+      "Saved": "2026-11-25 17:27",
+      "Values": [
+        65.0,
+        84.0,
+        -21.0,
+        8.0,
+        0.0,
+        0.0,
+        34.0,
+        30.0,
+        -11.0,
+        5.0,
+        34.0,
+        -10.0,
+        -58.0,
+        -75.0,
+        0.0,
+        30.0,
+        -28.0,
+        -45.0,
+        -34.0,
+        -18.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.58387655,
+          0.430587679,
+          0.535044551,
+          0.4329086
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": 1.125
+    },
+    "696c6554f59b16be98000001|Magnification Wheel|Left": {
+      "Scope": "MK5 5-25 Mil FDE",
+      "Part": "Magnification Wheel",
+      "Hand": "Left",
+      "Saved": "2026-11-25 17:23",
+      "Values": [
+        58.0,
+        117.0,
+        -14.0,
+        0.0,
+        0.0,
+        0.0,
+        12.0,
+        9.0,
+        6.0,
+        -3.0,
+        28.0,
+        -19.0,
+        -80.0,
+        -66.0,
+        0.0,
+        34.0,
+        0.0,
+        -34.0,
+        -30.0,
+        -7.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.5688008,
+          0.522495866,
+          0.5378659,
+          0.3378817
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": 1.25
+    },
+    "69674481c529fe53e7000001|accupower18_mag|Left": {
+      "Scope": "scope_trijicon_accupower_1_8x",
+      "Part": "accupower18_mag",
+      "Hand": "Left",
+      "Saved": "2026-11-24 02:36",
+      "Values": [
+        70.0,
+        112.0,
+        -5.0,
+        0.0,
+        -15.0,
+        0.0,
+        -7.0,
+        21.0,
+        -12.0,
+        -3.0,
+        37.0,
+        -3.0,
+        -63.0,
+        -66.0,
+        0.0,
+        40.0,
+        0.0,
+        -34.0,
+        0.0,
+        -14.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.4267984,
+          0.52251637,
+          0.667773068,
+          0.314482152
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": 1.225
+    },
+    "698281fd81a46da878000001|k624i_magnification|Left": {
+      "Scope": "K624i",
+      "Part": "k624i_magnification",
+      "Hand": "Left",
+      "Saved": "2026-11-25 17:19",
+      "Values": [
+        67.0,
+        111.0,
+        -14.0,
+        0.0,
+        0.0,
+        0.0,
+        6.0,
+        16.0,
+        -7.0,
+        -3.0,
+        28.0,
+        -20.0,
+        -74.0,
+        -76.0,
+        0.0,
+        30.0,
+        -16.0,
+        -25.0,
+        0.0,
+        -8.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.5915836,
+          0.5318791,
+          0.5107585,
+          0.3259742
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": 0.55
+    },
+    "697ef93492eab04911000001|cqbss8_magnification|Left": {
+      "Scope": "CQBSS 1-8x",
+      "Part": "cqbss8_magnification",
+      "Hand": "Left",
+      "Saved": "2026-11-25 17:08",
+      "Values": [
+        70.0,
+        96.0,
+        -24.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        12.0,
+        -7.0,
+        -3.0,
+        28.0,
+        -27.0,
+        -80.0,
+        -66.0,
+        0.0,
+        37.0,
+        0.0,
+        -7.0,
+        0.0,
+        0.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.546173334,
+          0.4498656,
+          0.5743066,
+          0.411688715
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "69817cd3ee9b6f2ceb000001|MagLever|Left": {
+      "Scope": "ATACR1-8F1",
+      "Part": "MagLever",
+      "Hand": "Left",
+      "Saved": "2026-11-25 17:07",
+      "Values": [
+        -1.0,
+        134.0,
+        -30.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        8.0,
+        -7.0,
+        -3.0,
+        28.0,
+        -30.0,
+        -75.0,
+        0.0,
+        66.0,
+        36.0,
+        -75.0,
+        -42.0,
+        0.0,
+        0.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.5435856,
+          0.4697042,
+          0.577277362,
+          0.3881281
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "69a7ca431422246fc7000007|MagRotation|Left": {
+      "Scope": "NF4-16F1",
+      "Part": "MagRotation",
+      "Hand": "Left",
+      "Saved": "2026-11-25 17:10",
+      "Values": [
+        1.0,
+        96.0,
+        -34.0,
+        0.0,
+        0.0,
+        0.0,
+        4.0,
+        13.0,
+        -7.0,
+        -3.0,
+        28.0,
+        -24.0,
+        -28.0,
+        0.0,
+        66.0,
+        34.0,
+        -71.0,
+        -37.0,
+        0.0,
+        -3.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.5432705,
+          0.431111038,
+          0.6098896,
+          0.383451462
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "69a7ca431422246fc7000005|Magnification Wheel|Left": {
+      "Scope": "NF 4-20 F1",
+      "Part": "Magnification Wheel",
+      "Hand": "Left",
+      "Saved": "2026-11-24 03:35",
+      "Values": [
+        1.0,
+        134.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        26.0,
+        -27.0,
+        -15.0,
+        27.0,
+        -19.0,
+        -55.0,
+        0.0,
+        66.0,
+        36.0,
+        -75.0,
+        -11.0,
+        -17.0,
+        -7.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.5214815,
+          0.3823816,
+          0.611468554,
+          0.456012815
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": 0.85
+    },
+    "c5042b1c75088ddfc6c196f4|MagnificationWheel|Left": {
+      "Scope": "Golden Eagle",
+      "Part": "MagnificationWheel",
+      "Hand": "Left",
+      "Saved": "2026-11-25 15:19",
+      "Values": [
+        -1.0,
+        150.0,
+        -14.0,
+        -8.0,
+        0.0,
+        0.0,
+        -6.0,
+        18.0,
+        -10.0,
+        -7.0,
+        28.0,
+        -26.0,
+        -60.0,
+        0.0,
+        66.0,
+        29.0,
+        -69.0,
+        -7.0,
+        0.0,
+        1.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.4857377,
+          0.129377946,
+          0.8643175,
+          0.0165986028
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "4af1cb09ea310f1fcf94d32a|Magnification_Wheel|Left": {
+      "Scope": "Nightforce NXS 3.5-15",
+      "Part": "Magnification_Wheel",
+      "Hand": "Left",
+      "Saved": "2026-11-24 03:53",
+      "Values": [
+        70.0,
+        122.0,
+        -27.0,
+        0.0,
+        -3.0,
+        0.0,
+        12.0,
+        12.0,
+        -7.0,
+        -4.0,
+        28.0,
+        -23.0,
+        -80.0,
+        -78.0,
+        0.0,
+        25.0,
+        0.0,
+        -43.0,
+        0.0,
+        -5.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.5746039,
+          0.0981516,
+          0.811350167,
+          0.0436763242
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "685904bd76b06df2198b2f1b|holosun_base_LOD0|Left": {
+      "Scope": "scope_base_holosun_he509tx2",
+      "Part": "holosun_base_LOD0",
+      "Hand": "Left",
+      "Saved": "2026-11-24 04:19",
+      "Values": [
+        6.0,
+        106.0,
+        51.0,
+        -83.0,
+        -126.0,
+        -28.0,
+        -53.0,
+        20.0,
+        -30.0,
+        -29.0,
+        -10.0,
+        22.0,
+        48.0,
+        -70.0,
+        0.0,
+        -12.0,
+        40.0,
+        -13.0,
+        45.0,
+        -54.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.5250386,
+          0.510974,
+          0.5785925,
+          0.3584283
+        ],
+        [
+          0.7768689,
+          0.272414029,
+          0.220194474,
+          0.5232397
+        ],
+        [
+          0.125687078,
+          -0.010161438,
+          0.08995399,
+          0.9879311
+        ],
+        [
+          -0.0402350761,
+          -0.0200303122,
+          0.375243932,
+          0.925835848
+        ],
+        [
+          0.0132309161,
+          -0.146810964,
+          0.201948255,
+          0.968239844
+        ],
+        [
+          -0.00355125358,
+          -0.0257333368,
+          0.6342089,
+          0.7727252
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.418806881,
+          0.908075154
+        ],
+        [
+          -0.0242953748,
+          -0.119805321,
+          0.407694578,
+          0.9048987
+        ],
+        [
+          0.007272242,
+          -0.00615743734,
+          0.6217905,
+          0.7831257
+        ],
+        [
+          4.99524176E-05,
+          -0.000578261563,
+          0.444746166,
+          0.895656466
+        ],
+        [
+          -0.02234777,
+          -0.123003781,
+          0.454015344,
+          0.882179558
+        ],
+        [
+          -0.0230563339,
+          0.0147321215,
+          0.5754159,
+          0.8174032
+        ],
+        [
+          -0.0592862144,
+          -0.0110918414,
+          0.4434216,
+          0.8942815
+        ],
+        [
+          -0.03315477,
+          -0.121300437,
+          0.455925077,
+          0.881089866
+        ],
+        [
+          -0.119457975,
+          -0.0464626774,
+          0.6083406,
+          0.7832578
+        ],
+        [
+          -0.000295918435,
+          -5.890429E-05,
+          0.3977721,
+          0.9174843
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": "Left",
+      "ButtonTwist": 0.0,
+      "TwistAxis": "ScopeLine",
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "690d2fd49bf65492f6dcc8f1|Sight_Trijicon_RMRHD_LOD0|Left": {
+      "Scope": "scope_base_trijicon_rmrhd",
+      "Part": "Sight_Trijicon_RMRHD_LOD0",
+      "Hand": "Left",
+      "Saved": "2026-11-24 04:49",
+      "Values": [
+        154.0,
+        107.0,
+        72.0,
+        -10.0,
+        24.0,
+        -1.0,
+        -53.0,
+        -20.0,
+        5.0,
+        -29.0,
+        -17.0,
+        22.0,
+        -78.0,
+        -70.0,
+        0.0,
+        -12.0,
+        -54.0,
+        -22.0,
+        62.0,
+        -55.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.357900083,
+          0.6100315,
+          0.6887305,
+          0.159435123
+        ],
+        [
+          0.7768689,
+          0.272414029,
+          0.220194474,
+          0.5232397
+        ],
+        [
+          0.125687078,
+          -0.010161438,
+          0.08995399,
+          0.9879311
+        ],
+        [
+          -0.0402350761,
+          -0.0200303122,
+          0.375243932,
+          0.925835848
+        ],
+        [
+          0.0132309161,
+          -0.146810964,
+          0.201948255,
+          0.968239844
+        ],
+        [
+          -0.00355125358,
+          -0.0257333368,
+          0.6342089,
+          0.7727252
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.418806881,
+          0.908075154
+        ],
+        [
+          -0.0242953748,
+          -0.119805321,
+          0.407694578,
+          0.9048987
+        ],
+        [
+          0.007272242,
+          -0.00615743734,
+          0.6217905,
+          0.7831257
+        ],
+        [
+          4.99524176E-05,
+          -0.000578261563,
+          0.444746166,
+          0.895656466
+        ],
+        [
+          -0.02234777,
+          -0.123003781,
+          0.454015344,
+          0.882179558
+        ],
+        [
+          -0.0230563339,
+          0.0147321215,
+          0.5754159,
+          0.8174032
+        ],
+        [
+          -0.0592862144,
+          -0.0110918414,
+          0.4434216,
+          0.8942815
+        ],
+        [
+          -0.03315477,
+          -0.121300437,
+          0.455925077,
+          0.881089866
+        ],
+        [
+          -0.119457975,
+          -0.0464626774,
+          0.6083406,
+          0.7832578
+        ],
+        [
+          -0.000295918435,
+          -5.890429E-05,
+          0.3977721,
+          0.9174843
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": "Right",
+      "ButtonTwist": 0.0,
+      "TwistAxis": "ScopeLine",
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "68922e39bacf39d24ca68ddf|romeo9t_base|Left": {
+      "Scope": "romeo9_standard",
+      "Part": "romeo9t_base",
+      "Hand": "Left",
+      "Saved": "2026-11-24 06:04",
+      "Values": [
+        6.0,
+        106.0,
+        83.0,
+        -83.0,
+        -126.0,
+        -28.0,
+        -53.0,
+        20.0,
+        -30.0,
+        -29.0,
+        -10.0,
+        22.0,
+        33.0,
+        -70.0,
+        0.0,
+        -12.0,
+        42.0,
+        -13.0,
+        45.0,
+        -54.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          0.5339345,
+          -0.5286332,
+          -0.558194,
+          -0.3519666
+        ],
+        [
+          0.7768689,
+          0.272414029,
+          0.220194474,
+          0.5232397
+        ],
+        [
+          0.125687078,
+          -0.010161438,
+          0.08995399,
+          0.9879311
+        ],
+        [
+          -0.0402350761,
+          -0.0200303122,
+          0.375243932,
+          0.925835848
+        ],
+        [
+          0.0132309161,
+          -0.146810964,
+          0.201948255,
+          0.968239844
+        ],
+        [
+          -0.00355125358,
+          -0.0257333368,
+          0.6342089,
+          0.7727252
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.418806881,
+          0.908075154
+        ],
+        [
+          -0.0242953748,
+          -0.119805321,
+          0.407694578,
+          0.9048987
+        ],
+        [
+          0.007272242,
+          -0.00615743734,
+          0.6217905,
+          0.7831257
+        ],
+        [
+          4.99524176E-05,
+          -0.000578261563,
+          0.444746166,
+          0.895656466
+        ],
+        [
+          -0.02234777,
+          -0.123003781,
+          0.454015344,
+          0.882179558
+        ],
+        [
+          -0.0230563339,
+          0.0147321215,
+          0.5754159,
+          0.8174032
+        ],
+        [
+          -0.0592862144,
+          -0.0110918414,
+          0.4434216,
+          0.8942815
+        ],
+        [
+          -0.03315477,
+          -0.121300437,
+          0.455925077,
+          0.881089866
+        ],
+        [
+          -0.119457975,
+          -0.0464626774,
+          0.6083406,
+          0.7832578
+        ],
+        [
+          -0.000295918435,
+          -5.890429E-05,
+          0.3977721,
+          0.9174843
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": "Left",
+      "ButtonTwist": 0.0,
+      "TwistAxis": "ScopeLine",
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "68642e0200397ba2b9e4ea9a|SM_Tasco_ProPoint_1x42_LOD0|Left": {
+      "Scope": "scope_base_tasco_propoint_1x42",
+      "Part": "SM_Tasco_ProPoint_1x42_LOD0",
+      "Hand": "Left",
+      "Saved": "2026-11-24 06:14",
+      "Values": [
+        81.0,
+        120.0,
+        -49.0,
+        13.0,
+        60.0,
+        -13.0,
+        -9.0,
+        26.0,
+        -3.0,
+        -2.0,
+        29.0,
+        23.0,
+        -17.0,
+        -180.0,
+        0.0,
+        -18.0,
+        25.0,
+        14.0,
+        -22.0,
+        -26.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.8387552,
+          0.361427218,
+          0.192458376,
+          0.358915031
+        ],
+        [
+          0.7768692,
+          0.2724143,
+          0.220195174,
+          0.523238838
+        ],
+        [
+          0.12568754,
+          -0.0101612071,
+          0.08995396,
+          0.987931
+        ],
+        [
+          -0.0402351655,
+          -0.0200303551,
+          0.375245,
+          0.9258354
+        ],
+        [
+          0.0132306926,
+          -0.14681077,
+          0.201948822,
+          0.9682398
+        ],
+        [
+          -0.0035512615,
+          -0.0257334,
+          0.634209335,
+          0.772724867
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.418806762,
+          0.9080752
+        ],
+        [
+          -0.0242954083,
+          -0.119805135,
+          0.407695174,
+          0.9048984
+        ],
+        [
+          0.00727225933,
+          -0.00615745224,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.99570742E-05,
+          -0.00057826034,
+          0.444746375,
+          0.895656347
+        ],
+        [
+          -0.02234739,
+          -0.123003647,
+          0.4540157,
+          0.8821794
+        ],
+        [
+          -0.023056386,
+          0.0147321578,
+          0.5754157,
+          0.8174034
+        ],
+        [
+          -0.0592863522,
+          -0.0110918665,
+          0.443422,
+          0.8942813
+        ],
+        [
+          -0.0331541076,
+          -0.121300571,
+          0.455925,
+          0.8810899
+        ],
+        [
+          -0.119458258,
+          -0.0464627855,
+          0.60834074,
+          0.7832576
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.397772819,
+          0.9174839
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": "Top",
+      "ButtonTwist": 49.0,
+      "TwistAxis": "UpDown",
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "6859411da7ac91f2e4088de4|scope_all_eotech_exps3_1_LOD0|Left": {
+      "Scope": "scope_all_eotech_exps3_1_black",
+      "Part": "scope_all_eotech_exps3_1_LOD0",
+      "Hand": "Left",
+      "Saved": "2026-11-24 15:14",
+      "Values": [
+        -63.0,
+        106.0,
+        5.0,
+        -83.0,
+        -124.0,
+        -40.0,
+        -53.0,
+        20.0,
+        -30.0,
+        -29.0,
+        -10.0,
+        22.0,
+        57.0,
+        -70.0,
+        0.0,
+        -12.0,
+        -50.0,
+        -13.0,
+        45.0,
+        -54.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.4292443,
+          0.5450844,
+          0.658647656,
+          0.291231245
+        ],
+        [
+          0.7768689,
+          0.272414029,
+          0.220194474,
+          0.5232397
+        ],
+        [
+          0.125687078,
+          -0.010161438,
+          0.08995399,
+          0.9879311
+        ],
+        [
+          -0.0402350761,
+          -0.0200303122,
+          0.375243932,
+          0.925835848
+        ],
+        [
+          0.0132309161,
+          -0.146810964,
+          0.201948255,
+          0.968239844
+        ],
+        [
+          -0.00355125358,
+          -0.0257333368,
+          0.6342089,
+          0.7727252
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.418806881,
+          0.908075154
+        ],
+        [
+          -0.0242953748,
+          -0.119805321,
+          0.407694578,
+          0.9048987
+        ],
+        [
+          0.007272242,
+          -0.00615743734,
+          0.6217905,
+          0.7831257
+        ],
+        [
+          4.99524176E-05,
+          -0.000578261563,
+          0.444746166,
+          0.895656466
+        ],
+        [
+          -0.02234777,
+          -0.123003781,
+          0.454015344,
+          0.882179558
+        ],
+        [
+          -0.0230563339,
+          0.0147321215,
+          0.5754159,
+          0.8174032
+        ],
+        [
+          -0.0592862144,
+          -0.0110918414,
+          0.4434216,
+          0.8942815
+        ],
+        [
+          -0.03315477,
+          -0.121300437,
+          0.455925077,
+          0.881089866
+        ],
+        [
+          -0.119457975,
+          -0.0464626774,
+          0.6083406,
+          0.7832578
+        ],
+        [
+          -0.000295918435,
+          -5.890429E-05,
+          0.3977721,
+          0.9174843
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": "Left",
+      "ButtonTwist": 0.0,
+      "TwistAxis": "ScopeLine",
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "20c6ee849ac15cb4e31472c9|Steiner R1X|Left": {
+      "Scope": "Steiner R1X",
+      "Part": "Steiner R1X",
+      "Hand": "Left",
+      "Saved": "2026-11-24 15:18",
+      "Values": [
+        6.0,
+        106.0,
+        60.0,
+        -83.0,
+        -126.0,
+        -28.0,
+        -53.0,
+        20.0,
+        -30.0,
+        -29.0,
+        -10.0,
+        22.0,
+        58.0,
+        -70.0,
+        0.0,
+        -12.0,
+        50.0,
+        -29.0,
+        45.0,
+        -54.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.371069074,
+          0.3936976,
+          0.709597,
+          0.451422364
+        ],
+        [
+          0.7768689,
+          0.272414029,
+          0.220194474,
+          0.5232397
+        ],
+        [
+          0.125687078,
+          -0.010161438,
+          0.08995399,
+          0.9879311
+        ],
+        [
+          -0.0402350761,
+          -0.0200303122,
+          0.375243932,
+          0.925835848
+        ],
+        [
+          0.0132309161,
+          -0.146810964,
+          0.201948255,
+          0.968239844
+        ],
+        [
+          -0.00355125358,
+          -0.0257333368,
+          0.6342089,
+          0.7727252
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.418806881,
+          0.908075154
+        ],
+        [
+          -0.0242953748,
+          -0.119805321,
+          0.407694578,
+          0.9048987
+        ],
+        [
+          0.007272242,
+          -0.00615743734,
+          0.6217905,
+          0.7831257
+        ],
+        [
+          4.99524176E-05,
+          -0.000578261563,
+          0.444746166,
+          0.895656466
+        ],
+        [
+          -0.02234777,
+          -0.123003781,
+          0.454015344,
+          0.882179558
+        ],
+        [
+          -0.0230563339,
+          0.0147321215,
+          0.5754159,
+          0.8174032
+        ],
+        [
+          -0.0592862144,
+          -0.0110918414,
+          0.4434216,
+          0.8942815
+        ],
+        [
+          -0.03315477,
+          -0.121300437,
+          0.455925077,
+          0.881089866
+        ],
+        [
+          -0.119457975,
+          -0.0464626774,
+          0.6083406,
+          0.7832578
+        ],
+        [
+          -0.000295918435,
+          -5.890429E-05,
+          0.3977721,
+          0.9174843
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": "Left",
+      "ButtonTwist": 0.0,
+      "TwistAxis": "ScopeLine",
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "9936df6f6d9d13591df75e06|RT6_Zoom|Left": {
+      "Scope": "RT-6",
+      "Part": "RT6_Zoom",
+      "Hand": "Left",
+      "Saved": "2026-11-25 15:22",
+      "Values": [
+        70.0,
+        115.0,
+        -10.0,
+        0.0,
+        -15.0,
+        0.0,
+        0.0,
+        12.0,
+        -10.0,
+        -3.0,
+        28.0,
+        -25.0,
+        -80.0,
+        -77.0,
+        0.0,
+        25.0,
+        0.0,
+        -29.0,
+        0.0,
+        3.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.482379675,
+          0.17090252,
+          0.859119654,
+          0.003977763
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": 0.77
+    },
+    "617151c1d92c473c770214ab|scope_30mm_s&b_pm_ii_1_8x24_switch_LOD0|Left": {
+      "Scope": "scope_30mm_s&b_pm_ii_1_8x24",
+      "Part": "scope_30mm_s&b_pm_ii_1_8x24_switch_LOD0",
+      "Hand": "Left",
+      "Saved": "2026-11-25 13:42",
+      "Values": [
+        35.0,
+        96.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        -7.0,
+        23.0,
+        -10.0,
+        -22.0,
+        26.0,
+        -23.0,
+        -55.0,
+        -50.0,
+        0.0,
+        36.0,
+        -49.0,
+        -22.0,
+        0.0,
+        -10.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.5350059,
+          0.110968925,
+          0.8368824,
+          0.0329011977
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "2322ee962f6c77a1284abc1e|SUSAT|Left": {
+      "Scope": "SUSAT",
+      "Part": "SUSAT",
+      "Hand": "Left",
+      "Saved": "2026-11-25 04:10",
+      "Values": [
+        113.0,
+        45.0,
+        -31.0,
+        -15.0,
+        99.0,
+        -17.0,
+        -3.0,
+        23.0,
+        -4.0,
+        -7.0,
+        3.0,
+        34.0,
+        -37.0,
+        -35.0,
+        35.0,
+        7.0,
+        -62.0,
+        -36.0,
+        13.0,
+        -53.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.429731548,
+          0.447546273,
+          0.671169162,
+          0.405666232
+        ],
+        [
+          0.7768692,
+          0.272414267,
+          0.220195144,
+          0.5232389
+        ],
+        [
+          0.12568751,
+          -0.010161222,
+          0.08995396,
+          0.987931
+        ],
+        [
+          -0.0402351543,
+          -0.0200303514,
+          0.3752449,
+          0.925835431
+        ],
+        [
+          0.0132307,
+          -0.14681077,
+          0.201948792,
+          0.9682398
+        ],
+        [
+          -0.003551261,
+          -0.0257333964,
+          0.634209335,
+          0.772724867
+        ],
+        [
+          0.00017251214,
+          -0.00055906,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.0242954083,
+          -0.11980515,
+          0.407695144,
+          0.904898465
+        ],
+        [
+          0.007272259,
+          -0.00615745224,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.99561429E-05,
+          -0.0005782604,
+          0.444746375,
+          0.895656347
+        ],
+        [
+          -0.0223474056,
+          -0.123003647,
+          0.454015672,
+          0.8821794
+        ],
+        [
+          -0.0230563823,
+          0.0147321541,
+          0.5754157,
+          0.8174033
+        ],
+        [
+          -0.0592863448,
+          -0.0110918656,
+          0.44342193,
+          0.8942813
+        ],
+        [
+          -0.0331541374,
+          -0.121300556,
+          0.455925,
+          0.8810899
+        ],
+        [
+          -0.119458243,
+          -0.046462778,
+          0.60834074,
+          0.7832576
+        ],
+        [
+          -0.000295919366,
+          -5.89042938E-05,
+          0.397772759,
+          0.917484
+        ]
+      ],
+      "LeverPush": true,
+      "ButtonFace": "Rear",
+      "ButtonTwist": 20.0,
+      "TwistAxis": "UpDown",
+      "TwistBack": true,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "68caad7f933990601c07f47c|switch_000_LOD0|Left": {
+      "Scope": "scope_30mm_leupold_mark_4_mr_t_ts_30a2_25_8x36",
+      "Part": "switch_000_LOD0",
+      "Hand": "Left",
+      "Saved": "2026-11-25 16:43",
+      "Values": [
+        70.0,
+        96.0,
+        7.0,
+        0.0,
+        0.0,
+        0.0,
+        -16.0,
+        10.0,
+        -4.0,
+        -25.0,
+        28.0,
+        -26.0,
+        -80.0,
+        -78.0,
+        0.0,
+        32.0,
+        -13.0,
+        -24.0,
+        0.0,
+        -15.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.5050206,
+          0.161099166,
+          0.8478364,
+          0.0132246567
+        ],
+        [
+          0.7768691,
+          0.2724142,
+          0.220194951,
+          0.523239136
+        ],
+        [
+          0.125687435,
+          -0.0101612741,
+          0.08995398,
+          0.987931
+        ],
+        [
+          -0.0402351357,
+          -0.020030342,
+          0.375244617,
+          0.92583555
+        ],
+        [
+          0.0132307606,
+          -0.14681083,
+          0.201948658,
+          0.9682398
+        ],
+        [
+          -0.00355125917,
+          -0.0257333815,
+          0.6342092,
+          0.772725
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.024295399,
+          -0.119805187,
+          0.407695025,
+          0.904898465
+        ],
+        [
+          0.007272254,
+          -0.00615744852,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.995521E-05,
+          -0.000578260748,
+          0.444746345,
+          0.8956564
+        ],
+        [
+          -0.02234751,
+          -0.123003684,
+          0.454015583,
+          0.882179439
+        ],
+        [
+          -0.02305637,
+          0.0147321466,
+          0.57541573,
+          0.8174033
+        ],
+        [
+          -0.059286315,
+          -0.0110918591,
+          0.44342187,
+          0.8942814
+        ],
+        [
+          -0.0331542864,
+          -0.121300533,
+          0.455925018,
+          0.8810899
+        ],
+        [
+          -0.119458169,
+          -0.0464627519,
+          0.6083407,
+          0.783257663
+        ],
+        [
+          -0.000295919366,
+          -5.890429E-05,
+          0.3977726,
+          0.917484045
+        ]
+      ],
+      "LeverPush": false,
+      "ButtonFace": null,
+      "ButtonTwist": 0.0,
+      "TwistAxis": null,
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
+    },
+    "5947db3f86f77447880cf76f|scope_dovetail_aksion_ekp_8_02_LOD0|Left": {
+      "Scope": "scope_dovetail_aksion_ekp_8_02",
+      "Part": "scope_dovetail_aksion_ekp_8_02_LOD0",
+      "Hand": "Left",
+      "Saved": "2026-11-25 18:32",
+      "Values": [
+        140.0,
+        75.0,
+        28.0,
+        -54.0,
+        -1.0,
+        13.0,
+        -6.0,
+        28.0,
+        -4.0,
+        -7.0,
+        34.0,
+        -37.0,
+        55.0,
+        -35.0,
+        35.0,
+        30.0,
+        -39.0,
+        -21.0,
+        -21.0,
+        -5.0
+      ],
+      "Bones": [
+        "NoMoreScopeRemote_Fingers_Left",
+        "Base HumanLDigit11",
+        "Base HumanLDigit12",
+        "Base HumanLDigit13",
+        "Base HumanLDigit21",
+        "Base HumanLDigit22",
+        "Base HumanLDigit23",
+        "Base HumanLDigit31",
+        "Base HumanLDigit32",
+        "Base HumanLDigit33",
+        "Base HumanLDigit41",
+        "Base HumanLDigit42",
+        "Base HumanLDigit43",
+        "Base HumanLDigit51",
+        "Base HumanLDigit52",
+        "Base HumanLDigit53"
+      ],
+      "Base": [
+        [
+          -0.545411766,
+          0.263019,
+          0.7480284,
+          0.2716625
+        ],
+        [
+          0.7768692,
+          0.272414267,
+          0.220195144,
+          0.5232389
+        ],
+        [
+          0.12568751,
+          -0.010161222,
+          0.08995396,
+          0.987931
+        ],
+        [
+          -0.0402351543,
+          -0.0200303514,
+          0.3752449,
+          0.925835431
+        ],
+        [
+          0.0132307,
+          -0.14681077,
+          0.201948792,
+          0.9682398
+        ],
+        [
+          -0.003551261,
+          -0.0257333964,
+          0.634209335,
+          0.772724867
+        ],
+        [
+          0.00017251214,
+          -0.000559059961,
+          0.4188068,
+          0.9080752
+        ],
+        [
+          -0.0242954083,
+          -0.11980515,
+          0.407695144,
+          0.904898465
+        ],
+        [
+          0.007272259,
+          -0.00615745224,
+          0.6217905,
+          0.783125639
+        ],
+        [
+          4.99561429E-05,
+          -0.0005782604,
+          0.444746375,
+          0.895656347
+        ],
+        [
+          -0.0223474056,
+          -0.123003647,
+          0.454015672,
+          0.8821794
+        ],
+        [
+          -0.0230563823,
+          0.0147321541,
+          0.5754157,
+          0.8174033
+        ],
+        [
+          -0.0592863448,
+          -0.0110918656,
+          0.44342193,
+          0.8942813
+        ],
+        [
+          -0.0331541374,
+          -0.121300556,
+          0.455925,
+          0.8810899
+        ],
+        [
+          -0.119458243,
+          -0.046462778,
+          0.60834074,
+          0.7832576
+        ],
+        [
+          -0.000295919366,
+          -5.89042938E-05,
+          0.397772759,
+          0.917484
+        ]
+      ],
+      "LeverPush": true,
+      "ButtonFace": "Right",
+      "ButtonTwist": 0.0,
+      "TwistAxis": "ScopeLine",
+      "TwistBack": false,
+      "FlipFollow": null,
+      "FlipThumbOnly": false,
+      "FlipIndexOnly": false,
+      "KnobScale": null
     }
   }
 }
