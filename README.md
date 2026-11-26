@@ -30,7 +30,7 @@ A BepInEx client mod for **SPT 4.1.6**.
 
 ![ELCAN Specter DR lever](specterdr-lever.gif)
 
-**Some Other Animations (ELCAN Specter DR):**
+**Some Other Animations:**
 
 ![BOSS XE knob](bossxe-knob.gif)
 ![ECHO1 front button](echo1-front.gif)
