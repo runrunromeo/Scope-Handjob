@@ -40,14 +40,15 @@ A BepInEx client mod for **SPT 4.1.6**.
 ## What it does
 
 - **Mouse wheel zoom** on variable scopes: the hand grips the zoom knob and turns it with the magnification. If the knob has to turn further than a wrist can, the hand lets go, goes back and grips again.
-- **Zoom / mode key** (default `T`):
-  - Variable scopes: one quick twist from lowest to highest magnification, or back.
+- **Zoom / mode key** :
+  - Variable scopes: one quick twist from lowest to highest magnification, or back. Or, with **Turn In Strokes** on, the hand turns the knob stroke by stroke like with the mouse wheel, only quickly and by itself.
   - Lever scopes (ELCAN Specter DR, Valday PS-320): the hand throws the lever, and the picture through the scope goes dark for a moment mid-throw.
   - EOTech HHS-1 and magnifier combos: the hand flips the magnifier over, and the magnifier moves with the hand.
   - Aimpoint CS (WTT-Armory): the thumb flicks the rear lens cover open, and the index finger flicks it shut again.
   - Sights with buttons (thermals, red dots, reticle or palette changes): the hand presses the button, or turns the knob on SUSAT, MARS and Tasco ProPoint.
 - **Thermal / night vision screens** keep their picture when you are not aiming, like a real powered sight (can be turned off, with its own frame rate limit).
 - **Waits for the hand:** the change happens when the hand gets there, not before.
+- **The left hand waits its turn:** while you reload, check the magazine, chamber or fire mode, or open a door, a zoom change waits until the hand is free (it is dropped after 2 seconds, never done without the hand). If the game needs the hand mid-move, the hand goes back at once. Other mods that use the same shared left-hand queue take turns with it.
 - **Fast presses:** the mode key counts at most 4 presses a second. Every press that counts gets its own hand movement.
 - **Sights with nothing to switch:** pressing the mode key on a sight with only one mode does nothing at all, with no press animation and no gun wobble.
 - **Canted sights** (on a 45° mount): while you aim through the canted sight, the mode key works on the canted sight only. While you are not aiming, it works on the main scope.
@@ -77,6 +78,7 @@ To uninstall, delete the `BepInEx/plugins/ScopeHandjob` folder.
 |---|---|---|
 | 1. General | Enabled | Off = vanilla instant changes. |
 | | Wait For Hand | On = the change waits for the hand. Off = instant change, and the hand only moves for looks. |
+| | Zoom Key On Knob: Turn In Strokes | On = the zoom key turns a variable scope's knob in strokes (twist, let go, grip again) until it reaches the end, and the knob turns as far as the real one. Off = one quick twist. Off by default. |
 | | Ignore Mode Key When Nothing Changes | On = the mode key does nothing on one-mode sights. |
 | | Mouse Wheel Zoom Only While Aiming | On = the mouse wheel changes magnification only while you aim down sights; from the hip the hand stays put. Handy if another mod uses the wheel too, such as Stance Overhaul's Alt + mouse wheel. Off by default. |
 | | Zoom / Mode Key Only While Aiming | On = the zoom / mode key works only while you aim down sights. Off by default. |
@@ -87,7 +89,7 @@ To uninstall, delete the `BepInEx/plugins/ScopeHandjob` folder.
 | | Hold After Zoom | How long the hand stays on the knob after the last scroll. |
 | | Switch Time | How long one lever throw, button press or magnifier flip takes. |
 | | Regrip Time | How long a regrip on the zoom knob takes. |
-| | Fast Twist Time | How long the mode key's quick twist on a variable scope takes. |
+| | Fast Twist Time | How long the mode key's quick twist on a variable scope takes (with Turn In Strokes: each stroke). |
 | | Lens Cover Speed | How fast the finger flicks a lens cover open or shut (Aimpoint CS). The hand's trip there and back is not affected. |
 | 3. Stance Overhaul | Short Stock: Lower To Change Zoom | On = lower the gun to change zoom in Short Stock. Off = no zoom change in Short Stock while not aiming. |
 | 4. Gun Shake | Shake When Hand Moves (Mouse Wheel) / Shake When Hand Presses (Mode Key) / Shake Strength | Turn the jolts on or off and set how strong they are. |
