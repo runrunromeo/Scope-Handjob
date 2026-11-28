@@ -48,12 +48,13 @@ A BepInEx client mod for **SPT 4.1.6**.
   - Sights with buttons (thermals, red dots, reticle or palette changes): the hand presses the button, or turns the knob on SUSAT, MARS and Tasco ProPoint.
 - **Thermal / night vision screens** keep their picture when you are not aiming, like a real powered sight (can be turned off, with its own frame rate limit).
 - **Waits for the hand:** the change happens when the hand gets there, not before.
+- **Stays clear of the gun:** between the handguard and the scope the hand goes round the side of the gun, not through it, and on the way back it first turns back from the knob twist, lever throw or magnifier flip.
 - **The left hand waits its turn:** while you reload, check the magazine, chamber or fire mode, or open a door, a zoom change waits until the hand is free (it is dropped after 2 seconds, never done without the hand). If the game needs the hand mid-move, the hand goes back at once. Other mods that use the same shared left-hand queue take turns with it.
 - **Fast presses:** the mode key counts at most 4 presses a second. Every press that counts gets its own hand movement.
 - **Sights with nothing to switch:** pressing the mode key on a sight with only one mode does nothing at all, with no press animation and no gun wobble.
 - **Canted sights** (on a 45° mount): while you aim through the canted sight, the mode key works on the canted sight only. While you are not aiming, it works on the main scope.
 - **Gun shake:** the gun gives a small jolt when the hand leaves the handguard, works the scope, and comes back.
-- **[Stance Overhaul](https://github.com/space-commits/spt-stance-overhaul) (Realism) support:** in Short Stock while not aiming, the gun is lowered first, the zoom changes, then Short Stock comes back. In the pistol Patrol stance, the hand reaches from where [Stance Overhaul](https://github.com/space-commits/spt-stance-overhaul) holds it. [Stance Overhaul](https://github.com/space-commits/spt-stance-overhaul) is optional.
+- **[Stance Overhaul](https://github.com/space-commits/spt-stance-overhaul) (Realism) support:** in Short Stock while not aiming, the gun is lowered first, the zoom changes, then Short Stock comes back. In the pistol Patrol stance, the hand reaches from where [Stance Overhaul](https://github.com/space-commits/spt-stance-overhaul) holds it, and the zoom / mode key works there too. [Stance Overhaul](https://github.com/space-commits/spt-stance-overhaul) is optional.
 - **Fika:** teammates see your scope change when your hand makes it, not at the key press.
 - **[PiP Disabler](https://github.com/Fiodorwellfme/PiP-Disabler):** while [PiP Disabler](https://github.com/Fiodorwellfme/PiP-Disabler) is installed and switched on, this mod stands aside and the game changes zoom the vanilla way.
 
@@ -62,7 +63,7 @@ Only your own character's hand moves. Other players and bots are not changed.
 ## Requirements
 
 - SPT 4.1.6. BepInEx comes with SPT.
-- Only [WTT - ContentBackport](https://github.com/WelcomeToThursday/WTT-Backport) and its dependencies are required. [Stance Overhaul](https://github.com/space-commits/spt-stance-overhaul), [WTT - Armory](https://github.com/WelcomeToThursday/WTT-Armory/tree/4.0), [Epic's All In One](https://github.com/EpicRangeTime/EpicRangeTime-Weapons), [Eukyre's Consortium of Things](https://github.com/eukyre/Eukyre-Consortium) and [ISB-Aishi](https://github.com/Sam-C-137/ISB-Aishi) are optional.
+- Only [WTT - ContentBackport](https://github.com/WelcomeToThursday/WTT-Backport) and its dependencies are required. [Stance Overhaul](https://github.com/space-commits/spt-stance-overhaul), [WTT - Armory](https://github.com/WelcomeToThursday/WTT-Armory/tree/4.0), [Eco's Attachment Emporium](https://sp-mod.com/mod/2882/ecos-attachment-emporium), [Epic's All In One](https://github.com/EpicRangeTime/EpicRangeTime-Weapons), [Eukyre's Consortium of Things](https://github.com/eukyre/Eukyre-Consortium) and [ISB-Aishi](https://github.com/Sam-C-137/ISB-Aishi) are optional.
 
 ## Install
 
@@ -85,10 +86,10 @@ To uninstall, delete the `BepInEx/plugins/ScopeHandjob` folder.
 | | Lever Scope Picture: Darken / Blur | How dark and blurry the picture through a lever scope gets mid-throw. 0 = off. |
 | | Thermal / Night Vision Screen When Not Aiming | On = screen scopes keep their picture when you are not aiming. Off = vanilla. On by default. |
 | | Thermal / Night Vision Screen FPS When Not Aiming | 10 to 90, default 30: how often that picture is redrawn while not aiming. Lower = more frame rate saved. Aiming is never limited. |
-| 2. Timing | Reach / Return Time | How fast the hand goes to the scope and back. |
-| | Hold After Zoom | How long the hand stays on the knob after the last scroll. |
+| 2. Timing | Reach / Return Time | How fast the hand goes to the scope and back. Default 0.5 s. |
+| | Hold After Zoom | How long the hand stays on the knob after the last scroll. Default 0.45 s. |
 | | Switch Time | How long one lever throw, button press or magnifier flip takes. |
-| | Regrip Time | How long a regrip on the zoom knob takes. |
+| | Regrip Time | How long a regrip on the zoom knob takes. Default 0.4 s. |
 | | Fast Twist Time | How long the mode key's quick twist on a variable scope takes (with Turn In Strokes: each stroke). |
 | | Lens Cover Speed | How fast the finger flicks a lens cover open or shut (Aimpoint CS). The hand's trip there and back is not affected. |
 | 3. [Stance Overhaul](https://github.com/space-commits/spt-stance-overhaul) | Short Stock: Lower To Change Zoom | On = lower the gun to change zoom in Short Stock. Off = no zoom change in Short Stock while not aiming. |
@@ -98,7 +99,7 @@ To uninstall, delete the `BepInEx/plugins/ScopeHandjob` folder.
 
 Each scope has a hand animation made by hand in game. Scopes not on this list change the vanilla way, with no hand.
 
-**Variable zoom or zoom modes:** Armasight Zeus-Pro 640 · Burris FullField TAC30 1-4x24 · DEON March-F 1-8x24 ([WTT - ContentBackport](https://github.com/WelcomeToThursday/WTT-Backport)) · ELCAN Specter DR 1x/4x (black and FDE) · EOTech HHS-1 (black and tan) · EOTech Vudu 1-6x24 · FLIR RS-32 · Hensoldt FF 4-16x56 · KMZ 1P59 3-10x · KMZ 1P69 3-10x · Leupold Mark 4 LR 6.5-20x50 · Leupold Mark 4 MR/T 2.5-8x36 ([WTT - ContentBackport](https://github.com/WelcomeToThursday/WTT-Backport)) · Leupold Mark 5HD 5-25x56 · March Tactical 3-24x42 · NcSTAR ADO P4 3-9x42 · Nightforce ATACR 7-35x56 · SIG Sauer ECHO1 · SIG Sauer TANGO6T 1-6x24 · Schmidt & Bender PM II 1-8x24, 3-20x50 and 5-25x56 · Valday PS-320 · Vortex Razor HD Gen.2 1-6x24 · Vortex Viper HS 2.5-10x (Eco Attachment Emporium)
+**Variable zoom or zoom modes:** Armasight Zeus-Pro 640 · Burris FullField TAC30 1-4x24 · DEON March-F 1-8x24 ([WTT - ContentBackport](https://github.com/WelcomeToThursday/WTT-Backport)) · ELCAN Specter DR 1x/4x (black and FDE) · EOTech HHS-1 (black and tan) · EOTech Vudu 1-6x24 · FLIR RS-32 · Hensoldt FF 4-16x56 · KMZ 1P59 3-10x · KMZ 1P69 3-10x · Leupold Mark 4 LR 6.5-20x50 · Leupold Mark 4 MR/T 2.5-8x36 ([WTT - ContentBackport](https://github.com/WelcomeToThursday/WTT-Backport)) · Leupold Mark 5HD 5-25x56 · March Tactical 3-24x42 · NcSTAR ADO P4 3-9x42 · Nightforce ATACR 7-35x56 · SIG Sauer ECHO1 · SIG Sauer TANGO6T 1-6x24 · Schmidt & Bender PM II 1-8x24, 3-20x50 and 5-25x56 · Valday PS-320 · Vortex Razor HD Gen.2 1-6x24 · Vortex Viper HS 2.5-10x ([Eco's Attachment Emporium](https://sp-mod.com/mod/2882/ecos-attachment-emporium))
 
 **Lens cover:** Aimpoint CS ([WTT - Armory](https://github.com/WelcomeToThursday/WTT-Armory/tree/4.0); its mode key flips the rear lens cover open and shut)
 
@@ -114,12 +115,10 @@ Each scope has a hand animation made by hand in game. Scopes not on this list ch
 
 - **Left hand only.**
 - The animations were made with **[WTT - ContentBackport](https://github.com/WelcomeToThursday/WTT-Backport)** installed. That mod replaces the models of several scopes, for example the HHS-1, Vudu, Specter DR and some thermals. Without it, some of those scopes may have no hand, or the hand may not sit exactly on the part.
-- A second sight stacked on top of a scope, such as the backup sight on a Specter DR or SUSAT, keeps the vanilla head movement and gets no hand.
 - Incompatible with [PiP Disabler](https://github.com/Fiodorwellfme/PiP-Disabler).
 - Fingers might still clip through guns / scopes.
 - With Fika, teammates do not see your hand move; they only see the scope change.
 - [Epic](https://github.com/EpicRangeTime/EpicRangeTime-Weapons)'s ROMEO9t switches red / green with the change-sight key (it is two sights), so it gets no hand.
-- The gun-shake strengths are tuned by feel.
 
 ## Reporting a problem
 
