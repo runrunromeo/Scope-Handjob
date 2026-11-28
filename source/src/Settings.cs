@@ -60,6 +60,10 @@ namespace ScopeHandjob
         internal static HandSide HandToUse => HandSide.Left;
         internal const float LeverTwistDegrees = 35f;
         internal const float ButtonPressMm = 5f;
+        // The hand's way to the scope and back (the dev build's "3. Motion" values, tuned in game 2026-11-28).
+        internal const bool TurnBack = true;   // turns back to where it arrived before going home
+        internal const bool RoundGun = true;   // goes round the gun's side
+        internal const float RoundSide = 0.15f, RoundDrop = 0.03f;
 
         // A pose's values in order (see the dev build's pose sliders); a pose saved with fewer values gets these.
         private static readonly float[] PoseDefaults =
@@ -73,7 +77,7 @@ namespace ScopeHandjob
         internal static float PoseValueDefault(int i) => PoseDefaults[i];
 
         // Defaults: the values the hand animations were tuned with.
-        private const float DefReach = 0.35f, DefReturn = 0.35f, DefHold = 0.5f, DefSwitch = 0.165f, DefRegrip = 0.35f, DefFastTwist = 0.35f;
+        private const float DefReach = 0.5f, DefReturn = 0.5f, DefHold = 0.45f, DefSwitch = 0.165f, DefRegrip = 0.4f, DefFastTwist = 0.35f;
         private const float DefShake = 1f, DefCoverSpeed = 2.5f;
         private const bool DefStrokes = false; // off by default: only for players who want the extra immersion
         private const string SectionStance = "3. Stance Overhaul", SectionShake = "4. Gun Shake";

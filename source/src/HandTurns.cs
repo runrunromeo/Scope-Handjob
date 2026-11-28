@@ -75,9 +75,64 @@ namespace ScopeHandjob
             else if (fc.IsInReloadOperation()) why = "reloading";
             else if (Settings.HandToUse == HandSide.Left && ForeignLeftHand(p, out GripPose other)) why = "the left hand is in use by " + other.name;
             else if (!FreeOperation(fc.CurrentOperation)) why = "the gun is busy (" + fc.CurrentOperation.GetType().Name + ")";
-            else if (fc.IsInInteractionStrictCheck()) why = "a left-hand animation is playing";
+            else if (fc.IsInInteractionStrictCheck() && !PatrolPoseOnly(p)) why = "a left-hand animation is playing";
             return why == null;
         }
+
+        private const int CompassAction = 404; // ObjectInHandsAnimator.ShowCompass(true): UseLeftHand on, LActionIndex 404
+
+        /// <summary>
+        /// Stance Overhaul's pistol patrol holds the left hand off the gun with its own target AND the game's compass pose
+        /// (ShowCompass(true): UseLeftHand + the left-actions layer), which IsInInteractionStrictCheck counts as a left-hand
+        /// animation. Only that pose with the patrol hand borrowable: the hand is free, the move borrows it as usual (1.2.1,
+        /// 2026-11-28: the mode key in pistol patrol waited 2 s and was dropped, no hand, no change).
+        /// </summary>
+        private static bool PatrolPoseOnly(Player p)
+        {
+            if (!Borrowable(LeftTarget(p)) || ThirdIkWeight(p).Value <= 0.01f) return false;
+            try
+            {
+                return AnimationControllerParametersTable.GetIntLActionIndex(p.HandsAnimator.Animator) == CompassAction;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// The game's own mode change (FirearmOperation.SetScopeMode -> FirearmsAnimator.ModToggleTrigger) sets the animator's
+        /// "mod switch" trigger, a little gun move. In Stance Overhaul's pistol patrol the left-actions layer sits in the
+        /// compass pose, so the trigger is not taken and stays set until the stance ends, then plays: a jolt long after the
+        /// press (2026-11-28; the press jolt itself is ours, GunShake). In patrol it is cleared right away.
+        /// </summary>
+        private static void ForgetPatrolToggle(Player p)
+        {
+            if (p == null || (borrowedHand == null && !PatrolPoseOnly(p))) return;
+            try
+            {
+                AnimationControllerParametersTable.ResetTriggerModSwitch(p.HandsAnimator.Animator);
+                Log("pistol patrol: the game's mod-switch trigger cleared (it would play when the stance ends)");
+            }
+            catch (System.Exception error)
+            {
+                Log("mod-switch trigger not cleared: " + error.Message);
+                return;
+            }
+            // That move also carried the click ("Sound" event SndModSwitch, one of the weapon's AdditionalSounds, e.g. Glock
+            // 17): play it now through the same path the animation event takes (else no click in patrol).
+            try
+            {
+                if (p.HandsController is Player.FirearmController fc && fc.WeaponSoundPlayer is IEventsConsumer sounds)
+                    sounds.OnSound(ModSwitchSound);
+            }
+            catch (System.Exception error)
+            {
+                Log("mod-switch click not played: " + error.Message);
+            }
+        }
+
+        private const string ModSwitchSound = "SndModSwitch";
 
         /// <summary>Someone else drives the left hand now (a target with weight that is not ours and not borrowable).</summary>
         private static bool ForeignLeftHand(Player p, out GripPose current)

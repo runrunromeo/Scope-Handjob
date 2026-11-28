@@ -25,6 +25,7 @@ them, for example Unity's `MonoBleedingEdge/lib/mono/4.7.2-api`.
 |---|---|
 | `src/Patches.cs` | The Harmony hooks into the game: zoom input, mode key, scope-state snap, hand IK. |
 | `src/HandDriver.cs` | Moves the left hand: reach, hold or act, return. Holds zoom and mode changes until the hand is there. |
+| `src/HandDriver.Path.cs` | The hand's way between the handguard and the scope: round the gun's side, not through it. |
 | `src/KnobStrokes.cs` | Mouse-wheel strokes and regrips on a zoom knob, and the mode key's quick twist (or turn in strokes). |
 | `src/HandTurns.cs` | Whose turn the left hand is: waits for the game's own hand actions and for other mods, keeps waiting presses. |
 | `src/HandQueue.cs` | The left-hand queue shared with other mods (first come, first served; same copy in each mod). |

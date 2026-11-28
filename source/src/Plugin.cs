@@ -11,7 +11,7 @@ namespace ScopeHandjob
         // Public release "Scope Handjob": left hand only, no pose editor / tuning tools, the poses built in.
         public const string Guid = "scopehandjob.spt416";
         public const string Name = "Scope Handjob";
-        public const string Version = "1.2.0";
+        public const string Version = "1.2.1";
         internal const string LogTag = "[ScopeHandjob]";
 
         internal static ManualLogSource Log;

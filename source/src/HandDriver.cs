@@ -121,6 +121,11 @@ namespace ScopeHandjob
         private static float holdTimer;
         private static float actProgress;     // lever / magnifier: 0..1
         private static bool waitForHand;
+        // Going home (1.2.1, a player report 2026-11-28: the hand cut through the gun coming back from a turned knob or a
+        // thrown lever / flipped magnifier; the way there was fine). The hand's turn on the part is eased back to the one it
+        // arrived at while it lifts off, so the rest of the way is the path it came in on. unwind: 0 = as turned, 1 = back.
+        private static bool unwindArmed, captureUnwind;
+        private static float unwindAngle, unwind;
 
         // Variable zoom
         private static ScopeZoomHandler zoomHandler;
@@ -548,6 +553,12 @@ namespace ScopeHandjob
             // Lever scopes: the lens group inside turns, the picture goes dark / blurred, most at half way (mode change).
             LensDarken.Show(phase == Phase.Act && lensDarkens ? Mathf.Sin(Mathf.PI * Mathf.Clamp01(actProgress)) : 0f, target);
             WatchShake(p);
+            // Turned back between weight 0.9 (just lifted off) and 0.5 (the in-between point the reach came through). Also
+            // while reaching again after letting go, so the hand goes back onto the part the same way, with no jump.
+            // Knob: always by way of the posed twist, the first reach too (the zoom key's quick twist from high to low
+            // magnification arrived at the far twist limit and cut through the gun both ways; the posed twist is clean).
+            bool turnBack = (unwindArmed || target.Kind == PartKind.Knob) && Settings.TurnBack && (phase == Phase.Return || phase == Phase.Reach);
+            unwind = turnBack ? Ease(Mathf.InverseLerp(0.9f, 0.5f, weight)) : 0f;
 
             int index = side == HandSide.Right ? 1 : 0;
             BasePose(p, index, distance2Camera, out Vector3 basePos, out Quaternion baseRot);
@@ -580,7 +591,7 @@ namespace ScopeHandjob
             float e = Mathf.Clamp01(weight);
             Vector3 via = endPos + approach;
             bonePosition = e < 0.5f
-                ? Vector3.Lerp(basePos, via, Ease(e / 0.5f))
+                ? RoundTheGun(p, basePos, via, Ease(e / 0.5f)) // grip <-> in-between point: round the gun's side
                 : Vector3.Lerp(via, endPos, Ease((e - 0.5f) / 0.5f));
             boneRotation = Quaternion.Slerp(baseRot, endRot, Ease(Mathf.Min(1f, e * 1.4f)));
 
@@ -638,7 +649,7 @@ namespace ScopeHandjob
             {
                 case PartKind.Knob:
                     if (!strokes && knobGrabbed && phase == Phase.Hold) knobTwist = KnobAngle();
-                    turn = Quaternion.AngleAxis(Mathf.Clamp(knobTwist, plan.TwistMin, plan.TwistMax), plan.Axis);
+                    turn = Quaternion.AngleAxis(Unwound(Mathf.Clamp(knobTwist, plan.TwistMin, plan.TwistMax)), plan.Axis);
                     if (lift > 0f)
                     {
                         // Letting go to grip again: lift the hand off the knob a little on the way back.
@@ -660,23 +671,21 @@ namespace ScopeHandjob
                         float amount = plan.PushFromLever ? Mathf.Abs(plan.LeverAngle) : plan.LeverAngle;
                         // 3+ positions (Walther MRS, BOSS Xe): the hand pushes the lever's way each press (MRS: three one
                         // way, the last back) from the posed spot and comes back, a short push, not the lever's full turn.
-                        turn = SteppedLever
-                            ? Quaternion.AngleAxis(SteppedLeverAngle(actProgress), pushAxis)
-                            : Quaternion.AngleAxis(amount * throw01, pushAxis);
+                        turn = Quaternion.AngleAxis(Unwound(SteppedLever ? SteppedLeverAngle(actProgress) : amount * throw01), pushAxis);
                         pos = pivot + turn * (pos - pivot);
                         rot = turn * rot;
                         approach = turn * approach;
                         return;
                     }
-                    turn = Quaternion.AngleAxis(plan.LeverAngle * throw01, plan.Axis); // twist: about the scope's line (left / right)
+                    turn = Quaternion.AngleAxis(Unwound(plan.LeverAngle * throw01), plan.Axis); // twist: about the scope's line (left / right)
                     break;
                 case PartKind.Button when plan.Twists:
                     {
                         // Knob twist (MARS, Tasco): like the Vudu knob, about the chosen line (Button: Twist Axis); it stays
                         // turned until the next mode turns it back. Spring-back twist (SUSAT): out and back each press.
-                        float angle = SpringTwist
+                        float angle = Unwound(SpringTwist
                             ? SteppedLeverAngle(actProgress)
-                            : plan.ButtonTwist * (leverReverse ? 1f - Ease(actProgress) : Ease(actProgress));
+                            : plan.ButtonTwist * (leverReverse ? 1f - Ease(actProgress) : Ease(actProgress)));
                         Vector3 pivot = anchor.TransformPoint(plan.TwistPivotLocal);
                         turn = Quaternion.AngleAxis(angle, anchor.TransformDirection(plan.TwistAxisLocal).normalized);
                         pos = pivot + turn * (pos - pivot);
@@ -709,6 +718,7 @@ namespace ScopeHandjob
                             fingerTurning = plan.FlipMover;
                             return;
                         }
+                        hand = Unwound(hand);
                         plan.Flip.Pose(ref pos, ref rot, hand);
                         approach = plan.Flip.Rotation(hand) * approach;
                     }
@@ -719,8 +729,28 @@ namespace ScopeHandjob
             approach = turn * approach;
         }
 
+        /// <summary>The hand's turn on the part (degrees, or the magnifier's 0..1), eased back towards the one it arrived at
+        /// (knob: the posed twist) while going home and while reaching.</summary>
+        private static float Unwound(float now)
+        {
+            if (target.Kind == PartKind.Knob) return Mathf.Lerp(now, 0f, unwind); // knob: the posed twist
+            if (captureUnwind)
+            {
+                unwindAngle = now; // first frame on the part: where the hand arrived
+                captureUnwind = false;
+            }
+            return Mathf.Lerp(now, unwindAngle, unwind);
+        }
+
         private static void Arrive()
         {
+            if (!unwindArmed)
+            {
+                // First arrival this move: remember the hand's turn now (Unwound, this frame). Arriving again after letting go
+                // keeps the first one, so going home always ends on the path the reach came in on.
+                unwindArmed = true;
+                captureUnwind = true;
+            }
             if (target.Kind == PartKind.Knob)
             {
                 phase = Phase.Hold;
@@ -838,6 +868,7 @@ namespace ScopeHandjob
             {
                 controller.SetScopeMode(states);
                 Log("held mode change applied");
+                ForgetPatrolToggle(player);
                 PressShake(player); // the press itself jolts the gun
             }
             finally
@@ -922,6 +953,8 @@ namespace ScopeHandjob
         {
             ResetStrokes();
             leverReverse = false;
+            unwindArmed = captureUnwind = false;
+            unwind = unwindAngle = 0f;
             player = p;
             controller = fc;
             target = t;
