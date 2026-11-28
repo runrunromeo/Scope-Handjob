@@ -165,8 +165,16 @@ namespace ScopeHandjob
         {
             if (fc == null || next == null || player == null || !ReferenceEquals(player.HandsController, fc)) return;
             Log("kept press: hand goes again");
+            int waitingBefore = waiting.Count;
             OwnSetScopeMode(fc, next); // through the SetScopeMode prefix: a new hand move
-            if (phase == Phase.Idle || left <= 0) return;
+            if (left <= 0) return;
+            if (phase == Phase.Idle)
+            {
+                // Someone else took the hand first (HandTurns): this press now waits behind them, and so do the rest.
+                if (waiting.Count > waitingBefore)
+                    for (int i = 0; i < left && AddWaiting(fc, template, steps); i++) { }
+                return;
+            }
             queuedPresses = left; // still more kept presses: they follow this move
             queuedTemplate = template;
             queuedSteps = steps;

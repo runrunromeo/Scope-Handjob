@@ -21,6 +21,9 @@ namespace ScopeHandjob
             AccessTools.FieldRefAccess<ScopeZoomHandler, float>("_filedOfView");
         private static readonly AccessTools.FieldRef<ScopeZoomHandler, float> ZoomTarget =
             AccessTools.FieldRefAccess<ScopeZoomHandler, float>("float_2");
+        // Where the scroll has taken the zoom (float_2, the target, is rebuilt from it on every scroll).
+        private static readonly AccessTools.FieldRef<ScopeZoomHandler, float> ZoomInputAt =
+            AccessTools.FieldRefAccess<ScopeZoomHandler, float>("float_4");
         private static readonly AccessTools.FieldRef<ScopeZoomHandler, SightComponent> ZoomSight =
             AccessTools.FieldRefAccess<ScopeZoomHandler, SightComponent>("_sightComponent");
         private static readonly AccessTools.FieldRef<ScopeZoomHandler, IAdjustableOpticData> ZoomOptic =
@@ -65,6 +68,11 @@ namespace ScopeHandjob
         private static bool fastPending;      // zoom-mode key held: quick twist once the hand is on the knob
         private static bool fastTwist;
         private static float fastFrom, fastTo, fastFovFrom, fastFovTo, fastProgress;
+        private static float fastEnd;         // hand twist this quick twist ends at (a last, shorter stroke stops short of fastTo)
+        private static float fastTime;        // seconds for this quick twist
+        // "Zoom Key On Knob: Turn In Strokes": the mode key's turn goes in strokes like the mouse wheel, only by itself.
+        private static bool sweeping;         // more strokes to come after this one
+        private static float sweepFovEnd;     // where the whole turn ends (the game's other end)
         private static float lift;            // 0..1, hand lifted off the knob during a regrip
 
         private static float KnobT(ScopeZoomHandler z, float fov) => Mathf.InverseLerp(z.MinFov, z.MaxFov, fov);
@@ -77,7 +85,7 @@ namespace ScopeHandjob
             knobTotal = 0f;
             strokeHand = strokeT = 0f;
             blocked = 0;
-            regrip = fastAfterRegrip = fastPending = fastTwist = false;
+            regrip = fastAfterRegrip = fastPending = fastTwist = sweeping = false;
             regripProgress = fastProgress = 0f;
             lift = 0f;
         }
@@ -137,6 +145,7 @@ namespace ScopeHandjob
         /// </summary>
         private static float KnobScaleFor(ScopeZoomHandler z)
         {
+            if (Settings.ZoomKeyStrokes.Value) return 1f; // turning in strokes: the ring turns as far as the real one (user 2026-11-27)
             if (!Settings.Active) return 1f; // switched off / standing aside: the game's own ring turn
             if (!TryGetMainController(out _, out Player.FirearmController fc)) return 1f;
             EFT.Firearms firearms = FirearmsOf(fc);
@@ -192,7 +201,18 @@ namespace ScopeHandjob
             if (knobsPlaced.Contains(id)) return;
             if (knobsPlaced.Count > 64) knobsPlaced.Clear();
             knobsPlaced.Add(id);
-            if (Mathf.Abs(KnobScaleFor(z) - 1f) >= 0.001f) RefreshKnob(z);
+            if (knobScaleSwitched || Mathf.Abs(KnobScaleFor(z) - 1f) >= 0.001f) RefreshKnob(z);
+        }
+
+        private static bool knobScaleSwitched; // "Turn In Strokes" changed this session: rings already placed may sit scaled
+
+        /// <summary>"Zoom Key On Knob: Turn In Strokes" changed: every ring is put where its (now used or not) scale says.</summary>
+        internal static void OnZoomKeyStrokesChanged()
+        {
+            knobScales.Clear();
+            knobsPlaced.Clear();
+            knobScaleSwitched = true;
+            if (zoomHandler != null) RefreshKnob(zoomHandler);
         }
 
         /// <summary>Puts this knob's ring where its scale says, now (the editor slider moved, a pose was saved).</summary>
@@ -287,15 +307,16 @@ namespace ScopeHandjob
             }
             if (fastTwist)
             {
-                fastProgress = Mathf.MoveTowards(fastProgress, 1f, dt / Mathf.Max(0.01f, Settings.FastTwistTime.Value));
-                knobTwist = Mathf.Lerp(fastFrom, fastTo, Ease(fastProgress));
+                fastProgress = Mathf.MoveTowards(fastProgress, 1f, dt / Mathf.Max(0.01f, fastTime));
+                knobTwist = Mathf.Lerp(fastFrom, fastEnd, Ease(fastProgress));
                 holdTimer = 0f;
                 if (fastProgress >= 1f)
                 {
                     fastTwist = false;
                     SetKnob(z, fastFovTo);
-                    knobTwist = fastTo;
+                    knobTwist = fastEnd;
                     NewStroke(z);
+                    if (sweeping) StartRegrip(fastFrom, true); // wrist at its limit, ring not at the end: let go, back, grip, next stroke
                 }
                 else SetKnob(z, Mathf.Lerp(fastFovFrom, fastFovTo, Ease(fastProgress))); // also from the hip, where the game does not step the knob
                 return;
@@ -316,6 +337,34 @@ namespace ScopeHandjob
             knobTwist = strokeHand + (KnobT(z, fov) - strokeT) * knobTotal;
             frozenFov = fov;
             if (Mathf.Abs(fov - ZoomTarget(z)) > 1e-3f) holdTimer = 0f; // still turning
+        }
+
+        /// <summary>
+        /// The hand leaves the knob: the game's zoom target becomes where the knob is now, so the knob does not keep
+        /// turning on its own while the hand is away (it used to carry on once our hold on it ended). Scroll not yet
+        /// turned is dropped with it (user 2026-11-26: no hand, no movement).
+        /// </summary>
+        private static void LetGoOfKnob()
+        {
+            if (target == null || target.Kind != PartKind.Knob) return;
+            ScopeZoomHandler z = target.Zoom ?? zoomHandler;
+            if (z == null) return;
+            try
+            {
+                float fov = ZoomFov(z);
+                bool turning = Mathf.Abs(ZoomTarget(z) - fov) > 1e-4f;
+                // Both, the way the game itself settles the knob (Init, ForceChangeScopeState): the next scroll starts here.
+                ZoomTarget(z) = fov;
+                ZoomInputAt(z) = fov;
+                frozenFov = fov;
+                pendingZoom = 0f;
+                releaseZoom = false;
+                if (turning) Log("hand off the knob: knob stops where it is");
+            }
+            catch (Exception error)
+            {
+                Log("knob not stopped: " + error.Message);
+            }
         }
 
         private static void NewStroke(ScopeZoomHandler z)
@@ -365,23 +414,54 @@ namespace ScopeHandjob
             return fastFrom;
         }
 
-        /// <summary>The hand is at the stroke start: switch the mode now (the game jumps the knob), put the knob back and turn it over smoothly.</summary>
+        /// <summary>
+        /// The hand is at the stroke start: switch the mode now (the game jumps the knob), put the knob back and turn it
+        /// over smoothly. "Turn In Strokes" on: only as far as the wrist goes (the ring's real turn), then StepStrokes lets
+        /// go, grips again at the stroke start and calls this again for the next stroke (the mode is switched only once).
+        /// </summary>
         private static void StartFastTwist()
         {
             ScopeZoomHandler z = target.Zoom;
             fastPending = false;
             fastFovFrom = ZoomFov(z);
-            ApplyHeldMode();
-            fastFovTo = ZoomFov(z);
-            if (Mathf.Abs(fastFovTo - fastFovFrom) < 1e-4f)
+            bool first = !sweeping;
+            if (first)
             {
-                NewStroke(z);
-                return;
+                ApplyHeldMode();
+                sweepFovEnd = ZoomFov(z);
+                if (Mathf.Abs(sweepFovEnd - fastFovFrom) < 1e-4f)
+                {
+                    NewStroke(z);
+                    return;
+                }
+                SetKnob(z, fastFovFrom); // undo the jump on screen this frame
             }
-            SetKnob(z, fastFovFrom); // undo the jump on screen this frame
+            fastFovTo = sweepFovEnd;
+            fastEnd = fastTo;
+            fastTime = Settings.FastTwistTime.Value;
+            sweeping = false;
+            float wrist = Mathf.Abs(fastTo - fastFrom);
+            if (Settings.ZoomKeyStrokes.Value && wrist > 1f && Mathf.Abs(knobTotal) > 1f)
+            {
+                float tFrom = KnobT(z, fastFovFrom), tEnd = KnobT(z, sweepFovEnd);
+                float needed = Mathf.Abs(tEnd - tFrom) * Mathf.Abs(knobTotal); // degrees the ring still has to turn
+                if (needed > wrist + 0.5f)
+                {
+                    // A full stroke: the wrist's whole range, the ring with it; more strokes to come.
+                    fastFovTo = FovAt(z, tFrom + Mathf.Sign(tEnd - tFrom) * wrist / Mathf.Abs(knobTotal));
+                    sweeping = true;
+                }
+                else
+                {
+                    // The last stroke: only as far as the ring still goes, at the same wrist speed.
+                    fastEnd = fastFrom + Mathf.Sign(fastTo - fastFrom) * needed;
+                    fastTime = Settings.FastTwistTime.Value * Mathf.Max(0.15f, needed / wrist);
+                }
+            }
             fastTwist = true;
             fastProgress = 0f;
-            Log($"quick twist: hand {fastFrom:0} -> {fastTo:0} deg, fov {fastFovFrom:0.###} -> {fastFovTo:0.###}");
+            Log($"quick twist{(Settings.ZoomKeyStrokes.Value ? first ? " (in strokes, first)" : " (in strokes, next)" : "")}: hand {fastFrom:0} -> {fastEnd:0} deg, " +
+                $"fov {fastFovFrom:0.###} -> {fastFovTo:0.###}{(sweeping ? ", more to come" : "")}");
         }
 
         /// <summary>
@@ -390,7 +470,7 @@ namespace ScopeHandjob
         /// </summary>
         private static bool ModeKeyDuringStrokes(ScopeState[] states)
         {
-            if (regrip || fastTwist || fastPending) return false; // busy turning: ignore the extra press
+            if (regrip || fastTwist || fastPending || sweeping) return false; // busy turning: ignore the extra press
             pendingStates = (ScopeState[])states.Clone();
             modeDone = false;
             float start = PrepareFastTwist();

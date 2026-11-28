@@ -116,6 +116,8 @@ namespace ScopeHandjob
         private static float replayZoom;
         private static float weight;          // 0 = normal grip, 1 = on the scope
         private static float lastStepTime;
+        private static bool gunTookHand;      // the game's own left-hand action began mid-move: quick return, no more presses
+        private const float QuickReturnTime = 0.15f;
         private static float holdTimer;
         private static float actProgress;     // lever / magnifier: 0..1
         private static bool waitForHand;
@@ -156,6 +158,18 @@ namespace ScopeHandjob
         internal static float FilterZoom(ScopeZoomHandler handler, float raw)
         {
             if (!Settings.Active) return raw;
+            try
+            {
+                return FilterZoomCore(handler, raw);
+            }
+            finally
+            {
+                DropStartTicket(); // a waiting scroll whose turn came but did not start a move gives up its place
+            }
+        }
+
+        private static float FilterZoomCore(ScopeZoomHandler handler, float raw)
+        {
             DropStale();
 
             // Stance Overhaul Short Stock (not aiming): lower the gun first, the input waits for that.
@@ -165,6 +179,8 @@ namespace ScopeHandjob
                 replayZoom = 0f;
                 replayHandler = null;
             }
+            // A scroll kept while the hand was busy (HandTurns): its turn has come.
+            raw += TakeWaitingZoom(handler);
             // Option: the wheel only zooms while aiming (another mod may use the wheel from the hip).
             if (Settings.WheelOnlyAiming.Value && !Mathf.Approximately(raw, 0f) && !AimingNow()) return 0f;
             if (!Mathf.Approximately(raw, 0f))
@@ -195,19 +211,26 @@ namespace ScopeHandjob
             if (!active)
             {
                 if (Mathf.Approximately(raw, 0f)) return raw;
-                if (phase != Phase.Idle) return raw;
                 if (!TryGetMainController(out Player p, out Player.FirearmController fc)) return raw;
+                // The hand busy with another move: this scroll waits for it, never zooms without the hand.
+                if (phase != Phase.Idle) return Settings.WaitForHand.Value ? WaitZoom(fc, handler, raw, $"busy with another move ({phase})") : raw;
                 EFT.Firearms firearms = FirearmsOf(fc);
                 SightModVisualControllers owner = ScopeTargets.OwnerOf(firearms, handler);
-                if (owner == null || !CanStart(p, fc)) return raw;
+                if (owner == null || !Alive(p)) return raw;
                 ScopeTarget t = ScopeTargets.ForKnob(handler, owner);
-                if (t == null || !Begin(p, fc, t)) return raw;
+                if (t == null || !HasHandFor(t)) return raw; // no hand for this knob at all: the vanilla zoom
+                if (!HandTurnNow(p, fc, out string why)) return Settings.WaitForHand.Value ? WaitZoom(fc, handler, raw, why) : raw;
+                if (!Begin(p, fc, t)) return raw;
+                TookHand("mouse wheel");
                 wheelMove = true; // gun shake at the hand's four moments
                 zoomHandler = handler;
                 Log($"zoom input {raw:0.###} on {t.Name}: hand reaching");
             }
             else if (phase == Phase.Return && !Mathf.Approximately(raw, 0f))
             {
+                // Someone waits for the hand: this scroll waits behind them instead of turning the hand back.
+                if (!NobodyBehind() && Settings.WaitForHand.Value)
+                    return TryGetMainController(out _, out Player.FirearmController gun) ? WaitZoom(gun, handler, raw, "others wait for the hand") : 0f;
                 phase = Phase.Reach; // more scrolling while the hand leaves: go back, from where it is
                 knobGrabbed = false;
                 if (!strokes) knobTwist = 0f; // strokes: keep the twist the hand has, so it does not jump
@@ -297,20 +320,23 @@ namespace ScopeHandjob
 
             // Player's pose on this knob, hand on it or on its way: the jump becomes one quick twist.
             if (strokes && controller == fc && target != null && target.Kind == PartKind.Knob)
-                return ModeKeyDuringStrokes(states);
+                return NobodyBehind() ? ModeKeyDuringStrokes(states) : WaitMode(fc, states, "others wait for the hand");
 
-            // Mode key on the variable scope the hand already holds: act now.
+            // Mode key on the variable scope the hand already holds: act now (unless someone waits for the hand first).
             if (phase == Phase.Hold && target != null && target.Kind == PartKind.Knob && controller == fc)
             {
+                if (!NobodyBehind()) return WaitMode(fc, states, "others wait for the hand");
                 holdTimer = 0f;
                 return true;
             }
             if (phase != Phase.Idle)
             {
                 // Pressed again while the hand works a lever / button / magnifier on this gun: the hand does it next.
-                if (controller == fc && target != null && target.Kind != PartKind.Knob && waitForHand) return QueuePress(fc, states);
-                Log($"mode key while the hand is busy with another move ({phase}): vanilla");
-                return true; // busy with another move: vanilla behaviour
+                if (controller == fc && target != null && target.Kind != PartKind.Knob && waitForHand && NobodyBehind()) return QueuePress(fc, states);
+                // Busy with another move (or someone waits for the hand first): this press waits its turn.
+                if (Settings.WaitForHand.Value) return WaitMode(fc, states, $"busy with another move ({phase})");
+                Log($"mode key while the hand is busy with another move ({phase}): vanilla (Wait For Hand off)");
+                return true;
             }
 
             EFT.Firearms firearms = FirearmsOf(fc);
@@ -320,18 +346,27 @@ namespace ScopeHandjob
                 if (vc == null || vc.SightMod == null) continue;
                 ScopeZoomHandler zoom = ScopeTargets.ZoomOf(vc);
                 if (!HandForMode(vc, state)) continue;
-                if (!CanStart(p, fc))
-                {
-                    Log($"mode change on {vc.name}: no hand now, {CannotStartReason(p, fc)}; vanilla");
-                    return true;
-                }
+                if (!Alive(p)) return true;
                 ScopeTarget t = ScopeTargets.ForMode(vc);
                 if (t == null)
                 {
                     Log($"mode change on {vc.name}: no knob / lever / magnifier found, vanilla");
                     return true;
                 }
+                if (!HasHandFor(t))
+                {
+                    Log($"mode change on {vc.name}: no pose for {t.Name}, vanilla");
+                    return true;
+                }
+                if (!HandTurnNow(p, fc, out string why))
+                {
+                    // The hand is busy (another Handjob mod, a door, a reload...): wait for it, never switch without it.
+                    if (Settings.WaitForHand.Value) return WaitMode(fc, states, why);
+                    Log($"mode change on {vc.name}: no hand now, {why}; vanilla (Wait For Hand off)");
+                    return true;
+                }
                 if (!Begin(p, fc, t)) return true;
+                TookHand("mode key");
 
                 zoomHandler = t.Kind == PartKind.Knob ? zoom : null;
                 keyMove = true; // gun shake: hand leaves the handguard, presses, comes back
@@ -442,15 +477,16 @@ namespace ScopeHandjob
 
         private static void Step(Player p, float distance2Camera)
         {
+            Phase before = phase;
             if (ShouldStop(p, out bool lostHand))
             {
-                if (lostHand || target == null || !target.Alive || plan == null || plan.Anchor == null) { Stop(); return; }
+                if (lostHand || target == null || !target.Alive || plan == null || plan.Anchor == null) { LetGoOfKnob(); Stop(); return; }
                 if (phase != Phase.Return) Log("interrupted: hand going back, held change dropped");
                 EndSwing();
                 if (strokes)
                 {
-                    // A quick twist already switched the mode: finish the knob at once; anything else just stops.
-                    if (fastTwist && target.Zoom != null) SetKnob(target.Zoom, fastFovTo);
+                    // A quick twist cut short stops where the knob is now: no hand, no more turning (user 2026-11-26).
+                    if (fastTwist && target.Zoom != null) SetKnob(target.Zoom, ZoomFov(target.Zoom));
                     fastTwist = fastPending = regrip = fastAfterRegrip = false;
                     lift = 0f;
                     if (target.Zoom != null) frozenFov = ZoomFov(target.Zoom);
@@ -471,7 +507,7 @@ namespace ScopeHandjob
                 case Phase.Hold:
                     holdTimer += dt;
                     if (strokes) StepStrokes(dt);
-                    if (holdTimer >= Settings.HoldTime.Value) phase = Phase.Return;
+                    if (holdTimer >= Settings.HoldTime.Value || HandOverNow()) phase = Phase.Return; // someone waits: go now
                     break;
                 case Phase.Act:
                     actProgress = Mathf.MoveTowards(actProgress, 1f, dt * Speed() / PressDuration());
@@ -490,7 +526,9 @@ namespace ScopeHandjob
                     if (actProgress >= 1f) phase = Phase.Return;
                     break;
                 case Phase.Return:
-                    weight = Mathf.MoveTowards(weight, 0f, dt / Mathf.Max(0.01f, Settings.ReturnTime.Value));
+                    // The game took the hand (reload, mag check): back within 0.15 s so its magazine does not float.
+                    float returnTime = gunTookHand ? Mathf.Min(Settings.ReturnTime.Value, QuickReturnTime) : Settings.ReturnTime.Value;
+                    weight = Mathf.MoveTowards(weight, 0f, dt / Mathf.Max(0.01f, returnTime));
                     if (weight <= 0f)
                     {
                         BackOnGripShake(p);
@@ -505,6 +543,8 @@ namespace ScopeHandjob
                     }
                     break;
             }
+            // The hand just left the knob (hold over, someone waiting, interrupted): the knob stops right here.
+            if (phase == Phase.Return && before != Phase.Return) LetGoOfKnob();
             // Lever scopes: the lens group inside turns, the picture goes dark / blurred, most at half way (mode change).
             LensDarken.Show(phase == Phase.Act && lensDarkens ? Mathf.Sin(Mathf.PI * Mathf.Clamp01(actProgress)) : 0f, target);
             WatchShake(p);
@@ -887,6 +927,7 @@ namespace ScopeHandjob
             target = t;
             side = wanted;
             waitForHand = Settings.WaitForHand.Value;
+            gunTookHand = false;
             weight = 0f;
             lastStepTime = Time.time;
             holdTimer = 0f;
@@ -953,6 +994,8 @@ namespace ScopeHandjob
             ResetStrokes();
             ResetShake();
             ClearQueuedPresses();
+            LetGoOfHand(); // the next one waiting (this mod or another Handjob mod) may have the hand now
+            gunTookHand = false;
             phase = Phase.Idle;
             weight = 0f;
             target = null;
@@ -973,31 +1016,13 @@ namespace ScopeHandjob
             }
         }
 
-        private static bool CanStart(Player p, Player.FirearmController fc)
-        {
-            if (p.IsSprintEnabled || fc.IsInReloadOperation()) return false;
-            if (p.HealthController == null || !p.HealthController.IsAlive) return false;
-            if (Settings.HandToUse == HandSide.Left)
-            {
-                // Door, Stance Overhaul pistol patrol, ...: leave the hand to them, but only while they really drive it.
-                // Stance Overhaul's LeftHandAnimator never clears its target after the pistol patrol stance, it only fades
-                // ThirdIkWeight to 0, so a target left there with no weight is nobody's (user 2026-11-25: FN-57, then no
-                // hand on any scope).
-                GripPose current = LeftTarget(p);
-                if (current != null && (rig == null || current != rig.IkTarget) && ThirdIkWeight(p).Value > 0.01f && !Borrowable(current)) return false;
-            }
-            return true;
-        }
-
-        /// <summary>Why CanStart said no, for the log.</summary>
-        private static string CannotStartReason(Player p, Player.FirearmController fc)
-        {
-            if (p.IsSprintEnabled) return "sprinting";
-            if (fc.IsInReloadOperation()) return "reloading";
-            if (p.HealthController == null || !p.HealthController.IsAlive) return "not alive";
-            GripPose current = LeftTarget(p);
-            return "the left hand is in use by something else (" + (current != null ? current.name : "?") + ")";
-        }
+        /// <summary>
+        /// Pose editor / background grip search: alive and the hand free (HandTurns.HandFree). A door, Stance Overhaul's
+        /// pistol patrol...: the hand is theirs only while they really drive it. Stance Overhaul's LeftHandAnimator never
+        /// clears its target after the pistol patrol stance, it only fades ThirdIkWeight to 0, so a target left there with
+        /// no weight is nobody's (user 2026-11-25: FN-57, then no hand on any scope).
+        /// </summary>
+        private static bool CanStart(Player p, Player.FirearmController fc) => Alive(p) && HandFree(p, fc, out _);
 
         private static bool ShouldStop(Player p, out bool lostHand)
         {
@@ -1021,8 +1046,20 @@ namespace ScopeHandjob
             if (target == null || !target.Alive || controller == null || plan == null || plan.Anchor == null) return true;
             if (!ReferenceEquals(p.HandsController, controller)) return true;
             if (p.HealthController == null || !p.HealthController.IsAlive) return true;
-            return p.IsSprintEnabled || controller.IsInReloadOperation();
+            if (GunNeedsHand())
+            {
+                // The game's own left-hand action began mid-move (reload, mag / chamber check, malfunction...): it needs the
+                // hand now, so ours lets go quickly (user 2026-11-26: the magazine floated until the hand came back).
+                if (!gunTookHand) Log($"the gun needs the left hand ({controller.CurrentOperation?.GetType().Name}): hand going back quickly");
+                gunTookHand = true;
+                return true;
+            }
+            return p.IsSprintEnabled;
         }
+
+        /// <summary>The gun is reloading or doing something else with the left hand (anything but idle / firing).</summary>
+        private static bool GunNeedsHand() =>
+            controller != null && (controller.IsInReloadOperation() || !FreeOperation(controller.CurrentOperation));
 
         private static bool TryGetMainController(out Player p, out Player.FirearmController fc)
         {

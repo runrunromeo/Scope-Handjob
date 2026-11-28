@@ -11,7 +11,7 @@ namespace ScopeHandjob
         // Public release "Scope Handjob": left hand only, no pose editor / tuning tools, the poses built in.
         public const string Guid = "scopehandjob.spt416";
         public const string Name = "Scope Handjob";
-        public const string Version = "1.1.0";
+        public const string Version = "1.2.0";
         internal const string LogTag = "[ScopeHandjob]";
 
         internal static ManualLogSource Log;
@@ -20,6 +20,7 @@ namespace ScopeHandjob
         {
             Log = Logger;
             Settings.Bind(Config);
+            Settings.ZoomKeyStrokes.SettingChanged += (_, __) => HandDriver.OnZoomKeyStrokesChanged();
             try
             {
                 Patches.Install(new Harmony(Guid));
@@ -42,6 +43,7 @@ namespace ScopeHandjob
         {
             StanceSupport.Tick();
             ScopeScreens.Tick();
+            HandDriver.TickQueue(); // left-hand queue shared with the other Handjob mods
         }
     }
 }

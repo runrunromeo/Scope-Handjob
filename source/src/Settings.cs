@@ -38,6 +38,7 @@ namespace ScopeHandjob
         internal static ConfigEntry<bool> Enabled;
         internal static ConfigEntry<bool> IgnoreEmptyModeKey;
         internal static ConfigEntry<bool> WaitForHand;
+        internal static ConfigEntry<bool> ZoomKeyStrokes;
         internal static ConfigEntry<bool> WheelOnlyAiming, ModeKeyOnlyAiming;
         internal static ConfigEntry<float> LeverDarken, LeverBlur;
         internal static ConfigEntry<bool> ScreensAlwaysOn;
@@ -74,6 +75,7 @@ namespace ScopeHandjob
         // Defaults: the values the hand animations were tuned with.
         private const float DefReach = 0.35f, DefReturn = 0.35f, DefHold = 0.5f, DefSwitch = 0.165f, DefRegrip = 0.35f, DefFastTwist = 0.35f;
         private const float DefShake = 1f, DefCoverSpeed = 2.5f;
+        private const bool DefStrokes = false; // off by default: only for players who want the extra immersion
         private const string SectionStance = "3. Stance Overhaul", SectionShake = "4. Gun Shake";
 
         /// <summary>The mod works now: Enabled, (public release) Scope Handjob Dev is not installed and switched on too, and
@@ -136,6 +138,12 @@ namespace ScopeHandjob
                 new ConfigDescription("Off = vanilla instant magnification change.", null, Order(10)));
             WaitForHand = config.Bind(general, "Wait For Hand", true,
                 new ConfigDescription("On = magnification only changes once the hand reaches the scope. Off = changes instantly, the hand is only for looks.", null, Order(8)));
+            ZoomKeyStrokes = config.Bind(general, "Zoom Key On Knob: Turn In Strokes", DefStrokes,
+                new ConfigDescription("Zoom / mode key on a scope with a zoom ring (lowest <-> highest magnification): " +
+                                      "On = the hand turns the ring the way it does with the mouse wheel, only quickly and by itself: " +
+                                      "it twists as far as the wrist goes, lets go, goes back, grips again and carries on until the " +
+                                      "ring is at the end. The ring turns as far as the real one (no Ring Turn Scale). " +
+                                      "Off = one quick twist takes it all the way.", null, Order(7)));
             IgnoreEmptyModeKey = config.Bind(general, "Ignore Mode Key When Nothing Changes", true,
                 new ConfigDescription("On = the mode key does nothing at all (no button press animation, no gun wobble) on sights that have only one mode, " +
                                       "so there is nothing to switch. Off = vanilla: the press animation still plays.", null, Order(5)));

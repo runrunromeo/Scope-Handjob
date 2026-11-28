@@ -32,8 +32,12 @@ namespace ScopeHandjob
             if (adjustElbows == null) throw new MissingMethodException("game method not found for AdjustElbowsPostfix");
             harmony.Patch(adjustElbows, postfix: new HarmonyMethod(typeof(Patches), nameof(AdjustElbowsPostfix)) { priority = Priority.Last });
             ScopeScreens.Install(harmony); // thermal / night vision screens on when not aiming (optional: a missing method only loses it)
-            Patch(harmony, AccessTools.Method(typeof(Player), "IkProcess", new[] { typeof(float) }),
-                prefix: nameof(IkProcessPrefix));
+            // The hand target is set after every other IkProcess prefix: Stance Overhaul's HandIKPatch moves the gun to the
+            // eye there while aiming, and a target set before that misses the moved gun. Without Priority.Last this only
+            // worked because our GUID sorts after Stance Overhaul's (found 2026-11-26).
+            MethodBase ikProcess = AccessTools.Method(typeof(Player), "IkProcess", new[] { typeof(float) });
+            if (ikProcess == null) throw new MissingMethodException("game method not found for IkProcessPrefix");
+            harmony.Patch(ikProcess, prefix: new HarmonyMethod(typeof(Patches), nameof(IkProcessPrefix)) { priority = Priority.Last });
         }
 
         private static void Patch(Harmony harmony, MethodBase target, string prefix = null, string postfix = null)

@@ -40,6 +40,9 @@ namespace ScopeHandjob
     {
         public int Version = 1;
         public Dictionary<string, SavedPose> Poses = new Dictionary<string, SavedPose>();
+        // Pose key -> the key whose pose it uses (and saves to): two scopes that share one pose although their parts are
+        // named differently, e.g. ISB-Aishi's TANGO6T and the WTT TANGO6T (user, 2026-11-27).
+        public Dictionary<string, string> Links = new Dictionary<string, string>();
     }
 
     /// <summary>The hand poses, built into the DLL (poses.json, one per scope part and hand), read-only.</summary>
@@ -65,13 +68,17 @@ namespace ScopeHandjob
                 }
                 if (file == null) file = new PoseFile();
                 if (file.Poses == null) file.Poses = new Dictionary<string, SavedPose>();
+                if (file.Links == null) file.Links = new Dictionary<string, string>();
                 return file;
             }
         }
 
         internal static int Count => Data.Poses.Count;
 
-        internal static string KeyFor(ScopeTarget t, HandSide side) => t.Key + "|" + side;
+        internal static string KeyFor(ScopeTarget t, HandSide side) => Linked(t.Key + "|" + side);
+
+        /// <summary>The key a linked pose key really uses (Links), else the key itself.</summary>
+        private static string Linked(string key) => Data.Links.TryGetValue(key, out string to) && !string.IsNullOrEmpty(to) ? to : key;
 
         /// <summary>
         /// A flip part's separate closing pose (lens cover: a thumb flicks it open from below, a finger pushes it shut from
@@ -80,7 +87,7 @@ namespace ScopeHandjob
         /// </summary>
         internal static SavedPose FindClose(ScopeTarget t, HandSide side, out string key)
         {
-            key = t.Key + "#close|" + side;
+            key = Linked(t.Key + "#close|" + side);
             return Get(key);
         }
 
