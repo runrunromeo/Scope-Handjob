@@ -108,6 +108,8 @@ Each scope has a hand animation made by hand in game. Scopes not on this list ch
 
 **Eukyre's Consortium of Things:** EOTech EXPS3-1 · Holosun HE509T X2 (black and FDE) · SIG BRAVO5 5x30 · SIG ROMEO9T (black and FDE) · Tasco ProPoint 1x42 · Trijicon RMR HD · Vortex M157 1-8x30
 
+**ISB-Aishi:** ELCAN Specter DR 1x/4x (tan) · EOTech Vudu 1-6x24 (FDE) · Schmidt & Bender PM II 1-8x24, 3-20x50 and 5-25x56 (black) · SIG TANGO6T 1-6x24 (black) · Vortex Razor HD Gen.2 1-6x24 (black, FDE, and the one on the Radian Model 1 (Aishi))
+
 ## Known limitations
 
 - **Left hand only.**
