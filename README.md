@@ -67,7 +67,7 @@ Only your own character's hand moves. Other players and bots are not changed.
 ## Install
 
 1. Close the game.
-2. Unzip `ScopeHandjob-1.0.0.zip` into your SPT folder, the one that has `EscapeFromTarkov.exe` in it.
+2. Unzip into your SPT folder, the one that has `EscapeFromTarkov.exe` in it.
 3. You should now have `BepInEx/plugins/ScopeHandjob/ScopeHandjob.dll`.
 
 To uninstall, delete the `BepInEx/plugins/ScopeHandjob` folder.
